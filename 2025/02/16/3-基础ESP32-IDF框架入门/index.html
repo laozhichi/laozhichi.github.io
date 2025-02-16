@@ -19,23 +19,23 @@
   <meta name="author" content="laozhichi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.三目运算符 三目运算符的用法为: 1condition ? expression1 : expression2  condition：一个布尔表达式（结果为 true 或 false）。 expression1：如果 condition 为 true，则返回 expression1 的值。 expression2：如果 condition 为 false，则返回 expression2 的值。">
+    <meta name="description" content="1.ESP32基础介绍1.1 ESP32相关知识  2.4 GHz Wi-Fi 和蓝牙双模 是指设备同时支持 2.4 GHz 频段的 Wi-Fi 和 蓝牙 两种无线通信技术，并且可以在两者之间切换或同时使用。      1.2 2.4G的相关概念在这里解释一下2.4GHz的相关概念：2.4 GHz Wi-Fi 中的 2.4 GHz 是指 Wi-Fi 使用的无线通信频段，其频率范围为 2.400 G">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语基础">
-<meta property="og:url" content="http://example.com/2025/02/15/1-C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="基于ESP32-IDF框架入门">
+<meta property="og:url" content="http://example.com/2025/02/16/3-%E5%9F%BA%E7%A1%80ESP32-IDF%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="学不会傅里叶">
-<meta property="og:description" content="1.三目运算符 三目运算符的用法为: 1condition ? expression1 : expression2  condition：一个布尔表达式（结果为 true 或 false）。 expression1：如果 condition 为 true，则返回 expression1 的值。 expression2：如果 condition 为 false，则返回 expression2 的值。">
+<meta property="og:description" content="1.ESP32基础介绍1.1 ESP32相关知识  2.4 GHz Wi-Fi 和蓝牙双模 是指设备同时支持 2.4 GHz 频段的 Wi-Fi 和 蓝牙 两种无线通信技术，并且可以在两者之间切换或同时使用。      1.2 2.4G的相关概念在这里解释一下2.4GHz的相关概念：2.4 GHz Wi-Fi 中的 2.4 GHz 是指 Wi-Fi 使用的无线通信频段，其频率范围为 2.400 G">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/C.jpg">
-<meta property="article:published_time" content="2025-02-15T07:43:02.000Z">
-<meta property="article:modified_time" content="2025-02-16T14:43:09.353Z">
+<meta property="og:image" content="http://example.com/img/esp_ico.png">
+<meta property="article:published_time" content="2025-02-16T14:34:26.000Z">
+<meta property="article:modified_time" content="2025-02-16T16:09:32.100Z">
 <meta property="article:author" content="laozhichi">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/C.jpg">
+<meta name="twitter:image" content="http://example.com/img/esp_ico.png">
   
   
   
-  <title>C语基础 - 学不会傅里叶</title>
+  <title>基于ESP32-IDF框架入门 - 学不会傅里叶</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C语基础"></span>
+            <span id="subtitle" data-typed-text="基于ESP32-IDF框架入门"></span>
           
         </div>
 
@@ -200,8 +200,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-15 15:43" pubdate>
-          February 15, 2025 pm
+        <time datetime="2025-02-16 22:34" pubdate>
+          February 16, 2025 pm
         </time>
       </span>
     
@@ -212,7 +212,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          143 words
+          350 words
         
       </span>
     
@@ -223,7 +223,7 @@
         
         
         
-          2 mins
+          3 mins
         
       </span>
     
@@ -260,25 +260,35 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">C语基础</h1>
+            <h1 id="seo-header">基于ESP32-IDF框架入门</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="1-三目运算符"><a href="#1-三目运算符" class="headerlink" title="1.三目运算符"></a>1.三目运算符</h1><p> 三目运算符的用法为:<br> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">condition ? expression1 : expression2<br></code></pre></td></tr></table></figure></p>
+                <h1 id="1-ESP32基础介绍"><a href="#1-ESP32基础介绍" class="headerlink" title="1.ESP32基础介绍"></a>1.ESP32基础介绍</h1><h3 id="1-1-ESP32相关知识"><a href="#1-1-ESP32相关知识" class="headerlink" title="1.1 ESP32相关知识"></a><strong>1.1 ESP32相关知识</strong></h3><img src="https://pic1.imgdb.cn/item/67b207bad0e0a243d4ffe328.png" srcset="/img/loading.gif" lazyload alt="" width=500 style="display: block; margin: 0 auto;"> 
+2.4 GHz Wi-Fi 和蓝牙双模 是指设备同时支持 2.4 GHz 频段的 Wi-Fi 和 蓝牙 两种无线通信技术，并且可以在两者之间切换或同时使用。
+
+
+
+
+
+<h3 id="1-2-2-4G的相关概念"><a href="#1-2-2-4G的相关概念" class="headerlink" title="1.2 2.4G的相关概念"></a><strong>1.2 2.4G的相关概念</strong></h3><p>在这里解释一下2.4GHz的相关概念：<br>2.4 GHz Wi-Fi 中的 2.4 GHz 是指 Wi-Fi 使用的无线通信频段，其频率范围为 2.400 GHz 至 2.4835 GHz。这个频段是国际电信联盟（ITU）和各国无线电管理机构规定的 ISM（Industrial, Scientific, and Medical）频段 之一。</p>
+<img src="https://pic1.imgdb.cn/item/67b2088dd0e0a243d4ffe33a.png" srcset="/img/loading.gif" lazyload alt="微信图片_20250216234714.png" width=500 style="display: block; margin: 0 auto;">
+
+
+<h3 id="1-3-ESP-IDF框架优势"><a href="#1-3-ESP-IDF框架优势" class="headerlink" title="1.3 ESP-IDF框架优势"></a><strong>1.3 ESP-IDF框架优势</strong></h3><img src="https://pic1.imgdb.cn/item/67b20a3dd0e0a243d4ffe35c.png" srcset="/img/loading.gif" lazyload alt="微信图片_20250216235428.png" style="display: block; margin: 0 auto;" width=400>
+
 <ul>
-<li>condition：一个布尔表达式（结果为 true 或 false）。</li>
-<li>expression1：如果 condition 为 true，则返回 expression1 的值。</li>
-<li>expression2：如果 condition 为 false，则返回 expression2 的值。</li>
+<li>首先我们比较熟悉C或C++开发</li>
+<li>ESP公司一般更新SDK的时候都会先更新这个ESP_IDF框架的</li>
+<li>平时需要应用在屏幕高刷新速度，采用C和C++开发的效率会更高</li>
 </ul>
-<p>在嵌入式初始化GPIO的时候，我们可以使用三目运算符进行引脚的初始化</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Led_Set</span><span class="hljs-params">(<span class="hljs-type">bool</span> state)</span>&#123;<br>	GPIO_WriteBit(LED_PORT,LED_PIN,state?Bit_RESET:Bit_SET);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-<h1 id="2-static的用法"><a href="#2-static的用法" class="headerlink" title="2.static的用法"></a>2.static的用法</h1><ul>
-<li>static用在函数前面，可以约束这个函数只能在本文件中才可以调用使用，其他文件无权调用</li>
+<h1 id="2-ESP32启动流程"><a href="#2-ESP32启动流程" class="headerlink" title="2.ESP32启动流程"></a>2.ESP32启动流程</h1><ul>
+<li>1、一级引导程序，固化在ROM中，不可修改加载二级引导程序至RAM中运行，检查100引脚，选择程序模式，当芯片上电检测到100引脚是低电平时就会进入下载模式，否则就会继续执行二级引导程序。</li>
+<li>2、二级引导程序，bootloader程序，从0x8000处读取分区表，处理各种段，加载应用程序</li>
+<li>3、应用程序，硬件外设和基本C语言运行环境的初始化，freertos初始化，最后执行app_main()函数</li>
 </ul>
-<h1 id="3-函数指针和指针函数"><a href="#3-函数指针和指针函数" class="headerlink" title="3.函数指针和指针函数"></a>3.函数指针和指针函数</h1>
+
                 
               </div>
             
@@ -296,7 +306,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/C%E8%AF%AD%E8%A8%80/" class="category-chain-item">C语言</a>
+  <a href="/categories/ESP32/" class="category-chain-item">ESP32</a>
   
   
 
@@ -316,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C语基础</div>
-      <div>http://example.com/2025/02/15/1-C语言基础/</div>
+      <div>基于ESP32-IDF框架入门</div>
+      <div>http://example.com/2025/02/16/3-基础ESP32-IDF框架入门/</div>
     </div>
     <div class="license-meta">
       
@@ -329,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 15, 2025</div>
+          <div>February 16, 2025</div>
         </div>
       
       
@@ -361,15 +371,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/15/2-%20stm32%E4%BE%8B%E7%A8%8B/" title="stm32基础例程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">stm32基础例程</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/02/15/2-%20stm32%E4%BE%8B%E7%A8%8B/" title="stm32基础例程">
+                        <span class="hidden-mobile">stm32基础例程</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
