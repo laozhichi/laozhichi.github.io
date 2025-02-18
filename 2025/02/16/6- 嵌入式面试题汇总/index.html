@@ -19,23 +19,23 @@
   <meta name="author" content="laozhichi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.ESP32基础介绍1.1 ESP32相关知识  2.4 GHz Wi-Fi 和蓝牙双模 是指设备同时支持 2.4 GHz 频段的 Wi-Fi 和 蓝牙 两种无线通信技术，并且可以在两者之间切换或同时使用。      1.2 2.4G的相关概念在这里解释一下2.4GHz的相关概念：2.4 GHz Wi-Fi 中的 2.4 GHz 是指 Wi-Fi 使用的无线通信频段，其频率范围为 2.400 G">
+    <meta name="description" content="1.函数指针和指针函数的区别12345678910111213141516171819202122232425262728293031&#x2F;&#x2F;函数指针指的是指向函数的指针&#x2F;&#x2F;指针函数指的是函数的返回值是一个指针#include&lt;stdio.h&gt;int Add(int a, int b) &#123;	return a + b;&#125;int Sub(int a, int b) &amp;#12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于ESP32-IDF框架入门">
-<meta property="og:url" content="http://example.com/2025/02/16/3-%E5%9F%BA%E7%A1%80ESP32-IDF%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:title" content="嵌入式面试题汇总">
+<meta property="og:url" content="http://example.com/2025/02/16/6-%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="学不会傅里叶">
-<meta property="og:description" content="1.ESP32基础介绍1.1 ESP32相关知识  2.4 GHz Wi-Fi 和蓝牙双模 是指设备同时支持 2.4 GHz 频段的 Wi-Fi 和 蓝牙 两种无线通信技术，并且可以在两者之间切换或同时使用。      1.2 2.4G的相关概念在这里解释一下2.4GHz的相关概念：2.4 GHz Wi-Fi 中的 2.4 GHz 是指 Wi-Fi 使用的无线通信频段，其频率范围为 2.400 G">
+<meta property="og:description" content="1.函数指针和指针函数的区别12345678910111213141516171819202122232425262728293031&#x2F;&#x2F;函数指针指的是指向函数的指针&#x2F;&#x2F;指针函数指的是函数的返回值是一个指针#include&lt;stdio.h&gt;int Add(int a, int b) &#123;	return a + b;&#125;int Sub(int a, int b) &amp;#12">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/esp_ico.png">
+<meta property="og:image" content="http://example.com/img/find_job.png">
 <meta property="article:published_time" content="2025-02-16T14:34:26.000Z">
-<meta property="article:modified_time" content="2025-02-16T16:09:32.100Z">
+<meta property="article:modified_time" content="2025-02-18T17:33:06.599Z">
 <meta property="article:author" content="laozhichi">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/esp_ico.png">
+<meta name="twitter:image" content="http://example.com/img/find_job.png">
   
   
   
-  <title>基于ESP32-IDF框架入门 - 学不会傅里叶</title>
+  <title>嵌入式面试题汇总 - 学不会傅里叶</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于ESP32-IDF框架入门"></span>
+            <span id="subtitle" data-typed-text="嵌入式面试题汇总"></span>
           
         </div>
 
@@ -212,7 +212,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          350 words
+          232 words
         
       </span>
     
@@ -223,7 +223,7 @@
         
         
         
-          3 mins
+          2 mins
         
       </span>
     
@@ -260,34 +260,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基于ESP32-IDF框架入门</h1>
+            <h1 id="seo-header">嵌入式面试题汇总</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="1-ESP32基础介绍"><a href="#1-ESP32基础介绍" class="headerlink" title="1.ESP32基础介绍"></a>1.ESP32基础介绍</h1><h3 id="1-1-ESP32相关知识"><a href="#1-1-ESP32相关知识" class="headerlink" title="1.1 ESP32相关知识"></a><strong>1.1 ESP32相关知识</strong></h3><img src="https://pic1.imgdb.cn/item/67b207bad0e0a243d4ffe328.png" srcset="/img/loading.gif" lazyload alt="" width=500 style="display: block; margin: 0 auto;"> 
-2.4 GHz Wi-Fi 和蓝牙双模 是指设备同时支持 2.4 GHz 频段的 Wi-Fi 和 蓝牙 两种无线通信技术，并且可以在两者之间切换或同时使用。
+                <h1 id="1-函数指针和指针函数的区别"><a href="#1-函数指针和指针函数的区别" class="headerlink" title="1.函数指针和指针函数的区别"></a>1.函数指针和指针函数的区别</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//函数指针指的是指向函数的指针</span><br><span class="hljs-comment">//指针函数指的是函数的返回值是一个指针</span><br><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">Add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">Sub</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>	<span class="hljs-keyword">return</span> a - b;<br>&#125;<br><br><span class="hljs-type">int</span>* <span class="hljs-title function_">multiply</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>	<span class="hljs-type">int</span> c = a * b;<br>	<span class="hljs-keyword">return</span> &amp;c;   <span class="hljs-comment">//返回一个int类型的指针</span><br>&#125;<br><br><span class="hljs-type">int</span> (*p)(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y) =<span class="hljs-literal">NULL</span>;  <span class="hljs-comment">//这个就是函数指针，调用的时候直接(*p)(后面加上实参就行)</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<br>	p = Add;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,(*p)(<span class="hljs-number">12</span>,<span class="hljs-number">13</span>));<br>	p = Sub;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, (*p)(<span class="hljs-number">13</span>, <span class="hljs-number">12</span>));<br>	<span class="hljs-type">int</span>* pstr = multiply(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,*pstr);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="2-指针的大小"><a href="#2-指针的大小" class="headerlink" title="2.指针的大小"></a>2.指针的大小</h1><p>当编译器是32bit的时候，所有指针长度为4字节<br>当编译器为64bit的时候，所有指针长度为8字节</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span>* P = <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-type">char</span>* P1 = <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-type">double</span>* P2 = <span class="hljs-literal">NULL</span>;<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-keyword">sizeof</span>(P));<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(P1));<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(P2));<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
-
-
-
-<h3 id="1-2-2-4G的相关概念"><a href="#1-2-2-4G的相关概念" class="headerlink" title="1.2 2.4G的相关概念"></a><strong>1.2 2.4G的相关概念</strong></h3><p>在这里解释一下2.4GHz的相关概念：<br>2.4 GHz Wi-Fi 中的 2.4 GHz 是指 Wi-Fi 使用的无线通信频段，其频率范围为 2.400 GHz 至 2.4835 GHz。这个频段是国际电信联盟（ITU）和各国无线电管理机构规定的 ISM（Industrial, Scientific, and Medical）频段 之一。</p>
-<img src="https://pic1.imgdb.cn/item/67b2088dd0e0a243d4ffe33a.png" srcset="/img/loading.gif" lazyload alt="微信图片_20250216234714.png" width=500 style="display: block; margin: 0 auto;">
-
-
-<h3 id="1-3-ESP-IDF框架优势"><a href="#1-3-ESP-IDF框架优势" class="headerlink" title="1.3 ESP-IDF框架优势"></a><strong>1.3 ESP-IDF框架优势</strong></h3><img src="https://pic1.imgdb.cn/item/67b20a3dd0e0a243d4ffe35c.png" srcset="/img/loading.gif" lazyload alt="微信图片_20250216235428.png" style="display: block; margin: 0 auto;" width=400>
-
-<ul>
-<li>首先我们比较熟悉C或C++开发</li>
-<li>ESP公司一般更新SDK的时候都会先更新这个ESP_IDF框架的</li>
-<li>平时需要应用在屏幕高刷新速度，采用C和C++开发的效率会更高</li>
-</ul>
-<h1 id="2-ESP32启动流程"><a href="#2-ESP32启动流程" class="headerlink" title="2.ESP32启动流程"></a>2.ESP32启动流程</h1><ul>
-<li>1、一级引导程序，固化在ROM中，不可修改加载二级引导程序至RAM中运行，检查100引脚，选择程序模式，当芯片上电检测到100引脚是低电平时就会进入下载模式，否则就会继续执行二级引导程序。</li>
-<li>2、二级引导程序，bootloader程序，从0x8000处读取分区表，处理各种段，加载应用程序</li>
-<li>3、应用程序，硬件外设和基本C语言运行环境的初始化，freertos初始化，最后执行app_main()函数</li>
-</ul>
 
                 
               </div>
@@ -306,7 +289,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ESP32/" class="category-chain-item">ESP32</a>
+  <a href="/categories/%E9%9D%A2%E7%BB%8F/" class="category-chain-item">面经</a>
   
   
 
@@ -326,8 +309,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于ESP32-IDF框架入门</div>
-      <div>http://example.com/2025/02/16/3-基础ESP32-IDF框架入门/</div>
+      <div>嵌入式面试题汇总</div>
+      <div>http://example.com/2025/02/16/6- 嵌入式面试题汇总/</div>
     </div>
     <div class="license-meta">
       
@@ -371,12 +354,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2025/02/16/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" title="智能家居项目实战">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">智能家居项目实战</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/16/4-ESP32-C3%20%E8%8E%B7%E5%8F%96%E5%A4%A9%E6%B0%94%E5%92%8C%E6%97%B6%E9%97%B4/" title="ESP32-C3 获取天气和时间">
-                        <span class="hidden-mobile">ESP32-C3 获取天气和时间</span>
+                      <a href="/2025/02/16/%E6%97%A0%E7%BA%BF%E4%BC%A0%E6%84%9F%E7%BD%91%E9%A1%B9%E7%9B%AE/" title="无线传感网项目">
+                        <span class="hidden-mobile">无线传感网项目</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
