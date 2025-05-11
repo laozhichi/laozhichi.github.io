@@ -19,24 +19,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这篇文章可以说是入门FPGA的第一步吧，无论是学习51单片机、stm32，相信点灯是每个电子学生的基操。  1、FPGA的基本概念这篇文章可以说是入门FPGA的第一步吧。先来大致了解一下FPGA大致的概念。FPGA的英文全称为()">
+    <meta name="description" content="这篇文章我们来入门51单片机编程的第一小节，我们来学习一下如何使用51单片机点亮LED和如何使用按键控制LED产生流水灯等  1.电阻的数码表示方法对于电阻而言，数码表示法是用三位数字来表示其阻值。具体规则如下： ​​前两位数字​​：代表有效数字，即阻值的基本组成部分。​第三位数字​​：表示10的幂次，也就是要将前两位数字乘以 10 的该幂次方，从而得到实际的电阻阻值，单位为欧姆（Ω） 。 实际">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FPGA点亮LED和流水灯设计">
-<meta property="og:url" content="http://example.com/2025/05/09/FPGA%E7%82%B9%E4%BA%AELED/index.html">
+<meta property="og:title" content="点亮LED和按键控制LED">
+<meta property="og:url" content="http://example.com/2025/05/10/%E7%82%B9%E4%BA%AELED%E5%92%8C%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED/index.html">
 <meta property="og:site_name" content="学不会傅里叶">
-<meta property="og:description" content="这篇文章可以说是入门FPGA的第一步吧，无论是学习51单片机、stm32，相信点灯是每个电子学生的基操。  1、FPGA的基本概念这篇文章可以说是入门FPGA的第一步吧。先来大致了解一下FPGA大致的概念。FPGA的英文全称为()">
+<meta property="og:description" content="这篇文章我们来入门51单片机编程的第一小节，我们来学习一下如何使用51单片机点亮LED和如何使用按键控制LED产生流水灯等  1.电阻的数码表示方法对于电阻而言，数码表示法是用三位数字来表示其阻值。具体规则如下： ​​前两位数字​​：代表有效数字，即阻值的基本组成部分。​第三位数字​​：表示10的幂次，也就是要将前两位数字乘以 10 的该幂次方，从而得到实际的电阻阻值，单位为欧姆（Ω） 。 实际">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/FPGA.png">
-<meta property="article:published_time" content="2025-05-09T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-10T11:48:43.065Z">
+<meta property="og:image" content="http://example.com/img/51dpj.png">
+<meta property="article:published_time" content="2025-05-10T11:51:07.000Z">
+<meta property="article:modified_time" content="2025-05-11T06:03:26.588Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="51单片机">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/FPGA.png">
+<meta name="twitter:image" content="http://example.com/img/51dpj.png">
   
   
   
-  <title>FPGA点亮LED和流水灯设计 - 学不会傅里叶</title>
+  <title>点亮LED和按键控制LED - 学不会傅里叶</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">FPGA点亮LED和流水灯设计</span>
+            <span id="subtitle">点亮LED和按键控制LED</span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-09 10:00" pubdate>
-          May 9, 2025 am
+        <time datetime="2025-05-10 19:51" pubdate>
+          May 10, 2025 pm
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          83 words
+          729 words
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          1 mins
+          7 mins
         
       </span>
     
@@ -272,15 +272,57 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">FPGA点亮LED和流水灯设计</h1>
+            <h1 id="seo-header">点亮LED和按键控制LED</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>这篇文章可以说是入门FPGA的第一步吧，无论是学习51单片机、stm32，相信点灯是每个电子学生的基操。</p>
+<p>这篇文章我们来入门51单片机编程的第一小节，我们来学习一下如何使用51单片机点亮LED和如何使用按键控制LED产生流水灯等</p>
 </blockquote>
-<h3 id="1、FPGA的基本概念"><a href="#1、FPGA的基本概念" class="headerlink" title="1、FPGA的基本概念"></a>1、FPGA的基本概念</h3><p>这篇文章可以说是入门FPGA的第一步吧。先来大致了解一下FPGA大致的概念。FPGA的英文全称为()</p>
+<h3 id="1-电阻的数码表示方法"><a href="#1-电阻的数码表示方法" class="headerlink" title="1.电阻的数码表示方法"></a>1.电阻的数码表示方法</h3><p>对于电阻而言，数码表示法是用三位数字来表示其阻值。具体规则如下：</p>
+<p>​​前两位数字​​：代表有效数字，即阻值的基本组成部分。<br>​第三位数字​​：表示10的幂次，也就是要将前两位数字乘以 10 的该幂次方，从而得到实际的电阻阻值，单位为欧姆（Ω） 。</p>
+<p>实际举例如下：</p>
+<center>
+<img src="/img/5.png" srcset="/img/loading.gif" lazyload width="900">
+</center>
+
+
+<h3 id="2-寄存器和驱动器"><a href="#2-寄存器和驱动器" class="headerlink" title="2.寄存器和驱动器"></a>2.寄存器和驱动器</h3><p>我们来看一下在芯片当中，寄存器是怎么操作I&#x2F;O端口的</p>
+<center>
+<img src="/img/6.png" srcset="/img/loading.gif" lazyload width="700">
+</center>
+寄存器在单片机当中用于存储数据，往往在下一次触发信号到临之前保存上一个时刻的数据
+寄存器通过驱动器的作用，会有强大的驱动能力，进而可以控制I/O口的输出高电平或者输出低电平
+
+<p>在51单片机当中我们采用的是TTL电平，也就是1表示5V，0表示0V</p>
+<h3 id="3-点亮一个LED"><a href="#3-点亮一个LED" class="headerlink" title="3.点亮一个LED"></a>3.点亮一个LED</h3><p>我们先来看一下在51开发板当中LED模块的原理图：</p>
+<center>
+<img src="/img/7.png" srcset="/img/loading.gif" lazyload width="700">
+</center>
+我们如果想要点亮D1这个编号的LED，我们只需要在D1这个LED一端输出低电平，这个时候就跟LED另一端的VCC形成一个闭合回路，点亮LED。
+
+
+
+
+<p>代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>	P2=<span class="hljs-number">0xFE</span>;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>		<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-LED闪烁"><a href="#4-LED闪烁" class="headerlink" title="4.LED闪烁"></a>4.LED闪烁</h3><p>在实现LED闪烁的时候，我们可以使用简单的延时函数进行一个延时，可以在STC-ISP当中使用延时函数生成工具生成一个固定时长的延时函数</p>
+<p>实现LED闪烁的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;INTRINS.H&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Delay500ms</span><span class="hljs-params">()</span>		<span class="hljs-comment">//@12.000MHz</span><br>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i, j, k;<br><br>	_nop_();<br>	_nop_();<br>	i = <span class="hljs-number">23</span>;<br>	j = <span class="hljs-number">205</span>;<br>	k = <span class="hljs-number">120</span>;<br>	<span class="hljs-keyword">do</span><br>	&#123;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--k);<br>		&#125; <span class="hljs-keyword">while</span> (--j);<br>	&#125; <span class="hljs-keyword">while</span> (--i);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;	<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>		P2=<span class="hljs-number">0xFE</span>;<br>		Delay500ms();<br>		P2=<span class="hljs-number">0xFF</span>;<br>		Delay500ms();<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>注意点：在引入空语句函数_nop_()之前需要先引入头文件#include&lt;INTRINS.H&gt;</p>
+<h3 id="5-LED流水灯设计"><a href="#5-LED流水灯设计" class="headerlink" title="5.LED流水灯设计"></a>5.LED流水灯设计</h3><p>我们使用最简单的方式来实现一个流水灯，使用不断循环来实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Delayxms</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> x)</span>		<span class="hljs-comment">//@12.000MHz</span><br>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i, j;<br>	<span class="hljs-keyword">while</span>(x)&#123;<br>		i = <span class="hljs-number">12</span>;<br>		j = <span class="hljs-number">169</span>;<br>		<span class="hljs-keyword">do</span><br>		&#123;<br>			<span class="hljs-keyword">while</span> (--j);<br>		&#125; <span class="hljs-keyword">while</span> (--i);	<br>		x--;<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>		P2=<span class="hljs-number">0xFE</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0xFD</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0xFB</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0xF7</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0xEF</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0xDF</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0xBF</span>;<br>		Delayxms(<span class="hljs-number">500</span>);<br>		P2=<span class="hljs-number">0x7F</span>;<br>		Delayxms(<span class="hljs-number">500</span>);		<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="6-无符号数和有符号数的表示范围"><a href="#6-无符号数和有符号数的表示范围" class="headerlink" title="6.无符号数和有符号数的表示范围"></a>6.无符号数和有符号数的表示范围</h3><center>
+<img src="/img/8.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+我们在这里主要是要记住不同符号数的表示范围
+
+
+<p>无符号数的取值范围为0~2^n-1<br>有符号数的取值范围为-2^(n-1)到2^(n-1)-1<br>我们需要把这几个重点的知识点记住即可</p>
 
                 
               </div>
@@ -299,7 +341,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  <a href="/categories/51%E5%8D%95%E7%89%87%E6%9C%BA/" class="category-chain-item">51单片机</a>
   
   
 
@@ -314,7 +356,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/FPGA/" class="print-no-link">#FPGA</a>
+        <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" class="print-no-link">#51单片机</a>
       
     </div>
   
@@ -326,8 +368,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FPGA点亮LED和流水灯设计</div>
-      <div>http://example.com/2025/05/09/FPGA点亮LED/</div>
+      <div>点亮LED和按键控制LED</div>
+      <div>http://example.com/2025/05/10/点亮LED和按键控制LED/</div>
     </div>
     <div class="license-meta">
       
@@ -339,7 +381,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 9, 2025</div>
+          <div>May 10, 2025</div>
         </div>
       
       
@@ -371,15 +413,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/10/51%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" title="51单片机和开发板介绍">
+                      <a href="/2025/05/11/%E7%8B%AC%E7%AB%8B%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED/" title="独立按键控制LED">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">51单片机和开发板介绍</span>
+                        <span class="hidden-mobile">独立按键控制LED</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/05/10/51%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" title="51单片机和开发板介绍">
+                        <span class="hidden-mobile">51单片机和开发板介绍</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
