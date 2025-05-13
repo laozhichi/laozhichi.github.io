@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/51dpj.png">
 <meta property="article:published_time" content="2025-05-11T06:07:04.000Z">
-<meta property="article:modified_time" content="2025-05-12T06:34:22.712Z">
+<meta property="article:modified_time" content="2025-05-12T06:48:44.847Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="51单片机">
 <meta name="twitter:card" content="summary_large_image">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          625 words
+          705 words
         
       </span>
     
@@ -315,6 +315,14 @@
 <p>LCD1602的相关调试函数：</p>
 <center>
 <img src="/img/16.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<p>我们可以使用51单片机进行显示实验，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;LCD1602.h&quot;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>	LCD_Init();<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>		LCD_ShowChar(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;S&#x27;</span>);<br>		LCD_ShowString(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;laozhichi&quot;</span>);<br>		LCD_ShowNum(<span class="hljs-number">1</span>,<span class="hljs-number">11</span>,<span class="hljs-number">12345</span>,<span class="hljs-number">5</span>);<br>		LCD_ShowSignedNum(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">99</span>,<span class="hljs-number">2</span>);<br>		LCD_ShowHexNum(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">0xFF</span>,<span class="hljs-number">2</span>);<br>		LCD_ShowBinNum(<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0xFF</span>,<span class="hljs-number">8</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码的显示效果如下：</p>
+<center>
+<img src="/img/17.png" srcset="/img/loading.gif" lazyload width="600">
 </center>
                 
               </div>
