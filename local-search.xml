@@ -29,6 +29,31 @@
   
   
   <entry>
+    <title>51单片机的AD和DA</title>
+    <link href="/2025/05/14/51%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84AD%E5%92%8CDA/"/>
+    <url>/2025/05/14/51%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84AD%E5%92%8CDA/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、AD-DA的定义"><a href="#1、AD-DA的定义" class="headerlink" title="1、AD&#x2F;DA的定义"></a>1、AD&#x2F;DA的定义</h3><center><img src="/img/58.png" width="600"></center>]]></content>
+    
+    
+    <categories>
+      
+      <category>51单片机</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>51单片机</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>51单片蜂鸣器</title>
     <link href="/2025/05/12/51%E5%8D%95%E7%89%87%E6%9C%BA%E8%9C%82%E9%B8%A3%E5%99%A8/"/>
     <url>/2025/05/12/51%E5%8D%95%E7%89%87%E6%9C%BA%E8%9C%82%E9%B8%A3%E5%99%A8/</url>
@@ -246,6 +271,31 @@
     <tags>
       
       <tag>FPGA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>python的文件操作</title>
+    <link href="/2025/05/09/python%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/"/>
+    <url>/2025/05/09/python%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、文件编码概念"><a href="#1、文件编码概念" class="headerlink" title="1、文件编码概念"></a>1、文件编码概念</h3><ul><li><p>思考：计算机只能识别：0和1，那么我们丰富的文本文件是如何被计算机识别，并存储在硬盘中呢？答案：使用编码技术（密码本）将内容翻译成0和1存入。</p></li><li><p>编码技术即：翻译的规则，记录了如何将内容翻译成二进制，以及如何将二进制翻译回可识别内容。计算机中有许多可用编码：UTF-8、GBK、Big5等不同的编码，将内容翻译成二进制也是不同的。</p></li></ul><center><img src="/img/59.png" width="600"></center><ul><li>编码有许多，所以要使用正确的编码， 才能对文件进行正确的读写操作呢。</li></ul><center><img src="/img/60.png" width="600"></center>如上，如果你给喜欢的女孩发送文件，使用编码A进行编码（内容转二进制）。女孩使用编码B打开文件进行解码（二进制反转回内容）。自求多福吧。<ul><li>查看文件编码</li></ul><center><img src="/img/61.png" width="600"></center>UTF-8是目前全球通用的编码格式。除非有特殊需求，否则，一律以UTF-8格式进行文件编码即可。<ul><li>总结：</li></ul><ol><li>什么是编码？<br>编码就是一种规则集合，记录了内容和二进制间进行相互转换的逻辑。<br>编码有许多中，我们最常用的是UTF-8编码</li><li>为什么需要使用编码？<br>计算机只认识0和1，所以需要将内容翻译成0和1才能保存在计算机中。<br>同时也需要编码， 将计算机保存的0和1，反向翻译回可以识别的内容</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>python语法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
       
     </tags>
     
