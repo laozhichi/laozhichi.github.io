@@ -19,16 +19,16 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1、文件编码概念 思考：计算机只能识别：0和1，那么我们丰富的文本文件是如何被计算机识别，并存储在硬盘中呢？答案：使用编码技术（密码本）将内容翻译成0和1存入。  编码技术即：翻译的规则，记录了如何将内容翻译成二进制，以及如何将二进制翻译回可识别内容。计算机中有许多可用编码：UTF-8、GBK、Big5等不同的编码，将内容翻译成二进制也是不同的。        编码有许多，所以要使用正确的编码，">
+    <meta name="description" content="1、什么是字面量(！！！注意字面量不是变量哈) 掌握字面量的含义代码中，被写在代码中的固定的值，称之为字面量  常见的字面量类型我们目前了解：整数、浮点数、字符串这三类即可  字符串定义：Python中，字符串需要用双引号（”）包围起来被引号包围起来的，都是字符串  如何基于print语句完成各类字面量的输出print(字面量)，如：print(10)，输出整数10print(13.14)，输出浮">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python的文件操作">
-<meta property="og:url" content="http://example.com/2025/05/09/python%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:title" content="python的入门语法">
+<meta property="og:url" content="http://example.com/2025/05/09/python%E5%85%A5%E9%97%A8%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="学不会傅里叶">
-<meta property="og:description" content="1、文件编码概念 思考：计算机只能识别：0和1，那么我们丰富的文本文件是如何被计算机识别，并存储在硬盘中呢？答案：使用编码技术（密码本）将内容翻译成0和1存入。  编码技术即：翻译的规则，记录了如何将内容翻译成二进制，以及如何将二进制翻译回可识别内容。计算机中有许多可用编码：UTF-8、GBK、Big5等不同的编码，将内容翻译成二进制也是不同的。        编码有许多，所以要使用正确的编码，">
+<meta property="og:description" content="1、什么是字面量(！！！注意字面量不是变量哈) 掌握字面量的含义代码中，被写在代码中的固定的值，称之为字面量  常见的字面量类型我们目前了解：整数、浮点数、字符串这三类即可  字符串定义：Python中，字符串需要用双引号（”）包围起来被引号包围起来的，都是字符串  如何基于print语句完成各类字面量的输出print(字面量)，如：print(10)，输出整数10print(13.14)，输出浮">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/python.png">
 <meta property="article:published_time" content="2025-05-09T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-14T18:41:02.673Z">
+<meta property="article:modified_time" content="2025-05-15T17:11:15.015Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
   
   
   
-  <title>python的文件操作 - 学不会傅里叶</title>
+  <title>python的入门语法 - 学不会傅里叶</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">python的文件操作</span>
+            <span id="subtitle">python的入门语法</span>
           
         </div>
 
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          393 words
+          1.1k words
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          4 mins
+          10 mins
         
       </span>
     
@@ -272,46 +272,104 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">python的文件操作</h1>
+            <h1 id="seo-header">python的入门语法</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="1、文件编码概念"><a href="#1、文件编码概念" class="headerlink" title="1、文件编码概念"></a>1、文件编码概念</h3><ul>
-<li><p>思考：计算机只能识别：0和1，那么我们丰富的文本文件是如何被计算机识别，并存储在硬盘中呢？答案：使用编码技术（密码本）将内容翻译成0和1存入。</p>
+                <h3 id="1、什么是字面量-！！！注意字面量不是变量哈"><a href="#1、什么是字面量-！！！注意字面量不是变量哈" class="headerlink" title="1、什么是字面量(！！！注意字面量不是变量哈)"></a>1、什么是字面量(！！！注意字面量不是变量哈)</h3><ul>
+<li><p>掌握字面量的含义<br>代码中，被写在代码中的固定的值，称之为字面量</p>
 </li>
-<li><p>编码技术即：翻译的规则，记录了如何将内容翻译成二进制，以及如何将二进制翻译回可识别内容。计算机中有许多可用编码：UTF-8、GBK、Big5等不同的编码，将内容翻译成二进制也是不同的。</p>
+<li><p>常见的字面量类型<br>我们目前了解：整数、浮点数、字符串这三类即可</p>
+</li>
+<li><p>字符串定义：Python中，字符串需要用双引号（”）包围起来<br>被引号包围起来的，都是字符串</p>
+</li>
+<li><p>如何基于print语句完成各类字面量的输出<br>print(字面量)，如：<br>print(10)，输出整数10<br>print(13.14)，输出浮点数13.14<br>print(“黑马程序员”)，输出字符串：黑马程序员</p>
 </li>
 </ul>
+<p>例如在下面这个截图当中，我们要使用双引号对字符串进行引用才不会报错</p>
 <center>
-<img src="/img/59.png" srcset="/img/loading.gif" lazyload width="600">
+<img src="/img/63.png" srcset="/img/loading.gif" lazyload width="300">
 </center>
 
+
+<h3 id="2、注释"><a href="#2、注释" class="headerlink" title="2、注释"></a>2、注释</h3><p>注释有常用的两种方法：<br>单行注释：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta"># 注释</span><br></code></pre></td></tr></table></figure>
+
+<p>多行注释：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">第一行注释</span><br><span class="hljs-string">第二行注释</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3、数据类型"><a href="#3、数据类型" class="headerlink" title="3、数据类型"></a>3、数据类型</h3><p>使用type()函数打印数据的数据类型<br>代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">print(type(<span class="hljs-number">11</span>))<br>print(type(<span class="hljs-number">11.11</span>))<br>print(type(<span class="hljs-string">&quot;shenzhen&quot;</span>))<br><br>type1=type(<span class="hljs-number">11</span>)<br>type2=type(<span class="hljs-number">11.11</span>)<br>type3=type(<span class="hljs-string">&quot;shenzhen&quot;</span>)<br><br>print(type1)<br>print(type2)<br>print(type3)<br></code></pre></td></tr></table></figure>
+
+<h3 id="4、数据类型转换"><a href="#4、数据类型转换" class="headerlink" title="4、数据类型转换"></a>4、数据类型转换</h3><center>
+<img src="/img/64.png" srcset="/img/loading.gif" lazyload width="500">
+</center>
+
+<p>数据类型转换注意事项：<br>类型转换不是万能的，毕竟强扭的瓜不会甜，我们需要注意：</p>
 <ul>
-<li>编码有许多，所以要使用正确的编码， 才能对文件进行正确的读写操作呢。</li>
+<li>任何类型，都可以通过str()，转换成字符串</li>
+<li>字符串内必须真的是数字，才可以将字符串转换为数字</li>
 </ul>
 <center>
-<img src="/img/60.png" srcset="/img/loading.gif" lazyload width="600">
+<img src="/img/65.png" srcset="/img/loading.gif" lazyload width="500">
 </center>
-如上，如果你给喜欢的女孩发送文件，使用编码A进行编码（内容转二进制）。
-女孩使用编码B打开文件进行解码（二进制反转回内容）。自求多福吧。
 
+<h3 id="5、运算符"><a href="#5、运算符" class="headerlink" title="5、运算符"></a>5、运算符</h3><center>
+<img src="/img/66.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<h3 id="6、字符串"><a href="#6、字符串" class="headerlink" title="6、字符串"></a>6、字符串</h3><ul>
+<li>字符串的定义方式</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">name1=<span class="hljs-string">&#x27;shenzhen&#x27;</span>   <span class="hljs-comment">//单引号</span><br>name2=<span class="hljs-string">&quot;shenzhen&quot;</span>   <span class="hljs-comment">//双引号</span><br>name3=<span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;shenzhen&quot;</span><span class="hljs-string">&quot;&quot;</span>  <span class="hljs-comment">//三引号</span><br></code></pre></td></tr></table></figure>
+<p>可以使用\对python中的符号进行解引用<br>例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">name=<span class="hljs-string">&quot;\&#x27;laozhichi\&#x27;&quot;</span><br></code></pre></td></tr></table></figure>
+<p>这个转义符号就是把单引号字符串定义的作用解引成一个普通字符了</p>
+<h3 id="7、字符串的拼接"><a href="#7、字符串的拼接" class="headerlink" title="7、字符串的拼接"></a>7、字符串的拼接</h3><p>如果我们有两个字符串（文本）字面量，可以将其拼接成一个字符串，通过+号即可完成，如：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;shenzhen&quot;</span>+<span class="hljs-string">&quot;university&quot;</span>)<br>name=<span class="hljs-string">&quot;shenzhen&quot;</span><br><span class="hljs-built_in">print</span>(name+<span class="hljs-string">&quot;universiy&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+
+<p>既然可以和字符串变量完成拼接，那么，是否可以和其它变量类型如数字类型完成拼接呢？</p>
+<center>
+<img src="/img/67.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<h3 id="8、字符串的格式化"><a href="#8、字符串的格式化" class="headerlink" title="8、字符串的格式化"></a>8、字符串的格式化</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">name=<span class="hljs-string">&quot;laozhichi&quot;</span><br>age=<span class="hljs-number">11</span><br>score=<span class="hljs-number">98.5</span><br>print(<span class="hljs-string">&quot;the infpmation of %s ,age is %d,score is %f&quot;</span>%(name,age,score))<br></code></pre></td></tr></table></figure>
+
+<h3 id="9、字符串精度化控制"><a href="#9、字符串精度化控制" class="headerlink" title="9、字符串精度化控制"></a>9、字符串精度化控制</h3><p>我们可以使用辅助符号”m.n”来控制数据的宽度和精度</p>
 <ul>
-<li>查看文件编码</li>
+<li>m，控制宽度，要求是数字（很少使用）,设置的宽度小于数字自身，不生效</li>
+<li>.n，控制小数点精度，要求是数字，会进行小数的四舍五入<br>示例：</li>
+<li>%5d：表示将整数的宽度控制在5位，如数字11，被设置为5d，就会变成：[空格][空格][空格]11，用三个空格补足宽度。</li>
+<li>%5.2f：表示将宽度控制为5，将小数点精度设置为2<br>小数点和小数部分也算入宽度计算。如，对11.345设置了%7.2f 后，结果是：[空格][空格]11.35。2个空格补足宽度，小数部分限制2位精度后，四舍五入为 .35</li>
+<li>%.2f：表示不限制宽度，只设置小数点精度为2，如11.345设置%.2f后，结果是11.35</li>
 </ul>
 <center>
-<img src="/img/61.png" srcset="/img/loading.gif" lazyload width="600">
+<img src="/img/68.png" srcset="/img/loading.gif" lazyload width="600">
 </center>
-UTF-8是目前全球通用的编码格式。除非有特殊需求，否则，一律以UTF-8格式进行文件编码即可。
 
+
+<h3 id="10、字符串格式化的另一种方式"><a href="#10、字符串格式化的另一种方式" class="headerlink" title="10、字符串格式化的另一种方式"></a>10、字符串格式化的另一种方式</h3><p>通过语法：f”内容{变量}”的格式来快速格式化</p>
+<center>
+<img src="/img/69.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">name=<span class="hljs-string">&quot;laozhichi&quot;</span><br>age=<span class="hljs-number">18</span><br>score=<span class="hljs-number">99.99</span><br>print(f<span class="hljs-string">&quot;the name is&#123;name&#125;,the age is &#123;age&#125;,the score is &#123;score&#125;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="11、输入语句"><a href="#11、输入语句" class="headerlink" title="11、输入语句"></a>11、输入语句</h3><p>我们前面学习过print语句（函数），可以完成将内容（字面量、变量等）输出到屏幕上。<br>在Python中，与之对应的还有一个input语句，用来获取键盘输入。</p>
 <ul>
-<li>总结：</li>
+<li>数据输出：print</li>
+<li>数据输入：input<br>使用上也非常简单：<br>使用input()语句可以从键盘获取输入<br>使用一个变量接收（存储）input语句获取的键盘输入数据即可</li>
 </ul>
-<ol>
-<li>什么是编码？<br>编码就是一种规则集合，记录了内容和二进制间进行相互转换的逻辑。<br>编码有许多中，我们最常用的是UTF-8编码</li>
-<li>为什么需要使用编码？<br>计算机只认识0和1，所以需要将内容翻译成0和1才能保存在计算机中。<br>同时也需要编码， 将计算机保存的0和1，反向翻译回可以识别的内容</li>
-</ol>
+<center>
+<img src="/img/70.png" srcset="/img/loading.gif" lazyload width="400">
+</center>
 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">name=input(<span class="hljs-string">&quot;请输入您的名字&quot;</span>)<br>print(<span class="hljs-string">&quot;你的名字%s&quot;</span>%name)<br>print(f<span class="hljs-string">&quot;你的名字是%s&#123;name&#125;&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>要注意，无论键盘输入什么类型的数据，获取到的数据永远都是字符串类型</p>
+<p>现在我们再来看一下还有一个用python程序写的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">user_name=input(<span class="hljs-string">&quot;请输入您的名字：&quot;</span>)<br>vip_class=input(<span class="hljs-string">&quot;请输入您的用户等级:&quot;</span>)<br>print(f<span class="hljs-string">&quot;您的用户名是&#123;user_name&#125;，您的用户等级是&#123;vip_class&#125;&quot;</span>)<br>print(<span class="hljs-string">&quot;您的用户名是%s，您的用户等级是%s&quot;</span>%(user_name,vip_class))<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -329,7 +387,7 @@ UTF-8是目前全球通用的编码格式。除非有特殊需求，否则，一
     
       <span class="category-chain">
         
-  <a href="/categories/python%E8%AF%AD%E6%B3%95/" class="category-chain-item">python语法</a>
+  <a href="/categories/python/" class="category-chain-item">python</a>
   
   
 
@@ -356,8 +414,8 @@ UTF-8是目前全球通用的编码格式。除非有特殊需求，否则，一
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>python的文件操作</div>
-      <div>http://example.com/2025/05/09/python的文件操作/</div>
+      <div>python的入门语法</div>
+      <div>http://example.com/2025/05/09/python入门语法/</div>
     </div>
     <div class="license-meta">
       
@@ -401,9 +459,9 @@ UTF-8是目前全球通用的编码格式。除非有特殊需求，否则，一
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/09/FPGA%E7%82%B9%E4%BA%AELED/" title="FPGA点亮LED和流水灯设计">
+                      <a href="/2025/05/09/python%E5%87%BD%E6%95%B0%E6%93%8D%E4%BD%9C/" title="python的文件操作">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FPGA点亮LED和流水灯设计</span>
+                        <span class="hidden-mobile">python的文件操作</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
