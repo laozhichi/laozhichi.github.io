@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/laozhichi.jpg">
+  <link rel="icon" href="/img/laozhichi.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、存储器介绍RAM的存储速度更快，ROM的存储速度更慢。所以RAM一般用于存储运行时候的数据，ROM一般用于存储需要长期保存的数据 主要区别​​:​​RAM​​：  ​可读可写​​，CPU 可以随时修改其中的数据。一般用于运行时数据存取 ​断电后数据丢失​​（易失性）。​​ROM​​： ​只读​​（传统 ROM），现代 ROM（如 EEPROM、Flash）可擦写，但写入速度慢。 ​断电后数据保">
+<meta property="og:type" content="website">
+<meta property="og:title" content="51单片机使用IIC协议">
+<meta property="og:url" content="http://example.com/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%87%E4%BB%B6/51%E5%8D%95%E7%89%87%E6%9C%BA%E4%BD%BF%E7%94%A8IIC%E5%8D%8F%E8%AE%AE.html">
+<meta property="og:site_name" content="学不会傅里叶">
+<meta property="og:description" content="1、存储器介绍RAM的存储速度更快，ROM的存储速度更慢。所以RAM一般用于存储运行时候的数据，ROM一般用于存储需要长期保存的数据 主要区别​​:​​RAM​​：  ​可读可写​​，CPU 可以随时修改其中的数据。一般用于运行时数据存取 ​断电后数据丢失​​（易失性）。​​ROM​​： ​只读​​（传统 ROM），现代 ROM（如 EEPROM、Flash）可擦写，但写入速度慢。 ​断电后数据保">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/51dpj.png">
+<meta property="article:published_time" content="2025-05-14T06:54:31.000Z">
+<meta property="article:modified_time" content="2025-05-14T05:47:21.185Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="51单片机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/51dpj.png">
+  
+  
+  
+  <title>51单片机使用IIC协议 - 学不会傅里叶</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>学不会傅里叶</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">51单片机使用IIC协议</span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h3 id="1、存储器介绍"><a href="#1、存储器介绍" class="headerlink" title="1、存储器介绍"></a>1、存储器介绍</h3><p>RAM的存储速度更快，ROM的存储速度更慢。所以RAM一般用于存储运行时候的数据，ROM一般用于存储需要长期保存的数据</p>
+<p>主要区别​​:<br>​​RAM​​：</p>
+<ul>
+<li>​可读可写​​，CPU 可以随时修改其中的数据。一般用于运行时数据存取</li>
+<li>​断电后数据丢失​​（易失性）。<br>​​ROM​​：</li>
+<li>​只读​​（传统 ROM），现代 ROM（如 EEPROM、Flash）可擦写，但写入速度慢。</li>
+<li>​断电后数据保留​​（非易失性）。</li>
+</ul>
+<center>
+<img src="/img/44.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+
+<h3 id="2、AT24C02存储芯片介绍"><a href="#2、AT24C02存储芯片介绍" class="headerlink" title="2、AT24C02存储芯片介绍"></a>2、AT24C02存储芯片介绍</h3><p>在这里我们要记得AT24C02能存储的数据为256字节。</p>
+<center>
+<img src="/img/45.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+<center>
+<img src="/img/46.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+
+
+<h3 id="3、为什么IIC要使用上拉电阻和开漏输出"><a href="#3、为什么IIC要使用上拉电阻和开漏输出" class="headerlink" title="3、为什么IIC要使用上拉电阻和开漏输出"></a>3、为什么IIC要使用上拉电阻和开漏输出</h3><ul>
+<li>​​I²C 是多主控、多从设备的总线协议​​，允许多个设备（如传感器、EEPROM、RTC）连接到同一 SDA 和 SCL 线。</li>
+<li>如果使用 ​​推挽输出​​，多个设备同时驱动总线时会导致 ​​短路​​（一个设备拉高，另一个拉低，形成大电流）。</li>
+<li>​开漏输出​​ 允许设备 ​​只拉低总线​​，高电平由 ​​上拉电阻​​ 提供，避免短路。</li>
+</ul>
+<center>
+<img src="/img/47.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<h3 id="4、IIC时序"><a href="#4、IIC时序" class="headerlink" title="4、IIC时序"></a>4、IIC时序</h3><center>
+<img src="/img/48.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+<center>
+<img src="/img/49.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<center>
+<img src="/img/50.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<center>
+<img src="/img/51.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+
+<center>
+<img src="/img/52.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+
+<h3 id="5、IIC代码"><a href="#5、IIC代码" class="headerlink" title="5、IIC代码"></a>5、IIC代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><br>sbit I2C_SCL=P2^<span class="hljs-number">1</span>;<br>sbit I2C_SDA=P2^<span class="hljs-number">0</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  I2C开始</span><br><span class="hljs-comment">  * @param  无</span><br><span class="hljs-comment">  * @retval 无</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">I2C_Start</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>	I2C_SDA=<span class="hljs-number">1</span>;<br>	I2C_SCL=<span class="hljs-number">1</span>;<br>	I2C_SDA=<span class="hljs-number">0</span>;<br>	I2C_SCL=<span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  I2C停止</span><br><span class="hljs-comment">  * @param  无</span><br><span class="hljs-comment">  * @retval 无</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">I2C_Stop</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>	I2C_SDA=<span class="hljs-number">0</span>;<br>	I2C_SCL=<span class="hljs-number">1</span>;<br>	I2C_SDA=<span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  I2C发送一个字节</span><br><span class="hljs-comment">  * @param  Byte 要发送的字节</span><br><span class="hljs-comment">  * @retval 无</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">I2C_SendByte</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> Byte)</span><br>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i++)<br>	&#123;<br>		I2C_SDA=Byte&amp;(<span class="hljs-number">0x80</span>&gt;&gt;i);<br>		I2C_SCL=<span class="hljs-number">1</span>;<br>		I2C_SCL=<span class="hljs-number">0</span>;<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  I2C接收一个字节</span><br><span class="hljs-comment">  * @param  无</span><br><span class="hljs-comment">  * @retval 接收到的一个字节数据</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> <span class="hljs-title function_">I2C_ReceiveByte</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> i,Byte=<span class="hljs-number">0x00</span>;<br>	I2C_SDA=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i++)<br>	&#123;<br>		I2C_SCL=<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(I2C_SDA)&#123;Byte|=(<span class="hljs-number">0x80</span>&gt;&gt;i);&#125;<br>		I2C_SCL=<span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> Byte;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  I2C发送应答</span><br><span class="hljs-comment">  * @param  AckBit 应答位，0为应答，1为非应答</span><br><span class="hljs-comment">  * @retval 无</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">I2C_SendAck</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> AckBit)</span><br>&#123;<br>	I2C_SDA=AckBit;<br>	I2C_SCL=<span class="hljs-number">1</span>;<br>	I2C_SCL=<span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  I2C接收应答位</span><br><span class="hljs-comment">  * @param  无</span><br><span class="hljs-comment">  * @retval 接收到的应答位，0为应答，1为非应答</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> <span class="hljs-title function_">I2C_ReceiveAck</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> AckBit;<br>	I2C_SDA=<span class="hljs-number">1</span>;<br>	I2C_SCL=<span class="hljs-number">1</span>;<br>	AckBit=I2C_SDA;<br>	I2C_SCL=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">return</span> AckBit;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="6、对AT24C02进行读写"><a href="#6、对AT24C02进行读写" class="headerlink" title="6、对AT24C02进行读写"></a>6、对AT24C02进行读写</h3><center>
+<img src="/img/53.png" srcset="/img/loading.gif" lazyload width="600">
+</center>
+
+<p>根据图片当中的配置方法进行时序读写，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;REGX52.H&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;I2C.h&quot;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> AT24C02_ADDRESS		0xA0</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  AT24C02写入一个字节</span><br><span class="hljs-comment">  * @param  WordAddress 要写入字节的地址</span><br><span class="hljs-comment">  * @param  Data 要写入的数据</span><br><span class="hljs-comment">  * @retval 无</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">AT24C02_WriteByte</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> WordAddress,Data)</span><br>&#123;<br>	I2C_Start();<br>	I2C_SendByte(AT24C02_ADDRESS);<br>	I2C_ReceiveAck();<br>	I2C_SendByte(WordAddress);<br>	I2C_ReceiveAck();<br>	I2C_SendByte(Data);<br>	I2C_ReceiveAck();<br>	I2C_Stop();<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  AT24C02读取一个字节</span><br><span class="hljs-comment">  * @param  WordAddress 要读出字节的地址</span><br><span class="hljs-comment">  * @retval 读出的数据</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> <span class="hljs-title function_">AT24C02_ReadByte</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> WordAddress)</span><br>&#123;<br>	<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> Data;<br>	I2C_Start();<br>	I2C_SendByte(AT24C02_ADDRESS);<br>	I2C_ReceiveAck();<br>	I2C_SendByte(WordAddress);<br>	I2C_ReceiveAck();<br>	I2C_Start();<br>	I2C_SendByte(AT24C02_ADDRESS|<span class="hljs-number">0x01</span>);<br>	I2C_ReceiveAck();<br>	Data=I2C_ReceiveByte();<br>	I2C_SendAck(<span class="hljs-number">1</span>);<br>	I2C_Stop();<br>	<span class="hljs-keyword">return</span> Data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
