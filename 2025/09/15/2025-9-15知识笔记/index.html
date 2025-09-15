@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="今天的主线任务就是了解一下ROM和RAM相关IP核的使用
+1、创建工程在创建工程的时候，要选取下面这个信息Series (系列)​​     芯片的产品系列，决定架构和性能等级。     GW5A(高云5A系列)Device (器件)​​     系列下的具体型号，决定逻辑资源规模。     GW5">
+
+
+<link rel="alternate" href="/atom.xml" title="风继续吹" type="application/atom+xml">
+<meta name="theme-color" content="#5badf0">
+<title>2025.9.15知识笔记 - 风继续吹</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>2025.9.15知识笔记</h1>
+        
+        <h2 class="headline">Sep 15 2025
+        
+            
+            <a href="/categories/每日笔记/#每日笔记">每日笔记</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><p>今天的主线任务就是了解一下ROM和RAM相关IP核的使用</p>
+<h3 id="1、创建工程"><a href="#1、创建工程" class="headerlink" title="1、创建工程"></a>1、创建工程</h3><p>在创建工程的时候，要选取下面这个信息<br>Series (系列)​​     芯片的产品系列，决定架构和性能等级。     GW5A(高云5A系列)<br>Device (器件)​​     系列下的具体型号，决定逻辑资源规模。     GW5A-25<br>​Speed (速度等级)​​   芯片的性能等级，等级越高，时序性能越好。 ES(工程样片)</p>
+<h3 id="2、地址宽度和数据宽度区别"><a href="#2、地址宽度和数据宽度区别" class="headerlink" title="2、地址宽度和数据宽度区别"></a>2、地址宽度和数据宽度区别</h3><p>数据宽度 (Data Width)​​     ​每个存储单元存放的数据的位数​​（即ROM每个地址输出的数据位宽）      决定了你​​一次能读出多少位数据​​</p>
+<p>​​地址宽度 (Address Depth)​​    ​存储单元的数量​​（寻址范围）           决定了你的ROM​​能存多少个数据​</p>
+<p>举个例子:<br>假设你要用ROM存储一个简单的4色调色板，颜色值为：3’b000（黑）, 3’b001（红）, 3’b010（绿）, 3’b011（蓝）。</p>
+<p>分析:每个颜色值有 ​​3位​​。共有 ​​4个​​ 颜色值。</p>
+<p>​​选择参数​​：<br>​数据宽度 (Data Width)​​：每个颜色值是3位，所以设为 ​​3​​。<br>​​地址深度 (Address Depth)​​：有4个颜色值，所以至少需要4个地址。2^2&#x3D;4，所以地址宽度设为 ​​2​​ 位刚好满足。如果你想预留空间，可以设更大（如3位，地址深度8）。</p>
+<p>图片中显示的ROM16符号确实只有 ​​addr[0..0]​​（1位地址线），但这只是因为您当前配置的 ​​地址深度（Address Depth）只有2​​（只需要1位地址就能索引2个位置：0和1）。<br>​核心原理：地址宽度是动态的​​<br>ROM16模块的​​地址端口宽度不是固定的​​，它会根据您在配置界面中设置的 ​​“Address Depth”​​ 的值​​自动调整​​！</p>
+<p>存储器总容量 (bits) &#x3D; 数据宽度 (bits) × 地址深度 (寻址单元数)​​<br>​地址深度 &#x3D; 2 ^ (地址宽度)​</p>
+<p>sine为正弦波的意思</p>
+<h3 id="3、PROM的输入输出端口"><a href="#3、PROM的输入输出端口" class="headerlink" title="3、PROM的输入输出端口"></a>3、PROM的输入输出端口</h3><p>PROM端口作用：ad输入地址，clk同步时钟，oce控制输出更新，ce使能芯片，reset复位，dout输出数据。</p>
+<p>首先来看一下oce端口的作用：只有oce使能了，才能更新得输出数据。只有 oce信号使能（为高电平 1）时，ROM 的输出数据 dout才会在时钟上升沿被更新。​<br>①当oce为高电平（1）时，允许ROM在时钟沿更新输出数据，新数据覆盖原值，dout随地址变化。<br>②当oce为低电平（0）时，ROM的输出数据被冻结并保持最后一个值，内部逻辑继续正常工作。</p>
+<p>PROM（ROM）的 ​​bypass模式​​ 和 ​​pipeline模式:<br>bypass模式​​ 和 ​​pipeline模式​​ 的核心区别在于​​数据输出与时钟的时序关系​​。<br>​Bypass模式（旁路模式）​​：数据输出​​无时钟延迟​​，地址变化后数据立即更新（异步读取）。<br>​Pipeline模式（流水线&#x2F;寄存器模式）​​：数据输出​​有1个时钟周期的延迟​​，在时钟上升沿锁存输出（同步读取）。</p>
+<p>​ROM时序波形图（Bypass模式）:<br>Bypass模式：clk上升沿读取地址，下降沿读出数据</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">|                                                                       |</span><br><span class="line">|  CLK: __|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__   |</span><br><span class="line">|       <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>   <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>   <span class="number">9</span>   <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>  <span class="number">13</span>  <span class="number">14</span>         |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  CE:  ________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾   |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  AD:  [ ad_0 ] [ ad_1 ] [ ad_2 ] [ ad_3 ]                             |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  DO:  [MEM(ad_0)] [MEM(ad_1)] [MEM(ad_2)] [MEM(ad_3)]                 |</span><br><span class="line">|                                                                       |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  特征：DO 随 AD 变化立即更新，无时钟延迟                              |</span><br><span class="line">+-----------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>Pipeline模式：上升沿读取地址，下个下降沿读取数据，慢一拍<br>ROM时序波形图（Pipeline模式）​:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">|                                                                       |</span><br><span class="line">|  CLK: __|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__|‾|__   |</span><br><span class="line">|       <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>   <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>   <span class="number">9</span>   <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>  <span class="number">13</span>  <span class="number">14</span>         |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  CE:  ________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾   |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  AD:  [ ad_0 ] [ ad_1 ] [ ad_2 ] [ ad_3 ]                             |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  DO:  ________ [MEM(ad_0)] [MEM(ad_1)] [MEM(ad_2)]                     |</span><br><span class="line">|                                                                       |</span><br><span class="line">|                                                                       |</span><br><span class="line">|  特征：DO 较 AD 延迟<span class="number">1</span>个时钟周期更新                                   |</span><br><span class="line">+-----------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>​模式选择建议​​:<br>​1、​追求性能和数据稳定性​​：选择 ​​Pipeline模式​​。这是最常用的模式，能保证数据在稳定时被捕获，避免系统因异步读取而产生冒险。</p>
+<p>​2、​需要立即获取数据​​：仅在极少数对延迟极其敏感且能处理潜在毛刺的场景下，考虑 ​​Bypass模式​​。</p>
+<p>复 位 模 式 配 置 ， 支 持 同 步 复 位 （Synchronous） 和 异 步 复 位（Asynchronous），reset 信号复位锁存器和输出寄存器，因此当设置reset 信号有效时，不管用户使用的是寄存器输出模式还是旁路输出模式，端口都输出 0。同步复位有效时，DO 在 CLK 上升沿复位为 0，异步复位有效时，DO 随之复位为 0，不需要等到 CLK 上升沿。 </p>
+<p>配置初始值，初始值以二进制、十六进制或带地址十六进制的格式写在初始化文件中。“Memory Initialization File”选取的初始化文件可通过手动或者在IDE菜单栏中依次点击“File-&gt;New-&gt;Memory Initialization File”获取。 </p>
+<h3 id="4、PROM使用代码"><a href="#4、PROM使用代码" class="headerlink" title="4、PROM使用代码"></a>4、PROM使用代码</h3><p>直接使用Gowin_pROM进行实例化即可<br>IP核代码</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Gowin_pROM (dout, clk, oce, ce, reset, ad);</span><br><span class="line"></span><br><span class="line"><span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] dout;</span><br><span class="line"><span class="keyword">input</span> clk;</span><br><span class="line"><span class="keyword">input</span> oce;</span><br><span class="line"><span class="keyword">input</span> ce;</span><br><span class="line"><span class="keyword">input</span> reset;</span><br><span class="line"><span class="keyword">input</span> [<span class="number">7</span>:<span class="number">0</span>] ad;</span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">23</span>:<span class="number">0</span>] prom_inst_0_dout_w;</span><br><span class="line"><span class="keyword">wire</span> gw_gnd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> gw_gnd = <span class="number">1&#x27;b0</span>;</span><br><span class="line"></span><br><span class="line">pROM prom_inst_0 (</span><br><span class="line">    <span class="variable">.DO</span>(&#123;prom_inst_0_dout_w[<span class="number">23</span>:<span class="number">0</span>],dout[<span class="number">7</span>:<span class="number">0</span>]&#125;),</span><br><span class="line">    <span class="variable">.CLK</span>(clk),</span><br><span class="line">    <span class="variable">.OCE</span>(oce),</span><br><span class="line">    <span class="variable">.CE</span>(ce),</span><br><span class="line">    <span class="variable">.RESET</span>(reset),</span><br><span class="line">    <span class="variable">.AD</span>(&#123;gw_gnd,gw_gnd,gw_gnd,ad[<span class="number">7</span>:<span class="number">0</span>],gw_gnd,gw_gnd,gw_gnd&#125;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.READ_MODE</span> = <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.BIT_WIDTH</span> = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.RESET_MODE</span> = <span class="string">&quot;SYNC&quot;</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_00</span> = <span class="number">256&#x27;hD7D5D3D0CECBC9C6C4C1BEBCB9B6B3B0ADAAA7A5A29E9B9895928F8C89868380</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_01</span> = <span class="number">256&#x27;hFFFFFFFEFEFEFDFDFCFBFAFAF9F8F6F5F4F3F1F0EEEDEBEAE8E6E4E2E0DEDCDA</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_02</span> = <span class="number">256&#x27;hDCDEE0E2E4E6E8EAEBEDEEF0F1F3F4F5F6F8F9FAFAFBFCFDFDFEFEFEFFFFFFFF</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_03</span> = <span class="number">256&#x27;h8386898C8F9295989B9EA2A5A7AAADB0B3B6B9BCBEC1C4C6C9CBCED0D3D5D7DA</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_04</span> = <span class="number">256&#x27;h282A2C2F313436393B3E414346494C4F5255585A5D6164676A6D707376797C80</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_05</span> = <span class="number">256&#x27;h0000000101010202030405050607090A0B0C0E0F1112141517191B1D1F212325</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_06</span> = <span class="number">256&#x27;h23211F1D1B1917151412110F0E0C0B0A09070605050403020201010100000000</span>;</span><br><span class="line"><span class="keyword">defparam</span> prom_inst_0<span class="variable">.INIT_RAM_07</span> = <span class="number">256&#x27;h7C797673706D6A6764615D5A5855524F4C494643413E3B393634312F2C2A2825</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span> <span class="comment">//Gowin_pROM</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实例化代码:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> rom_top( </span><br><span class="line"> clk, </span><br><span class="line"> reset_n, </span><br><span class="line"> dout </span><br><span class="line">); </span><br><span class="line"> <span class="keyword">input</span> clk; </span><br><span class="line"> <span class="keyword">input</span> reset_n; </span><br><span class="line"> <span class="keyword">output</span> <span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>]dout; </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">reg</span> [<span class="number">9</span>:<span class="number">0</span>]addr; </span><br><span class="line"> <span class="keyword">always</span>@(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> reset_n) </span><br><span class="line"> <span class="keyword">if</span>(!reset_n) </span><br><span class="line"> addr&lt;=<span class="number">0</span>; </span><br><span class="line"> <span class="keyword">else</span> </span><br><span class="line"> addr&lt;=addr+<span class="number">1&#x27;b1</span>; </span><br><span class="line"> </span><br><span class="line"> Gowin_pROM Gowin_pROM( </span><br><span class="line"> <span class="variable">.dout</span>(dout), <span class="comment">//output [7:0] dout </span></span><br><span class="line"> <span class="variable">.clk</span>(clk), <span class="comment">//input clk </span></span><br><span class="line"> <span class="variable">.oce</span>(<span class="number">1&#x27;b1</span>), <span class="comment">//input oce </span></span><br><span class="line"> <span class="variable">.ce</span>(<span class="number">1&#x27;b1</span>), <span class="comment">//input ce </span></span><br><span class="line"> <span class="variable">.reset</span>(~reset_n), <span class="comment">//input reset </span></span><br><span class="line"> <span class="variable">.ad</span>(addr) <span class="comment">//input [7:0] ad </span></span><br><span class="line"> ); </span><br><span class="line"> </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="5、RAM代码"><a href="#5、RAM代码" class="headerlink" title="5、RAM代码"></a>5、RAM代码</h3><p>具有两个地址，写地址WAD 和读地址 RAD，这两个地址端口是异步的。WRE 为高电平时进行写操作，此时会在 CLK 的上升沿将数据加载到存储器对应写地址。读操作则由读地址确<br>定输出 RAM 对应位置的数据，其时序波形图如下所示。:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250915223410550.png" 
+   style="width:80%; display:block; margin:0 auto;"></p>
+<p>上面这个图片，时钟沿一来，同时写入地址和读数据</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化Gowin FPGA的16位深度单端口RAM模块 (RAM16SDP)</span></span><br><span class="line"><span class="comment">// 该模块提供同步写、异步读功能</span></span><br><span class="line">Gowin_RAM16SDP your_instance_name(</span><br><span class="line">    <span class="variable">.dout</span>(dout_o),    <span class="comment">// 输出：8位数据输出线，连接到dout_o信号</span></span><br><span class="line">    <span class="variable">.wre</span>(wre_i),      <span class="comment">// 输入：写使能信号，高电平有效时允许写入操作</span></span><br><span class="line">    <span class="variable">.wad</span>(wad_i),      <span class="comment">// 输入：8位写地址总线，指定数据写入位置(0-255)</span></span><br><span class="line">    <span class="variable">.di</span>(di_i),        <span class="comment">// 输入：8位数据输入总线，提供要写入存储器的数据</span></span><br><span class="line">    <span class="variable">.rad</span>(rad_i),      <span class="comment">// 输入：8位读地址总线，指定数据读取位置(0-255)</span></span><br><span class="line">    <span class="variable">.clk</span>(clk_i)       <span class="comment">// 输入：系统时钟，同步写入操作（上升沿触发）</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>测试文件:</p>
+<p>具体 tb代码实现的是在地址从 0<del>16上写入数据为从 255 减至 240。延时一段时间后读地址为 0</del>16 上的数据。 </p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns/1ns  </span><span class="comment">// 仿真时间单位1ns/精度1ns</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> CLK_PERIOD 20 </span><span class="comment">// 定义时钟周期为20ns（对应50MHz）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> ram_tb();</span><br><span class="line">    <span class="comment">//==== 信号声明 ====//</span></span><br><span class="line">    <span class="keyword">reg</span> clk;         <span class="comment">// 主时钟信号（用于同步RAM操作）</span></span><br><span class="line">    <span class="keyword">reg</span> wea;         <span class="comment">// 写使能信号（高电平有效）</span></span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] addra; <span class="comment">// 写地址总线（实际只用低4位，寻址范围0-15）</span></span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] dina;  <span class="comment">// 写入数据总线（8位宽）</span></span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] addrb; <span class="comment">// 读地址总线（实际只用低4位）</span></span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] doutb;<span class="comment">// 读取数据输出</span></span><br><span class="line">    <span class="keyword">integer</span> i;       <span class="comment">// 循环控制变量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//==== 硬件原语实例化 ====//</span></span><br><span class="line">    GSR GSR(<span class="variable">.GSRI</span>(<span class="number">1&#x27;b1</span>)); <span class="comment">// 全局复位控制（此处保持无效状态）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//==== 待测RAM模块实例化 ====//</span></span><br><span class="line">    <span class="comment">// 信号连接关系：</span></span><br><span class="line">    <span class="comment">// - 写操作：wea + addra + dina -&gt; 在clk上升沿写入</span></span><br><span class="line">    <span class="comment">// - 读操作：addrb -&gt; 异步输出到doutb</span></span><br><span class="line">    Gowin_RAM16SDP your_instance_name(</span><br><span class="line">        <span class="variable">.dout</span>(doutb), <span class="comment">// 输出：读取数据（连接到doutb）</span></span><br><span class="line">        <span class="variable">.wre</span>(wea),    <span class="comment">// 输入：写使能（连接到wea）</span></span><br><span class="line">        <span class="variable">.wad</span>(addra),  <span class="comment">// 输入：写地址（连接到addra）</span></span><br><span class="line">        <span class="variable">.di</span>(dina),    <span class="comment">// 输入：写入数据（连接到dina）</span></span><br><span class="line">        <span class="variable">.rad</span>(addrb),  <span class="comment">// 输入：读地址（连接到addrb）</span></span><br><span class="line">        <span class="variable">.clk</span>(clk)     <span class="comment">// 输入：工作时钟（连接到clk）</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//==== 时钟生成 ====//</span></span><br><span class="line">    <span class="keyword">initial</span> clk = <span class="number">1&#x27;b1</span>;  <span class="comment">// 时钟初始化为高电平</span></span><br><span class="line">    <span class="keyword">always</span> <span class="variable">#(`CLK_PERIOD/2)</span> clk = ~clk; <span class="comment">// 每10ns翻转一次（生成50MHz时钟）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//==== 测试主程序 ====//</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="comment">// 初始化阶段</span></span><br><span class="line">        wea = <span class="number">0</span>;      <span class="comment">// 写使能关闭</span></span><br><span class="line">        addra = <span class="number">0</span>;     <span class="comment">// 写地址清零</span></span><br><span class="line">        dina = <span class="number">0</span>;      <span class="comment">// 写入数据清零</span></span><br><span class="line">        addrb = <span class="number">255</span>;   <span class="comment">// 读地址初始化为255（测试高位地址是否被忽略）</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 等待10.5个时钟周期（210ns）让系统稳定</span></span><br><span class="line">        <span class="variable">#(`CLK_PERIOD*10 + 1)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//=== 测试阶段1：写入16个数据 ===//</span></span><br><span class="line">        wea = <span class="number">1</span>;  <span class="comment">// 使能写入</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">15</span>; i = i + <span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">            dina = <span class="number">255</span> - i;  <span class="comment">// 写入数据从255递减到240</span></span><br><span class="line">            addra = i;        <span class="comment">// 地址从0递增到15</span></span><br><span class="line">            #`CLK_PERIOD;     <span class="comment">// 每个数据保持20ns（1个时钟周期）</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        wea = <span class="number">0</span>;  <span class="comment">// 关闭写入使能</span></span><br><span class="line">        #<span class="number">1</span>;       <span class="comment">// 额外等待1ns（避免竞争冒险）</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//=== 测试阶段2：读取16个地址 ===//</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">15</span>; i = i + <span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">            addrb = i;  <span class="comment">// 地址从0递增到15</span></span><br><span class="line">            #`CLK_PERIOD; <span class="comment">// 每个地址保持20ns</span></span><br><span class="line">            <span class="comment">// 注意：此处应添加读取验证逻辑（当前缺失）</span></span><br><span class="line">            <span class="comment">// 例如：if (doutb !== 255-i) $error(&quot;读取错误&quot;);</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 结束仿真</span></span><br><span class="line">        #<span class="number">200</span>;   <span class="comment">// 额外延迟200ns（观察最终状态）</span></span><br><span class="line">        <span class="built_in">$stop</span>;  <span class="comment">// 终止仿真</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure></section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/me.jpg">
+        <div>
+            <span class="dark">风继续吹</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=http://example.com/2025/09/15/2025-9-15%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/ - 2025.9.15知识笔记 @"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "2025.9.15知识笔记",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+    
+        <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+    <aside class="dates">Sep 15 2025</aside>
+    <a href="/2025/09/15/2025-9-15%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.15知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 14 2025</aside>
+    <a href="/2025/09/14/2025-9-14%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.14知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 13 2025</aside>
+    <a href="/2025/09/13/2025-9-13%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.13知识笔记</a>
+    <h2></h2>
+</li>
+        
+        </ul>
+    
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">© Copyright 2025
+			<a href="/"> laozhichi </a>/
+			<a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a>/
+			<a target="_blank" rel="noopener" href="https://github.com/caisiduo/hexo-theme-lightime"> Lightime</a>
+		</p>
+	</div>
+</footer>
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
