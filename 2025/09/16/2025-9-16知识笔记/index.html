@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="今天正式拿到了高云ACG525的板子，从今天开始猛学基础，调试，真心希望能在创芯大赛中拿到一定的名次，努力吧
+AAA为7号电池的意思
+1、LED为什么会亮
+观察现象：此时我们可以看到开发板上对应的 LED0 灯在闪烁，说明我们本次实验成功。这个时候我们可以看到，程序下载之后 4 个 LED 灯都亮了">
+
+
+<link rel="alternate" href="/atom.xml" title="风继续吹" type="application/atom+xml">
+<meta name="theme-color" content="#5badf0">
+<title>2025.9.16知识笔记 - 风继续吹</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>2025.9.16知识笔记</h1>
+        
+        <h2 class="headline">Sep 16 2025
+        
+            
+            <a href="/categories/每日笔记/#每日笔记">每日笔记</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><p>今天正式拿到了高云ACG525的板子，从今天开始猛学基础，调试，真心希望能在创芯大赛中拿到一定的名次，努力吧</p>
+<p>AAA为7号电池的意思</p>
+<h3 id="1、LED为什么会亮"><a href="#1、LED为什么会亮" class="headerlink" title="1、LED为什么会亮"></a>1、LED为什么会亮</h3><p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250916215039885.png" 
+   style="width:60%; display:block; margin:0 auto;"></p>
+<p>观察现象：此时我们可以看到开发板上对应的 LED0 灯在闪烁，说明我们本次实验成功。这个时候我们可以看到，程序下载之后 4 个 LED 灯都亮了，但是我们只控制其中一个灯，这是因为在 Gowin 软件中默认没控制的引脚加了上拉，也就是会输出高电平，导致没控制的 LED 灯亮，这个可以在软件里面设置，如下所示。 </p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250916230406023.png" 
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>第一段：As input tri-stated with pull-up (default)​​<br>​​作为输入、三态、带上拉电阻（默认）​​：此模式将FPGA上所有未使用的引脚设置为​​高阻态（三态）输入​​模式，同时通过芯片内部的弱上拉电阻将其电平稳定地钳位到逻辑高电平‘1’。这是​​最常用且最安全的默认设置​​，能有效防止引脚悬空（Floating）而引入外部噪声、增加额外功耗，并避免引脚因静电干扰而产生随机振荡，从而保障整个系统的稳定性和可靠性。</p>
+<p>​​第二段：As open drain driving ground​​<br>​​作为开漏输出、驱动到地​​：此模式将未使用的引脚配置为​​开漏输出​​模式，并使其持续输出低电平（逻辑‘0’），相当于将该引脚强制接地。这种设置适用于特定应用场景，例如需要主动驱动外部电路至已知低电平状态，或与其他开漏结构的器件（如I²C总线）进行匹配，但通常不作为全局默认设置使用。</p>
+<p>在这个配置当中，系统默认为pull-up，所以这个时候LED就会点亮，所以解释了开头出现的问题</p>
+<h3 id="3、PLL软核"><a href="#3、PLL软核" class="headerlink" title="3、PLL软核"></a>3、PLL软核</h3><p>在 verilog 设计中，程序的运行往往都是围绕着时钟展开，越是复杂的设计往往会涉及越多不同的时钟。而对于开发板来说，通常都只设计有一个晶振，ACG525 开发板上就板载了一个 50MHz 的有源晶振。通过开发板内部逻辑，虽然能够基于该时钟分频倍频，产生不同频率的时钟，但是这些时钟往往质量较差，并不适合应用。 </p>
+<p>FPGA 厂商为了解决这个问题，会在器件内部加入专用的时钟电路，也就是我们常说的锁相环（PLL）。通过该专用时钟电路分频倍频产生的时钟，不仅质量好，精度也会更高。本章我们将带大家学习锁相环的工作机理，并结合Gowin提供的 PLL 软核，通过一个简单的应用来带领大家熟悉锁相环的基础使用方法。 </p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250917011643500.png" 
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250917011810452.png" 
+   style="width:100%; display:block; margin:0 auto;"></p>
+<ol>
+<li><p>General 配置框 1<br>General 配置框用于配置产生的 IP 设计文件的相关信息，读者可以在该对话框中文件名称，模块名称，以及文件保存路径。 </p>
+</li>
+<li><p>General 配置框 2<br>配置一般模式和高级模式。一般模式下，IP 核会根据输入时钟和预期的输出时钟频率，自动计算对应的分频系数，来得到预期时钟，以及是否采用外部反馈回路等。 </p>
+</li>
+<li><p>CLKIN<br>配置 PLL 输入时钟频率，分频参数设置。</p>
+</li>
+</ol>
+<ul>
+<li>Clock Frequency：配置输入时钟频率，这里选择开发板上 50M 的时钟晶振作为时钟输入源。 </li>
+<li>Divide Factor：可在高级模式下配置分频参数，范围 1~64。</li>
+</ul>
+<ol start="4">
+<li>CLKFB<br>配置 PLL 反馈时钟的源和倍频参数。</li>
+</ol>
+<ul>
+<li>Source：配置反馈时钟源，可以选择“Internal”和“External”；如果选择 Internal， 则 反 馈 来 自 内 部 ； 如 果 选 择 External， 则 反 馈 来 自CLKOUT0~6和 CLKFBOUT中的一个，用户可自行选择，External只在Advanced Mode 模式有效，前面我们选择的一般模式，所以这里只能按照默认选择 Internal。 </li>
+<li>Divide Factor：可在高级模式下配置倍频参数，范围为 1~64。</li>
+</ul>
+<ol start="5">
+<li>PLL Reset</li>
+</ol>
+<ul>
+<li>PLL Reset：PLL 全部复位信号，复位数字电路，配置 PLLO 的 RESET 使能模式。 </li>
+<li>PLL Power Down：则对模拟电路 power down 复位。 </li>
+<li>CLKIN Divider Reset：配置使能 RESET_I。 </li>
+<li>CLKOUT Divider Reset：配置使能 RESET_O。<br>我们这里选择“PLL Reset”。</li>
+</ul>
+<ol start="6">
+<li>Lock<br>PLL 锁定指示信号，勾选。信号输出稳定后，输出高电平，不稳定为低电平。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250917013342244.png" 
+   style="width:100%; display:block; margin:0 auto;"></p>
+<h3 id="4、PLL配置代码"><a href="#4、PLL配置代码" class="headerlink" title="4、PLL配置代码"></a>4、PLL配置代码</h3><p>reg [27:0] cnt最大可以计数多少<br>这个寄存器 reg [27:0] cnt;最大可以计数到：​268,435,455​​（即 ​​2²⁸ - 1 &#x3D; 268,435,455​​）</p>
+</section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/me.jpg">
+        <div>
+            <span class="dark">风继续吹</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=http://example.com/2025/09/16/2025-9-16%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/ - 2025.9.16知识笔记 @"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "2025.9.16知识笔记",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+    
+        <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+    <aside class="dates">Sep 16 2025</aside>
+    <a href="/2025/09/16/2025-9-16%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.16知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 16 2025</aside>
+    <a href="/2025/09/16/2025-9-18%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.16知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 15 2025</aside>
+    <a href="/2025/09/15/2025-9-15%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.15知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 14 2025</aside>
+    <a href="/2025/09/14/2025-9-14%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.14知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 13 2025</aside>
+    <a href="/2025/09/13/2025-9-13%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.13知识笔记</a>
+    <h2></h2>
+</li>
+        
+        </ul>
+    
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">© Copyright 2025
+			<a href="/"> laozhichi </a>/
+			<a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a>/
+			<a target="_blank" rel="noopener" href="https://github.com/caisiduo/hexo-theme-lightime"> Lightime</a>
+		</p>
+	</div>
+</footer>
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
