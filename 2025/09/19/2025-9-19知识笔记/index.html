@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="1、PLL定义PLL是锁相环
+Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 Clock Management Tile，即时钟管理单元），每个 CMT 由一个 MMCM（全称 Mixed-Mode Clock Manager，即混合模式时钟管理）和一个 PLL（全称 Phas">
+
+
+<link rel="alternate" href="/atom.xml" title="风继续吹" type="application/atom+xml">
+<meta name="theme-color" content="#5badf0">
+<title>2025.9.19知识笔记 - 风继续吹</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>2025.9.19知识笔记</h1>
+        
+        <h2 class="headline">Sep 19 2025
+        
+            
+            <a href="/categories/每日笔记/#每日笔记">每日笔记</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><h3 id="1、PLL定义"><a href="#1、PLL定义" class="headerlink" title="1、PLL定义"></a>1、PLL定义</h3><p>PLL是锁相环</p>
+<p>Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 Clock Management Tile，即时钟管理单元），每个 CMT 由一个 MMCM（全称 Mixed-Mode Clock Manager，即混合模式时钟管理）和一个 PLL（全称 Phase Locked Loop，即锁相环）组成。接下来我们讲解一下 MMCM 和 PLL 各自的含义以及两者的区别。 </p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250919203822623.png" 
+   style="width:60%; display:block; margin:0 auto;"></p>
+<ul>
+<li>PLL：为锁相回路或锁相环，用来统一整合时钟信号，使高频器件正常工作，如内存的存取数据等。PLL 用于振荡器中的反馈技术。 </li>
+<li>MMCM（混合模式时钟管理）：是基于 PLL 的新型混合模式时钟管理器，实现了最低的抖动和抖动滤波，为高性能的 FPGA 设计提供更高性能的时钟管理功能。 </li>
+<li>MMCM 是一个 PLL 上加入 DCM 的一部分以进行精细的相移，也就是说 MMCM 在 PLL 的基础上加上了相位动态调整功能，又因为 PLL 是模拟电路，而动态调相是数字电路，所以 MMCM 被称为混合模式，MMCM 相对 PLL 的优势就是相位可以动态调整，但 PLL 占用的面积更小，而在大部分的设计当中大家使用 MMCM 或者 PLL 来对系统时钟进行分频、倍频和相位偏移都是完全可以的。<br>总结言之，MMCM比PLL好的一个地方就是：MMCM可以动态调节相位</li>
+<li>MMCM（Mixed-Mode Clock Manager）混合模式时钟管理器，MMCM 功能是 PLL 的超集，它是在 PLL的基础上加了相位动态调整功能，PLL 是模拟的，而动态调相是数字电路，所以称为混合模式。</li>
+</ul>
+<p>MMCM 支持动态相位调整，而 PLL 通常只支持静态相位配置。<br>静态相位调整​​：在芯片​​配置时（烧录前）​​ 一次性设定相位，运行时​​无法改变​​。</p>
+<p>​​动态相位调整​​：在芯片​​运行过程中​​，可以通过逻辑实时、精细地调整相位。</p>
+<h3 id="2、PLL使用源码："><a href="#2、PLL使用源码：" class="headerlink" title="2、PLL使用源码："></a>2、PLL使用源码：</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ip_clk_wiz( </span><br><span class="line">    <span class="keyword">input</span> sys_clk , <span class="comment">//系统时钟 </span></span><br><span class="line">    <span class="keyword">input</span> sys_rst_n , <span class="comment">//系统复位，低电平有效 </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">output</span> clk_100m , <span class="comment">//100Mhz 时钟频率 </span></span><br><span class="line">    <span class="keyword">output</span> clk_100m_180deg, <span class="comment">//100Mhz 时钟频率,相位偏移 180 度 </span></span><br><span class="line">    <span class="keyword">output</span> clk_50m , <span class="comment">//50Mhz 时钟频率 </span></span><br><span class="line">    <span class="keyword">output</span> clk_25m <span class="comment">//25Mhz 时钟频率 </span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span> locked;</span><br><span class="line"><span class="keyword">wire</span> other_rst;<span class="comment">//用于系统其他外设的复位，等PLL稳定后和系统时钟复后，才对外设启动复位</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> other_rst=locked &amp; sys_rst_n;</span><br><span class="line"></span><br><span class="line">clk_wiz_0 instance_name</span><br><span class="line">(</span><br><span class="line">    <span class="variable">.clk_out1</span>(clk_100m),     </span><br><span class="line">    <span class="variable">.clk_out2</span>(clk_100m_180deg),    </span><br><span class="line">    <span class="variable">.clk_out3</span>(clk_50m),    </span><br><span class="line">    <span class="variable">.clk_out4</span>(clk_25m),     </span><br><span class="line">    <span class="variable">.reset</span>(~sys_rst_n), <span class="comment">//IP核默高电平复位</span></span><br><span class="line">    <span class="variable">.locked</span>(locked),      </span><br><span class="line">    <span class="variable">.clk_in1</span>(sys_clk)</span><br><span class="line">);     </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3、PLL测试源码"><a href="#3、PLL测试源码" class="headerlink" title="3、PLL测试源码"></a>3、PLL测试源码</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns/1ns</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> CLOCK_PERIOD 20</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> ip_clk_wiz_tb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> sys_clk ; <span class="comment">//系统时钟 </span></span><br><span class="line"><span class="keyword">reg</span> sys_rst_n ; <span class="comment">//系统复位，低电平有效 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span> clk_100m ; <span class="comment">//100Mhz 时钟频率 </span></span><br><span class="line"><span class="keyword">wire</span> clk_100m_180deg ; <span class="comment">//100Mhz 时钟频率,相位偏移 180 度 </span></span><br><span class="line"><span class="keyword">wire</span> clk_50m ; <span class="comment">//50Mhz 时钟频率 </span></span><br><span class="line"><span class="keyword">wire</span> clk_25m ; <span class="comment">//25Mhz 时钟频率 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ip_clk_wiz ip_clk_wiz_inst(</span><br><span class="line">    <span class="variable">.clk_100m</span>(clk_100m),</span><br><span class="line">    <span class="variable">.clk_100m_180deg</span>(clk_100m_180deg),</span><br><span class="line">    <span class="variable">.clk_50m</span>(clk_50m),</span><br><span class="line">    <span class="variable">.clk_25m</span>(clk_25m),</span><br><span class="line">    <span class="variable">.sys_rst_n</span>(sys_rst_n),    </span><br><span class="line">    <span class="variable">.sys_clk</span>(sys_clk)  </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> sys_clk=<span class="number">1&#x27;b1</span>;</span><br><span class="line"><span class="keyword">always</span> <span class="variable">#(`CLOCK_PERIOD/2)</span> sys_clk=~sys_clk;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    sys_rst_n=<span class="number">0</span>;</span><br><span class="line">    #<span class="number">201</span></span><br><span class="line">    sys_rst_n=<span class="number">1</span>;</span><br><span class="line">    #<span class="number">100000</span></span><br><span class="line">    <span class="built_in">$stop</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、IP核实例化模板怎么查看"><a href="#4、IP核实例化模板怎么查看" class="headerlink" title="4、IP核实例化模板怎么查看"></a>4、IP核实例化模板怎么查看</h3><p>首先打开IP核的例化模板，在“Source”窗口中的“IP Sources”选项卡中，依次用鼠标单击展开“IP”-“clk_wiz_0”-“Instantitation Template”，我们可以看到“clk_wiz.veo”文件，它是由 IP 核自动生成的只读的 verilog 例化模板文件，双击就可以打开它，在例化时钟 IP 核模块的时钟，可以直接从这里拷贝，如下图所示 </p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250920124303711.png" 
+   style="width:60%; display:block; margin:0 auto;"></p>
+</section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/me.jpg">
+        <div>
+            <span class="dark">风继续吹</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=http://example.com/2025/09/19/2025-9-19%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/ - 2025.9.19知识笔记 @"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "2025.9.19知识笔记",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+    
+        <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+    <aside class="dates">Sep 19 2025</aside>
+    <a href="/2025/09/19/2025-9-19%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.19知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 18 2025</aside>
+    <a href="/2025/09/18/2025-9-18%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.18知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 16 2025</aside>
+    <a href="/2025/09/16/2025-9-16%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.16知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 15 2025</aside>
+    <a href="/2025/09/15/2025-9-15%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.15知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 14 2025</aside>
+    <a href="/2025/09/14/2025-9-14%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.14知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 13 2025</aside>
+    <a href="/2025/09/13/2025-9-13%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.13知识笔记</a>
+    <h2></h2>
+</li>
+        
+        </ul>
+    
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">© Copyright 2025
+			<a href="/"> laozhichi </a>/
+			<a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a>/
+			<a target="_blank" rel="noopener" href="https://github.com/caisiduo/hexo-theme-lightime"> Lightime</a>
+		</p>
+	</div>
+</footer>
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
