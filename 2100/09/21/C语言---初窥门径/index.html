@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="高级语言-》汇编语言-》机器语言
+gcc main.c &amp;amp;&amp;amp; .&amp;#x2F;a.out 表示先gcc main.c，再在这个基础上运行.&amp;#x2F;a.out，&amp;amp;&amp;amp;表示运行的承接
+\打印\本身&amp;#39;打印小点’&amp;quot;打印双引号”
+可以简单理解变量为：内存需要找">
+
+
+<link rel="alternate" href="/atom.xml" title="风继续吹" type="application/atom+xml">
+<meta name="theme-color" content="#5badf0">
+<title>C语言---初窥门径 - 风继续吹</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>C语言---初窥门径</h1>
+        
+        <h2 class="headline">Sep 21 2100
+        
+            
+            <a href="/categories/C语言/#C语言">C语言</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250921213043154.png" 
+   style="width:100%; display:block; margin:0 auto;"><br>高级语言-》汇编语言-》机器语言</p>
+<p>gcc main.c &amp;&amp; .&#x2F;a.out 表示先gcc main.c，再在这个基础上运行.&#x2F;a.out，&amp;&amp;表示运行的承接</p>
+<p>\打印\本身<br>&#39;打印小点’<br>&quot;打印双引号”</p>
+<p>可以简单理解变量为：内存需要找到一个位置存放CPU要处理的数据，每个数据都有一个地址，这些地址实际上就是一些数字，计算机很擅长处理这些，我们为了更好的标记这些数据，就给这些数据贴上了标签，这个标签就是变量。它的核心作用就是​让人类和编译器能通过名字（而不是原始数字地址）操作数据​​。</p>
+<p>变量首字母只能用字母和下划线来命名</p>
+<p>\斜杠的作用:<br>下面这个代码会报错，因为不加操作的话，printf打印的东西需要双引号都包含着在同一行，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;</span></span><br><span class="line"><span class="string">        &quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解决方法：加上一个\，就可以起到高速编译器他们是一起的，只是空间不够换写了一行罢了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\</span></span><br><span class="line"><span class="string">        &quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250921202750674.png" 
+   style="width:100%; display:block; margin:0 auto;"><br>传统的C语言有32个关键字。C99标准增加了5个关键字，一共37个。C11标准增加了7个，一共44个。</p>
+<p>int a 整形 &#x2F;&#x2F;在内存中找到一个整形大小的位置，并且给他命名为a<br>char b 字符型 &#x2F;&#x2F;在内存中找到一个字节大小的位置，并且给他命名为b<br>float c 单精度浮点型 &#x2F;&#x2F;在内存中找到一个单精度浮点数型数据大小的位置，并且命名为c<br>double d 双精度浮点型&#x2F;&#x2F;在内存中找到一个双精度浮点型数据大小的位置，并且命名为d</p>
+<p>什么是常量呢？在程序运行的过程中，它的值不能够被改变，称为常量。如字符’a’，数字520，小数3.14，这些都是常量，因为它们仅代表一个具体的值，并且不能够被改变。</p>
+<p>C语言中常见的常量如下。</p>
+<ul>
+<li>（1）整型常量：520, 1314, 123。</li>
+<li>（2）实型常量：3.14, 5.12, 8.97。</li>
+<li>（3）字符常量。·普通字符：’L’, ‘o’, ‘v’, ‘e’。<br>         ·转义字符：’\n’, ‘\t’, ‘\b’。</li>
+<li>（4）字符串常量：”FishC”。</li>
+<li>（5）符号常量：使用之前必须先定义。</li>
+</ul>
+<p>符号常量：<br>#define 标识符  常量<br>定义符号常量可以通过宏定义（#define）或 const关键字​​<br>编译器会自动识别define定义的那些变量</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> URL <span class="string">&quot;http://www.fishc.com&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NAME <span class="string">&quot;鱼C工作室&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BOSS <span class="string">&quot;小甲鱼&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> YEAR 2010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MONTH 5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DAY 20</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s成立于%d年%d月%d日\n&quot;</span>, NAME, YEAR, MONTH, DAY);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s是%s创立的……\n&quot;</span>, NAME, BOSS);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s的域名是%s\n&quot;</span>, NAME, URL);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转移字符’\0’作用:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250921215206123.png" 
+   style="width:100%; display:block; margin:0 auto;"></p>
+</section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/me.jpg">
+        <div>
+            <span class="dark">风继续吹</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=http://example.com/2100/09/21/C%E8%AF%AD%E8%A8%80---%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84/ - C语言---初窥门径 @"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "C语言---初窥门径",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+    
+        <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+    <aside class="dates">Sep 21 2100</aside>
+    <a href="/2100/09/21/C%E8%AF%AD%E8%A8%80---%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84/">C语言---初窥门径</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 19 2100</aside>
+    <a href="/2100/09/19/%E9%87%8D%E8%A6%81%E8%8A%AF%E7%89%87%E5%9E%8B%E5%8F%B7%E8%AE%B0%E5%BD%95%E8%A1%A8/">重要芯片型号记录表</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 19 2025</aside>
+    <a href="/2025/09/19/2025-9-19%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">PLL、RAM、FIFO三大IP核入门</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 18 2025</aside>
+    <a href="/2025/09/18/2025-9-18%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.18知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 16 2025</aside>
+    <a href="/2025/09/16/2025-9-16%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.16知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 15 2025</aside>
+    <a href="/2025/09/15/2025-9-15%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.15知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 14 2025</aside>
+    <a href="/2025/09/14/2025-9-14%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.14知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 13 2025</aside>
+    <a href="/2025/09/13/2025-9-13%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.13知识笔记</a>
+    <h2></h2>
+</li>
+        
+        </ul>
+    
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">© Copyright 2025
+			<a href="/"> laozhichi </a>/
+			<a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a>/
+			<a target="_blank" rel="noopener" href="https://github.com/caisiduo/hexo-theme-lightime"> Lightime</a>
+		</p>
+	</div>
+</footer>
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
