@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="新建STM32工程的架构:
+
+我们主要是为了看一下STM32配置的那些文件有啥作用:
+stm32f10x.h和core_cm3这些文件就是外设和内核外设的寄存器描述，在keil可以看到，都是寄存器和寄存器名字，还有地址信息等，如果直接调用这些寄存器来使用stm32，那就是寄存器的开发方式，很麻烦。
+">
+
+
+<link rel="alternate" href="/atom.xml" title="风继续吹" type="application/atom+xml">
+<meta name="theme-color" content="#5badf0">
+<title>stm32---GPIO输出和输入 - 风继续吹</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>stm32---GPIO输出和输入</h1>
+        
+        <h2 class="headline">Sep 21 2100
+        
+            
+            <a href="/categories/C语言/#C语言">C语言</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><p>新建STM32工程的架构:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922170254588.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922172448783.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>我们主要是为了看一下STM32配置的那些文件有啥作用:</p>
+<p>stm32f10x.h和core_cm3这些文件就是外设和内核外设的寄存器描述，在keil可以看到，都是寄存器和寄存器名字，还有地址信息等，如果直接调用这些寄存器来使用stm32，那就是寄存器的开发方式，很麻烦。</p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922174048746.png"
+   style="width:100%; display:block; margin:0 auto;"><br>所以就提供了库函数文件，在keil中可以看到，这每个外设都提供了一大堆函数，这些函数封装了寄存器的操作，给我们提供更加人性化的函数调用方式。</p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922180154893.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>这个conf的文件就是用来配置头文件的包含关系的，在keil中可以看到conf文件include了所有的库函数头文件，<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922180325471.png"
+   style="width:100%; display:block; margin:0 auto;"><br>同时我们在stm32f10x.h的最后又包含了conf，</p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922180406382.png"
+   style="width:100%; display:block; margin:0 auto;"><br>所以在使用这些库函数时，<strong>我们只需要包含stm32f10x.h这一个头文件，就相当于包含了所有的库函数头文件，</strong>这样我们就可以任意地调用库函数了。</p>
+<p>记得包含下面这个宏定义:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922180707491.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922180446232.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>GPIO的结构:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922202342197.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>推挽输出模式​​<br>在推挽输出下，P-MOS和N-MOS均有效，数据寄存器为1时，上管导通，下管断开，输出接到VDD输出高电平，反之同理。这种模式下高电平均有较强的驱动能力，所以又称强推输出模式。</p>
+<p>​​开漏输出模式​​<br>在开漏输出模式下，P-MOS无效，数据寄存器为1时，下管断开，输出断开，高阻模式。</p>
+<p>8种GPIO模式:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922202920757.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>我们可以在手册上看到相关的GPIO配置时钟等信息:<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922204637604.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>不同情况下GPIO的配置可能不一样，我们可以看手册中的内容自行选择<br><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922205313322.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>在rcc.h的文件可以配置时钟那些，主要有三条函数：</p>
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922220935240.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>主要的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">GPIO_DeInit</span><span class="params">(GPIO_TypeDef* GPIOx)</span>;   ​被指定的GPIO外设会被复位​</span><br><span class="line"><span class="type">void</span> <span class="title function_">GPIO_Init</span><span class="params">(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct)</span>;   ​​用结构体参数来初始化GPIO口​​（⭐重要函数）</span><br><span class="line"><span class="type">void</span> <span class="title function_">GPIO_StructInit</span><span class="params">(GPIO_InitTypeDef* GPIO_InitStruct)</span>;                    ​把结构体变量赋一个默认值​</span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">GPIO_ReadInputDataBit</span><span class="params">(GPIO_TypeDef* GPIOx, <span class="type">uint16_t</span> GPIO_Pin)</span>;      ​读取输入状态​​、读取指定引脚的输入电平（<span class="number">1</span>位）</span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">GPIO_ReadInputData</span><span class="params">(GPIO_TypeDef* GPIOx)</span>;     ​读取输入状态​​、读取整个端口的输入数据（<span class="number">16</span>位）</span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">GPIO_ReadOutputDataBit</span><span class="params">(GPIO_TypeDef* GPIOx, <span class="type">uint16_t</span> GPIO_Pin)</span>;​读取输出状态​​、读取指定引脚的输出锁存值（<span class="number">1</span>位） </span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">GPIO_ReadOutputData</span><span class="params">(GPIO_TypeDef* GPIOx)</span>;​读取输出状态​​、读取整个端口的输出锁存值（<span class="number">16</span>位）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/laozhichi/MyPic/img/img/20250922232456733.png"
+   style="width:100%; display:block; margin:0 auto;"></p>
+<p>LED.c:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span>                  <span class="comment">// Device header</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">LED_Init</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);</span><br><span class="line">	</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;</span><br><span class="line">	GPIO_Init(GPIOA,&amp;GPIO_InitStructure);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">LED_ON</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">	GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_RESET);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">LED_OFF</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">	GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_SET);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/me.jpg">
+        <div>
+            <span class="dark">风继续吹</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=http://example.com/2100/09/21/stm32---GPIO%E8%BE%93%E5%87%BA%E5%92%8C%E8%BE%93%E5%85%A5/ - stm32---GPIO输出和输入 @"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "stm32---GPIO输出和输入",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+    
+        <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+    <aside class="dates">Sep 21 2100</aside>
+    <a href="/2100/09/21/stm32---GPIO%E8%BE%93%E5%87%BA%E5%92%8C%E8%BE%93%E5%85%A5/">stm32---GPIO输出和输入</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 21 2100</aside>
+    <a href="/2100/09/21/C%E8%AF%AD%E8%A8%80---%E6%95%B0%E7%BB%84/">C语言---数组</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 21 2100</aside>
+    <a href="/2100/09/21/C%E8%AF%AD%E8%A8%80---%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84/">C语言---初窥门径</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 19 2100</aside>
+    <a href="/2100/09/19/%E9%87%8D%E8%A6%81%E8%8A%AF%E7%89%87%E5%9E%8B%E5%8F%B7%E8%AE%B0%E5%BD%95%E8%A1%A8/">重要芯片型号记录表</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 19 2025</aside>
+    <a href="/2025/09/19/2025-9-19%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">PLL、RAM、FIFO三大IP核入门</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 18 2025</aside>
+    <a href="/2025/09/18/2025-9-18%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.18知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 16 2025</aside>
+    <a href="/2025/09/16/2025-9-16%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.16知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 15 2025</aside>
+    <a href="/2025/09/15/2025-9-15%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.15知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 14 2025</aside>
+    <a href="/2025/09/14/2025-9-14%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.14知识笔记</a>
+    <h2></h2>
+</li>
+        
+            <li>
+    <aside class="dates">Sep 13 2025</aside>
+    <a href="/2025/09/13/2025-9-13%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">2025.9.13知识笔记</a>
+    <h2></h2>
+</li>
+        
+        </ul>
+    
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">© Copyright 2025
+			<a href="/"> laozhichi </a>/
+			<a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a>/
+			<a target="_blank" rel="noopener" href="https://github.com/caisiduo/hexo-theme-lightime"> Lightime</a>
+		</p>
+	</div>
+</footer>
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
