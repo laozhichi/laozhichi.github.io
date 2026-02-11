@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>RISC-V项目(2)---增加B型指令和UART | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="RISC-V">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="RISC-V项目(2)---增加B型指令和UART">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/02/11/RISC-V%E9%A1%B9%E7%9B%AE-2-%E5%A2%9E%E5%8A%A0B%E5%9E%8B%E6%8C%87%E4%BB%A4%E5%92%8CUART/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/02/11/RISC-V%E9%A1%B9%E7%9B%AE-2-%E5%A2%9E%E5%8A%A0B%E5%9E%8B%E6%8C%87%E4%BB%A4%E5%92%8CUART/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">RISC-V项目(2)---增加B型指令和UART</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-02-11">
+      2026-02-11
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      21.9k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 74 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+<h3 id="1、增加B型指令的译码器"><a href="#1、增加B型指令的译码器" class="headerlink" title="1、增加B型指令的译码器"></a>1、增加B型指令的译码器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns / 1ps                                                                                     </span></span><br><span class="line"><span class="comment">/****************************************Copyright (c)************************************************** </span></span><br><span class="line"><span class="comment">**----------------------------------------File Info----------------------------------------------------- </span></span><br><span class="line"><span class="comment">** File name					:	decode                                                                 </span></span><br><span class="line"><span class="comment">** Last modified Date	:	2025-11-01                                                                       </span></span><br><span class="line"><span class="comment">** Last Version				:	1.0                                                                              </span></span><br><span class="line"><span class="comment">** Descriptions       :	decode                                                                 </span></span><br><span class="line"><span class="comment">**------------------------------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">** Created by					: FPGACoreCG                                                                       </span></span><br><span class="line"><span class="comment">** Created date				: 2025-11-01                                                                        </span></span><br><span class="line"><span class="comment">** Version						: 1.0                                                                              </span></span><br><span class="line"><span class="comment">** Descriptions				:	The original version                                                             </span></span><br><span class="line"><span class="comment">**------------------------------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">** Modified by:				                                                                                   </span></span><br><span class="line"><span class="comment">** Modified date:			                                                                                   </span></span><br><span class="line"><span class="comment">** Version:					                                                                                     </span></span><br><span class="line"><span class="comment">** Descriptions:		                                                                                     </span></span><br><span class="line"><span class="comment">**                                                                                                       </span></span><br><span class="line"><span class="comment">**------------------------------------------------------------------------------------------------------ </span></span><br><span class="line"><span class="comment">*******************************************************************************************************/</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">include</span> &quot;<span class="keyword">define</span>.sv&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> decode	#(</span><br><span class="line">	<span class="keyword">parameter</span>	AW								= <span class="number">32</span>								,</span><br><span class="line">	<span class="keyword">parameter</span>	DW								=	<span class="number">32</span>	</span><br><span class="line">	)( </span><br><span class="line">	<span class="keyword">input</span>		<span class="keyword">logic</span>	[AW-<span class="number">1</span>:<span class="number">0</span>]  		instr_addr_in				,</span><br><span class="line">  <span class="keyword">input</span>		<span class="keyword">logic</span>	[DW-<span class="number">1</span>:<span class="number">0</span>]			instr_in						,</span><br><span class="line">  <span class="comment">//to register</span></span><br><span class="line">  <span class="keyword">output</span>	<span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>]  				rd_rs1_addr					,</span><br><span class="line">  <span class="keyword">output</span> 	<span class="keyword">logic</span>	[<span class="number">4</span>:<span class="number">0</span>]  				rd_rs2_addr					,</span><br><span class="line">  <span class="comment">//from register	</span></span><br><span class="line">  <span class="keyword">input</span>		<span class="keyword">logic</span>	[DW-<span class="number">1</span>:<span class="number">0</span>]			rd_rs1_data					, </span><br><span class="line">  <span class="keyword">input</span>		<span class="keyword">logic</span>	[DW-<span class="number">1</span>:<span class="number">0</span>]	 		rd_rs2_data					, </span><br><span class="line">  <span class="comment">//to instr execute</span></span><br><span class="line">  <span class="keyword">output</span> 	<span class="keyword">logic</span> [DW-<span class="number">1</span>:<span class="number">0</span>]			op1_out							,</span><br><span class="line">  <span class="keyword">output</span> 	<span class="keyword">logic</span> [DW-<span class="number">1</span>:<span class="number">0</span>]			op2_out							</span><br><span class="line">);  </span><br><span class="line"></span><br><span class="line"><span class="keyword">logic</span>	[<span class="number">6</span>:<span class="number">0</span>]										opcode							;</span><br><span class="line"><span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>]  									rd									;</span><br><span class="line"><span class="keyword">logic</span> [<span class="number">2</span>:<span class="number">0</span>]  									func3								;</span><br><span class="line"><span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>]  									rs1									;</span><br><span class="line"><span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>]  									rs2									;</span><br><span class="line"><span class="keyword">logic</span> [<span class="number">6</span>:<span class="number">0</span>]  									func7   						;</span><br><span class="line"><span class="keyword">logic</span> [<span class="number">31</span>:<span class="number">0</span>]  								imm									;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span>	opcode								= instr_in[<span class="number">6</span>:<span class="number">0</span>]			;</span><br><span class="line"><span class="keyword">assign</span>  rd										= instr_in[<span class="number">11</span>:<span class="number">7</span>]		;</span><br><span class="line"><span class="keyword">assign</span>  func3									= instr_in[<span class="number">14</span>:<span class="number">12</span>]		;</span><br><span class="line"><span class="keyword">assign</span>  rs1										= instr_in[<span class="number">19</span>:<span class="number">15</span>]		;</span><br><span class="line"><span class="keyword">assign</span>  rs2     							= instr_in[<span class="number">24</span>:<span class="number">20</span>]		;</span><br><span class="line"><span class="keyword">assign</span>  func7   							= instr_in[<span class="number">31</span>:<span class="number">25</span>]		;</span><br><span class="line"></span><br><span class="line"><span class="keyword">always_comb</span> <span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">case</span>(opcode)</span><br><span class="line">		`INST_TYPE_I,`INST_TYPE_L,`INST_JALR:</span><br><span class="line">			imm = &#123;&#123;<span class="number">20</span>&#123;instr_in[<span class="number">31</span>]&#125;&#125;,instr_in[<span class="number">31</span>:<span class="number">20</span>]&#125;;</span><br><span class="line">		`INST_TYPE_S:</span><br><span class="line">			imm = &#123;&#123;<span class="number">20</span>&#123;instr_in[<span class="number">31</span>]&#125;&#125;,instr_in[<span class="number">31</span>:<span class="number">25</span>],instr_in[<span class="number">11</span>:<span class="number">7</span>]&#125;;</span><br><span class="line">		`INST_TYPE_B:</span><br><span class="line">			imm = &#123;&#123;<span class="number">20</span>&#123;instr_in[<span class="number">31</span>]&#125;&#125;,instr_in[<span class="number">7</span>],instr_in[<span class="number">30</span>:<span class="number">25</span>],instr_in[<span class="number">11</span>:<span class="number">8</span>],<span class="number">1&#x27;b0</span>&#125;;</span><br><span class="line">		`INST_JAL:</span><br><span class="line">		  imm = &#123;&#123;<span class="number">12</span>&#123;instr_in[<span class="number">31</span>]&#125;&#125;,instr_in[<span class="number">19</span>:<span class="number">12</span>],instr_in[<span class="number">20</span>],instr_in[<span class="number">30</span>:<span class="number">21</span>],	<span class="number">1&#x27;b0</span>&#125;;</span><br><span class="line">		 `INST_LUI,`INST_LUIPC:</span><br><span class="line">		 	imm = &#123;instr_in[<span class="number">31</span>:<span class="number">12</span>],<span class="number">12&#x27;h0</span>&#125;;</span><br><span class="line">		<span class="keyword">default</span>:imm = <span class="number">32&#x27;h0</span>;</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always_comb</span>	<span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">case</span>(opcode)</span><br><span class="line">		`INST_TYPE_I:<span class="keyword">begin</span></span><br><span class="line">			<span class="keyword">case</span>(func3)</span><br><span class="line">				`INST_ADDI:<span class="keyword">begin</span></span><br><span class="line">					rd_rs1_addr  = rs1	 										;</span><br><span class="line">					rd_rs2_addr  = <span class="number">5&#x27;h0</span>							    		;</span><br><span class="line">					op1_out			 = rd_rs1_data							;</span><br><span class="line">					op2_out			 = imm											;</span><br><span class="line">				<span class="keyword">end</span>                                   		</span><br><span class="line">				<span class="keyword">default</span>:<span class="keyword">begin</span>                         		</span><br><span class="line">					rd_rs1_addr  = <span class="number">&#x27;h0</span>	 										;</span><br><span class="line">					rd_rs2_addr  = <span class="number">&#x27;h0</span>						    			;</span><br><span class="line">					op1_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">					op2_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">			<span class="keyword">endcase</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_TYPE_R_M:<span class="keyword">begin</span></span><br><span class="line">			<span class="keyword">case</span>(func3)</span><br><span class="line">				`INST_ADD_SUB:<span class="keyword">begin</span></span><br><span class="line">					rd_rs1_addr  = rs1	 										;</span><br><span class="line">					rd_rs2_addr  = rs2						    			;</span><br><span class="line">					op1_out			 = rd_rs1_data							;</span><br><span class="line">					op2_out			 = rd_rs2_data							;</span><br><span class="line">				<span class="keyword">end</span>                                   		</span><br><span class="line">				<span class="keyword">default</span>:<span class="keyword">begin</span>                         		</span><br><span class="line">					rd_rs1_addr  = <span class="number">&#x27;h0</span>	 										;</span><br><span class="line">					rd_rs2_addr  = <span class="number">&#x27;h0</span>						    			;</span><br><span class="line">					op1_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">					op2_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">			<span class="keyword">endcase</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_TYPE_B:<span class="keyword">begin</span></span><br><span class="line">			<span class="keyword">case</span>(func3)</span><br><span class="line">				`INST_BEQ,`INST_BNE,`INST_BLT,`INST_BGE,`INST_BLTU,`INST_BGEU:<span class="keyword">begin</span></span><br><span class="line">					rd_rs1_addr  = rs1	 										;</span><br><span class="line">					rd_rs2_addr  = rs2						    			;</span><br><span class="line">					op1_out			 = rd_rs1_data							;</span><br><span class="line">					op2_out			 = rd_rs2_data							;</span><br><span class="line">				<span class="keyword">end</span>                                   		</span><br><span class="line">				<span class="keyword">default</span>:<span class="keyword">begin</span>                         		</span><br><span class="line">					rd_rs1_addr  = <span class="number">&#x27;h0</span>	 										;</span><br><span class="line">					rd_rs2_addr  = <span class="number">&#x27;h0</span>						    			;</span><br><span class="line">					op1_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">					op2_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">			<span class="keyword">endcase</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_JAL:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = <span class="number">5&#x27;h0</span>	 												;</span><br><span class="line">			rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">			op1_out			 = <span class="number">32&#x27;h0</span>												;</span><br><span class="line">			op2_out			 = imm													;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_JALR:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = rs1	 												;</span><br><span class="line">			rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">			op1_out			 = rd_rs1_data									;</span><br><span class="line">			op2_out			 = imm													;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_LUI:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = <span class="number">5&#x27;h0</span>		 											;</span><br><span class="line">			rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">			op1_out			 = <span class="number">32&#x27;h0</span>												;</span><br><span class="line">			op2_out			 = imm													;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_LUIPC:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = <span class="number">5&#x27;h0</span>		 											;</span><br><span class="line">			rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">			op1_out			 = instr_addr_in								;</span><br><span class="line">			op2_out			 = imm													;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		`INST_NOP_OP: <span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = <span class="number">5&#x27;h0</span>		 											;</span><br><span class="line">			rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">			op1_out			 = <span class="number">32&#x27;h0</span>												;</span><br><span class="line">			op2_out			 = <span class="number">32&#x27;h0</span>												;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">default</span>:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = <span class="number">&#x27;h0</span>	 												;</span><br><span class="line">			rd_rs2_addr  = <span class="number">&#x27;h0</span>						    					;</span><br><span class="line">			op1_out			 = <span class="number">&#x27;h0</span>													;</span><br><span class="line">			op2_out			 = <span class="number">&#x27;h0</span>													;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中最主要的是下面这段代码：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`INST_TYPE_B:<span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">case</span>(func3)</span><br><span class="line">		`INST_BEQ,`INST_BNE,`INST_BLT,`INST_BGE,`INST_BLTU,`INST_BGEU:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = rs1	 										;</span><br><span class="line">			rd_rs2_addr  = rs2						    			;</span><br><span class="line">			op1_out			 = rd_rs1_data							;</span><br><span class="line">			op2_out			 = rd_rs2_data							;</span><br><span class="line">		<span class="keyword">end</span>                                   		</span><br><span class="line">		<span class="keyword">default</span>:<span class="keyword">begin</span>                         		</span><br><span class="line">			rd_rs1_addr  = <span class="number">&#x27;h0</span>	 										;</span><br><span class="line">			rd_rs2_addr  = <span class="number">&#x27;h0</span>						    			;</span><br><span class="line">			op1_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">			op2_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260211131959485-1659856360.png">
+
+
+
+<p>输入：指令中的 rs1（源寄存器1索引）和 rs2（源寄存器2索引）。</p>
+<p>动作：去寄存器堆（RegFile）里把这两个寄存器的值读出来。</p>
+<p>输出：把读出来的值赋给 op1_out 和 op2_out，送给下一级（ALU）。</p>
+<h3 id="2、执行单元代码"><a href="#2、执行单元代码" class="headerlink" title="2、执行单元代码"></a>2、执行单元代码</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="comment">/****************************************Copyright (c)**************************************************</span></span><br><span class="line"><span class="comment">**----------------------------------------File Info-----------------------------------------------------</span></span><br><span class="line"><span class="comment">** File name          : execute.v</span></span><br><span class="line"><span class="comment">** Last modified Date : 2025-11-01</span></span><br><span class="line"><span class="comment">** Last Version       : 1.0</span></span><br><span class="line"><span class="comment">** Descriptions       : RISC-V 五级流水线 —— 执行阶段 (Execute Stage)</span></span><br><span class="line"><span class="comment">** 负责 ALU 运算、分支判断 (Branch) 和跳转地址计算 (Jump)</span></span><br><span class="line"><span class="comment">**------------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">********************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含宏定义文件，里面定义了操作码 (e.g., `INST_TYPE_I) 和功能码 (e.g., `INST_ADDI)</span></span><br><span class="line"><span class="meta">`<span class="keyword">include</span> &quot;<span class="keyword">define</span>.sv&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> execute #(</span><br><span class="line">    <span class="keyword">parameter</span> AW = <span class="number">32</span>,  <span class="comment">// Address Width: 地址位宽 (PC宽度)</span></span><br><span class="line">    <span class="keyword">parameter</span> DW = <span class="number">32</span>   <span class="comment">// Data Width: 数据位宽 (寄存器宽度)</span></span><br><span class="line">)(</span><br><span class="line">    <span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment">// 输入信号：来自 Decode (译码) 阶段</span></span><br><span class="line">    <span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line">    <span class="keyword">input</span>  <span class="keyword">logic</span> [AW-<span class="number">1</span>:<span class="number">0</span>]   instr_addr,   <span class="comment">// 当前指令的 PC 地址 (用于计算相对跳转的目标地址)</span></span><br><span class="line">    <span class="keyword">input</span>  <span class="keyword">logic</span> [DW-<span class="number">1</span>:<span class="number">0</span>]   instr,        <span class="comment">// 当前指令的原始机器码 (用于提取 funct3/funct7)</span></span><br><span class="line">    <span class="keyword">input</span>  <span class="keyword">logic</span> [DW-<span class="number">1</span>:<span class="number">0</span>]   op1,          <span class="comment">// 操作数 1 (通常来自 rs1)</span></span><br><span class="line">    <span class="keyword">input</span>  <span class="keyword">logic</span> [DW-<span class="number">1</span>:<span class="number">0</span>]   op2,          <span class="comment">// 操作数 2 (来自 rs2 或 扩展后的立即数 Imm)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment">// 输出信号：发送给 Control / IF 阶段 (用于控制跳转)</span></span><br><span class="line">    <span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span>            wr_reg_en,    <span class="comment">// 写寄存器使能信号 (1: 写, 0: 不写)</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>]      wr_reg_addr,  <span class="comment">// 写回的目标寄存器索引 (rd)</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span> [DW-<span class="number">1</span>:<span class="number">0</span>]   wr_reg_data,  <span class="comment">// 写回的数据 (ALU 计算结果)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment">// 输出信号：发送给 Control / IF 阶段 (用于控制跳转)</span></span><br><span class="line">    <span class="comment">//-------------------------------------------------------------------------</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span>            jump_en,      <span class="comment">// 跳转使能 (High有效，表示需要跳转)</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span> [AW-<span class="number">1</span>:<span class="number">0</span>]   jump_addr,    <span class="comment">// 跳转的目标地址 (Target PC)</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span>            jump_hold     <span class="comment">// 流水线暂停请求 (预留信号，目前逻辑中全为 0)</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//=========================================================================</span></span><br><span class="line">    <span class="comment">// 1. 内部信号定义 &amp; 指令字段切片</span></span><br><span class="line">    <span class="comment">//=========================================================================</span></span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">6</span>:<span class="number">0</span>]     opcode;         <span class="comment">// 操作码 (低7位)</span></span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>]     rd;             <span class="comment">// 目标寄存器索引 (instr[11:7])</span></span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">2</span>:<span class="number">0</span>]     func3;          <span class="comment">// 功能码3位 (instr[14:12])</span></span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">6</span>:<span class="number">0</span>]     func7;          <span class="comment">// 功能码7位 (instr[31:25])</span></span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">31</span>:<span class="number">0</span>]    imm;            <span class="comment">// 本地解出的立即数 (主要用于 B-Type 分支指令)</span></span><br><span class="line">    <span class="keyword">logic</span>           equal;          <span class="comment">// 比较标志：相等</span></span><br><span class="line">    <span class="keyword">logic</span>           less_signed;    <span class="comment">// 比较标志：有符号小于</span></span><br><span class="line">    <span class="keyword">logic</span>           less_unsigned;  <span class="comment">// 比较标志：无符号小于</span></span><br><span class="line">    <span class="keyword">logic</span> [AW-<span class="number">1</span>:<span class="number">0</span>]  jump_imm;       <span class="comment">// B-Type 指令计算出的跳转目标地址</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//=========================================================================</span></span><br><span class="line">    <span class="comment">// 2. 组合逻辑连线 (Assign)</span></span><br><span class="line">    <span class="comment">//=========================================================================</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// --- 指令解码 (虽然 Decode 阶段做过，但 EX 阶段也需要这些具体位来做判断) ---</span></span><br><span class="line">    <span class="keyword">assign</span> opcode = instr[<span class="number">6</span>:<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">assign</span> rd     = instr[<span class="number">11</span>:<span class="number">7</span>];</span><br><span class="line">    <span class="keyword">assign</span> func3  = instr[<span class="number">14</span>:<span class="number">12</span>];</span><br><span class="line">    <span class="keyword">assign</span> func7  = instr[<span class="number">31</span>:<span class="number">25</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 立即数生成 (专门针对 B-Type 指令) ---</span></span><br><span class="line">    <span class="comment">// RISC-V 的 B-Type 立即数是打乱拼接的：imm[12|10:5|4:1|11]</span></span><br><span class="line">    <span class="comment">// 这里的拼接逻辑：&#123;&#123;20&#123;符号位&#125;&#125;, bit12, bit10:5, bit4:1, 0&#125; </span></span><br><span class="line">    <span class="comment">// 注意：最低位补0，因为跳转地址必须是偶数 (2字节对齐)</span></span><br><span class="line">    <span class="keyword">assign</span> imm = &#123;&#123;<span class="number">20</span>&#123;instr[<span class="number">31</span>]&#125;&#125;, instr[<span class="number">7</span>], instr[<span class="number">30</span>:<span class="number">25</span>], instr[<span class="number">11</span>:<span class="number">8</span>], <span class="number">1&#x27;b0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 硬件比较器 (ALU Comparator) ---</span></span><br><span class="line">    <span class="comment">// 预先并行计算所有比较结果，供分支指令选择使用</span></span><br><span class="line">    <span class="keyword">assign</span> equal         = (op1 == op2) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;                 <span class="comment">// 判断相等 (BEQ/BNE)</span></span><br><span class="line">    <span class="keyword">assign</span> less_signed   = (<span class="built_in">$signed</span>(op1) &lt; <span class="built_in">$signed</span>(op2)) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;<span class="comment">// 有符号小于 (BLT/BGE)</span></span><br><span class="line">    <span class="keyword">assign</span> less_unsigned = (op1 &lt; op2) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;                  <span class="comment">// 无符号小于 (BLTU/BGEU)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 计算分支目标地址 ---</span></span><br><span class="line">    <span class="comment">// Target = Current PC + Offset (B-Type 的 offset 就是上面切出来的 imm)</span></span><br><span class="line">    <span class="keyword">assign</span> jump_imm      = instr_addr + imm;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//=========================================================================</span></span><br><span class="line">    <span class="comment">// 3. 核心执行逻辑 (ALU &amp; Branch Control)</span></span><br><span class="line">    <span class="comment">//=========================================================================</span></span><br><span class="line">    <span class="keyword">always_comb</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span>(opcode)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// I-Type 指令: 立即数运算 (e.g., ADDI x1, x2, 10)</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_TYPE_I: <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">case</span>(func3)</span><br><span class="line">                    `INST_ADDI: <span class="keyword">begin</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b1</span>;         <span class="comment">// ADDI 需要写回结果</span></span><br><span class="line">                        wr_reg_addr = rd;           <span class="comment">// 写到 rd</span></span><br><span class="line">                        wr_reg_data = op1 + op2;    <span class="comment">// ALU 动作：加法 (op2 此时是立即数)</span></span><br><span class="line">                        jump_en     = <span class="number">1&#x27;b0</span>;         <span class="comment">// 不涉及跳转</span></span><br><span class="line">                        jump_addr   = <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    <span class="comment">// 如有其他 I 型指令 (SLTI, ANDI 等)，需在此添加 case</span></span><br><span class="line">                    <span class="keyword">default</span>: <span class="keyword">begin</span></span><br><span class="line">                        wr_reg_en = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_en = <span class="number">1&#x27;b0</span>; jump_addr = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">endcase</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// R-Type / M-Type 指令: 寄存器-寄存器运算 (e.g., ADD, SUB)</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_TYPE_R_M: <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">case</span>(func3)</span><br><span class="line">                    `INST_ADD_SUB: <span class="keyword">begin</span></span><br><span class="line">                        <span class="comment">// 通过 func7 的第 5 位 (bit 30 in instr) 区分 ADD 和 SUB</span></span><br><span class="line">                        <span class="comment">// 0000000 -&gt; ADD; 0100000 -&gt; SUB</span></span><br><span class="line">                        <span class="keyword">if</span>(func7 == <span class="number">7&#x27;b000_0000</span>) <span class="keyword">begin</span> <span class="comment">// ADD</span></span><br><span class="line">                            wr_reg_en   = <span class="number">1&#x27;b1</span>;</span><br><span class="line">                            wr_reg_addr = rd;</span><br><span class="line">                            wr_reg_data = op1 + op2; <span class="comment">// 加法</span></span><br><span class="line">                            jump_en     = <span class="number">1&#x27;b0</span>; jump_addr = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        <span class="keyword">end</span></span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">begin</span>                     <span class="comment">// SUB</span></span><br><span class="line">                            wr_reg_en   = <span class="number">1&#x27;b1</span>;</span><br><span class="line">                            wr_reg_addr = rd;</span><br><span class="line">                            wr_reg_data = op1 - op2; <span class="comment">// 减法</span></span><br><span class="line">                            jump_en     = <span class="number">1&#x27;b0</span>; jump_addr = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        <span class="keyword">end</span></span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    <span class="comment">// 如有乘除法 (M扩展)，需在此添加 case</span></span><br><span class="line">                    <span class="keyword">default</span>: <span class="keyword">begin</span></span><br><span class="line">                        wr_reg_en = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_en = <span class="number">1&#x27;b0</span>; jump_addr = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">endcase</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// B-Type 指令: 条件分支 (e.g., BEQ, BNE)</span></span><br><span class="line">            <span class="comment">// 只要判断条件成立，就拉高 jump_en，并给出跳转地址</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_TYPE_B: <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">case</span>(func3)</span><br><span class="line">                    `INST_BEQ: <span class="keyword">begin</span> <span class="comment">// Branch if Equal</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b0</span>;         <span class="comment">// 分支指令不写寄存器</span></span><br><span class="line">                        wr_reg_addr = <span class="number">5&#x27;h0</span>;</span><br><span class="line">                        wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_en     = equal;        <span class="comment">// 如果相等，则跳转</span></span><br><span class="line">                        jump_addr   = equal ? jump_imm : <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    `INST_BNE: <span class="keyword">begin</span> <span class="comment">// Branch if Not Equal</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        wr_reg_addr = <span class="number">5&#x27;h0</span>;</span><br><span class="line">                        wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_en     = ~equal;       <span class="comment">// 如果不相等，则跳转</span></span><br><span class="line">                        jump_addr   = ~equal ? jump_imm : <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    `INST_BLT: <span class="keyword">begin</span> <span class="comment">// Branch if Less Than (Signed)</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        jump_en     = less_signed;</span><br><span class="line">                        jump_addr   = less_signed ? jump_imm : <span class="number">&#x27;h0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    `INST_BGE: <span class="keyword">begin</span> <span class="comment">// Branch if Greater/Equal (Signed)</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        jump_en     = ~less_signed; <span class="comment">// not less than = greater or equal</span></span><br><span class="line">                        jump_addr   = ~less_signed ? jump_imm : <span class="number">&#x27;h0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    `INST_BLTU: <span class="keyword">begin</span> <span class="comment">// Branch if Less Than (Unsigned)</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        jump_en     = less_unsigned;</span><br><span class="line">                        jump_addr   = less_unsigned ? jump_imm : <span class="number">&#x27;h0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    `INST_BGEU: <span class="keyword">begin</span> <span class="comment">// Branch if Greater/Equal (Unsigned)</span></span><br><span class="line">                        wr_reg_en   = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                        jump_en     = ~less_unsigned;</span><br><span class="line">                        jump_addr   = ~less_unsigned ? jump_imm : <span class="number">&#x27;h0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    <span class="keyword">default</span>: <span class="keyword">begin</span></span><br><span class="line">                        wr_reg_en = <span class="number">1&#x27;b0</span>; wr_reg_addr = <span class="number">5&#x27;h0</span>; wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                        jump_en = <span class="number">1&#x27;b0</span>; jump_addr = <span class="number">&#x27;h0</span>; jump_hold = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">endcase</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// J-Type 指令: JAL (Jump and Link)</span></span><br><span class="line">            <span class="comment">// 功能：1. 跳转; 2. 将下一条指令地址 (PC+4) 保存到 rd (通常是 ra)</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_JAL: <span class="keyword">begin</span></span><br><span class="line">                wr_reg_en   = <span class="number">1&#x27;b1</span>;             <span class="comment">// 需要写寄存器 (Link操作)</span></span><br><span class="line">                wr_reg_addr = rd;</span><br><span class="line">                wr_reg_data = instr_addr + <span class="number">32&#x27;h4</span>; <span class="comment">// 保存 PC+4 到 rd</span></span><br><span class="line">                jump_en     = <span class="number">1&#x27;b1</span>;             <span class="comment">// 必须跳转</span></span><br><span class="line">                <span class="comment">// JAL 的跳转偏移量较大，通常在 Decode 阶段解出放在 op2，或者此处重新计算</span></span><br><span class="line">                <span class="comment">// 代码中使用了 `instr_addr + op2`，暗示 op2 传递了 J-Type 的 offset</span></span><br><span class="line">                jump_addr   = instr_addr + op2; </span><br><span class="line">                jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// I-Type 跳转: JALR (Jump and Link Register)</span></span><br><span class="line">            <span class="comment">// 功能：跳到 (rs1 + offset) 的地址</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_JALR: <span class="keyword">begin</span></span><br><span class="line">                wr_reg_en   = <span class="number">1&#x27;b1</span>;</span><br><span class="line">                wr_reg_addr = rd;</span><br><span class="line">                wr_reg_data = instr_addr + <span class="number">32&#x27;h4</span>; <span class="comment">// 保存 PC+4 到 rd</span></span><br><span class="line">                jump_en     = <span class="number">1&#x27;b1</span>;</span><br><span class="line">                <span class="comment">// JALR 的目标地址是寄存器值 (op1) + 偏移量 (op2)</span></span><br><span class="line">                jump_addr   = op1 + op2;</span><br><span class="line">                jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// U-Type 指令: LUI (Load Upper Immediate)</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_LUI: <span class="keyword">begin</span></span><br><span class="line">                wr_reg_en   = <span class="number">1&#x27;b1</span>;</span><br><span class="line">                wr_reg_addr = rd;</span><br><span class="line">                wr_reg_data = op2;  <span class="comment">// op2 已经是 Decode 阶段处理好的 &#123;imm, 12&#x27;b0&#125;</span></span><br><span class="line">                jump_en     = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                jump_addr   = <span class="number">&#x27;h0</span>;</span><br><span class="line">                jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// U-Type 指令: LUIPC (Load Upper Immediate to PC)</span></span><br><span class="line">            <span class="comment">// 结果 = PC + &#123;imm, 12&#x27;b0&#125;</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_LUIPC: <span class="keyword">begin</span></span><br><span class="line">                wr_reg_en   = <span class="number">1&#x27;b1</span>;</span><br><span class="line">                wr_reg_addr = rd;</span><br><span class="line">                wr_reg_data = op1 + op2; <span class="comment">// op1 是 PC，op2 是移位后的立即数</span></span><br><span class="line">                jump_en     = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                jump_addr   = <span class="number">&#x27;h0</span>;</span><br><span class="line">                jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// 内部空指令 / 气泡 (NOP)</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            `INST_NOP_OP: <span class="keyword">begin</span></span><br><span class="line">                wr_reg_en   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                wr_reg_addr = <span class="number">5&#x27;h0</span>;</span><br><span class="line">                wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                jump_en     = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                jump_addr   = <span class="number">&#x27;h0</span>;</span><br><span class="line">                jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment">// 默认情况 (非法指令或未实现指令)</span></span><br><span class="line">            <span class="comment">//-----------------------------------------------------------------</span></span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">begin</span></span><br><span class="line">                wr_reg_en   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">                wr_reg_addr = <span class="number">5&#x27;h0</span>;</span><br><span class="line">                wr_reg_data = <span class="number">&#x27;h0</span>;</span><br><span class="line">                jump_en     = <span class="number">1&#x27;b0</span>; <span class="comment">// 注意：原代码此处为 1&#x27;b1 可能是为了容错或复位，通常应为 0</span></span><br><span class="line">                jump_addr   = <span class="number">&#x27;h0</span>;</span><br><span class="line">                jump_hold   = <span class="number">1&#x27;b0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、测试文件"><a href="#3、测试文件" class="headerlink" title="3、测试文件"></a>3、测试文件</h3><p>这段代码使用了 Xilinx Vivado 专用的 <strong>综合属性 <code>(* mark_debug = &quot;true&quot; *)**</code>，将其标记在执行阶段（Execute Stage）的关键信号（如指令地址 <code>instr_addr</code>、操作数 <code>op1/op2</code>、写回数据 <code>wr_reg_data</code> 等）之前。这相当于给这些信号颁发了</strong>“免死金牌”<strong>和</strong>“自动挂号证”<strong>：它的核心作用是</strong>强制综合器保留这些信号（防止被优化删除）**，并使它们在 Vivado 的 <strong>Set Up Debug</strong> 步骤中能被自动识别，从而方便地添加到 <strong>ILA（集成逻辑分析仪）</strong> 中。其最终目的是为了在 <strong>FPGA 上板调试</strong> 时，能够像做“心电图”一样实时抓取并观察 CPU 运算核心的内部状态，快速定位指令执行或逻辑运算的 Bug。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span>	[AW-<span class="number">1</span>:<span class="number">0</span>]								execute_instr_addr		; </span><br><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span>	[DW-<span class="number">1</span>:<span class="number">0</span>]								execute_instr					;	</span><br><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span> 	[DW-<span class="number">1</span>:<span class="number">0</span>]								execute_op1						;</span><br><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span> 	[DW-<span class="number">1</span>:<span class="number">0</span>]								execute_op2						;</span><br><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span>		        							wr_reg_en 						;</span><br><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span>	[<span class="number">4</span>:<span class="number">0</span>]  									wr_reg_addr						;	</span><br><span class="line">(*mark_debug = <span class="string">&quot;true&quot;</span>*)<span class="keyword">logic</span>	[DW-<span class="number">1</span>:<span class="number">0</span>]  							wr_reg_data						;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/RISC-V/" class="tag-link">RISC-V</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <div class="post-nav-item prev disabled"></div>
+      
+      
+      
+        <a href="/2026/02/10/%E6%95%B0%E5%AD%97%E5%89%8D%E4%BB%BF%E6%8A%80%E6%9C%AF%E7%90%86%E8%AE%BA/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">(1)数字前仿技术理论</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%A2%9E%E5%8A%A0B%E5%9E%8B%E6%8C%87%E4%BB%A4%E7%9A%84%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-text">1、增加B型指令的译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%89%A7%E8%A1%8C%E5%8D%95%E5%85%83%E4%BB%A3%E7%A0%81"><span class="toc-text">2、执行单元代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6"><span class="toc-text">3、测试文件</span></a></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>
