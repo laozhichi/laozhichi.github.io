@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>RISC-V项目(2)---RISC-V指令解析 | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="RISC-V">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="RISC-V项目(2)---RISC-V指令解析">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/02/13/RISC-V%E6%8C%87%E4%BB%A4%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/02/13/RISC-V%E6%8C%87%E4%BB%A4%E8%A7%A3%E6%9E%90/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">RISC-V项目(2)---RISC-V指令解析</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-02-13">
+      2026-02-13
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      5.7k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 20 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+<h3 id="1、NOP指令"><a href="#1、NOP指令" class="headerlink" title="1、NOP指令"></a>1、NOP指令</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213014207514-225696822.png">
+
+<h3 id="2、JAL指令-无条件跳转"><a href="#2、JAL指令-无条件跳转" class="headerlink" title="2、JAL指令(无条件跳转)"></a>2、JAL指令(无条件跳转)</h3><p>核心点：将当前PC指针加4存入reg[rd]，跳转到PC+imm继续执行<br><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213014329373-223564644.png"></p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213014409687-1520626394.png">
+
+<p>execute阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">`INST_JAL:<span class="keyword">begin</span></span><br><span class="line">	 wr_reg_en  	 = <span class="number">1&#x27;b1</span>	 															;</span><br><span class="line">	 wr_reg_addr   = rd						    									;</span><br><span class="line">	 wr_reg_data	 = instr_addr	+ <span class="number">32&#x27;h4</span>									;</span><br><span class="line">	 jump_en			 = <span class="number">1&#x27;b1</span>	 															;</span><br><span class="line">	 jump_addr		 = instr_addr + op2	 									;</span><br><span class="line">	 jump_hold  	 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>译码阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">`INST_JAL:<span class="keyword">begin</span></span><br><span class="line">	rd_rs1_addr  = <span class="number">5&#x27;h0</span>	 												;</span><br><span class="line">	rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">	op1_out			 = <span class="number">32&#x27;h0</span>												;</span><br><span class="line">	op2_out			 = imm													;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、JALR间接跳转指令"><a href="#3、JALR间接跳转指令" class="headerlink" title="3、JALR间接跳转指令"></a>3、JALR间接跳转指令</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213162053498-119970414.png">
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">`INST_JALR:<span class="keyword">begin</span></span><br><span class="line">	rd_rs1_addr  = rs1	 												;</span><br><span class="line">	rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">	op1_out			 = rd_rs1_data									;</span><br><span class="line">	op2_out			 = imm													;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>执行阶段的跳转：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">`INST_JAL:<span class="keyword">begin</span></span><br><span class="line">	 wr_reg_en  	 = <span class="number">1&#x27;b1</span>	 															;</span><br><span class="line">	 wr_reg_addr   = rd						    									;</span><br><span class="line">	 wr_reg_data	 = instr_addr	+ <span class="number">32&#x27;h4</span>									;</span><br><span class="line">	 jump_en			 = <span class="number">1&#x27;b1</span>	 															;</span><br><span class="line">	 jump_addr		 = instr_addr + op2	 									;</span><br><span class="line">	 jump_hold  	 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、LUI指令"><a href="#4、LUI指令" class="headerlink" title="4、LUI指令"></a>4、LUI指令</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213162548342-168809355.png">
+
+<p>译码阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`INST_LUI:<span class="keyword">begin</span></span><br><span class="line">	rd_rs1_addr  = <span class="number">5&#x27;h0</span>		 											;</span><br><span class="line">	rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">	op1_out			 = <span class="number">32&#x27;h0</span>												;</span><br><span class="line">	op2_out			 = imm													;</span><br></pre></td></tr></table></figure>
+
+<p>执行阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">`INST_LUI:<span class="keyword">begin</span></span><br><span class="line">	 wr_reg_en  	 = <span class="number">1&#x27;b1</span>	 															;</span><br><span class="line">	 wr_reg_addr   = rd						    									;</span><br><span class="line">	 wr_reg_data	 = op2																;</span><br><span class="line">	 jump_en			 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line">	 jump_addr		 = <span class="number">&#x27;h0</span>	 															;</span><br><span class="line">	 jump_hold  	 = <span class="number">1&#x27;b0</span>	 															;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、LUIPC"><a href="#5、LUIPC" class="headerlink" title="5、LUIPC"></a>5、LUIPC</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213163003560-1649332210.png">
+
+
+<p>这里简单提一嘴，就是LUI跟LUIPC的立即数计算方式如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always_comb</span> <span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">case</span>(opcode)</span><br><span class="line">		 `INST_LUI,`INST_LUIPC:</span><br><span class="line">		 	imm = &#123;instr_in[<span class="number">31</span>:<span class="number">12</span>],<span class="number">12&#x27;h0</span>&#125;;</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>译码阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">`INST_LUIPC:<span class="keyword">begin</span></span><br><span class="line">	rd_rs1_addr  = <span class="number">5&#x27;h0</span>		 											;</span><br><span class="line">	rd_rs2_addr  = <span class="number">5&#x27;h0</span>						    					;</span><br><span class="line">	op1_out			 = instr_addr_in								;</span><br><span class="line">	op2_out			 = imm													;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>执行阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">`INST_LUIPC:<span class="keyword">begin</span></span><br><span class="line">	 wr_reg_en  	 = <span class="number">1&#x27;b1</span>	 															;</span><br><span class="line">	 wr_reg_addr   = rd						    									;</span><br><span class="line">	 wr_reg_data	 = op1 + op2													;</span><br><span class="line">	 jump_en			 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line">	 jump_addr		 = <span class="number">&#x27;h0</span>	 															;</span><br><span class="line">	 jump_hold  	 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6、B型指令"><a href="#6、B型指令" class="headerlink" title="6、B型指令"></a>6、B型指令</h3><p>B型指令的立即数计算方式：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always_comb</span> <span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">case</span>(opcode)</span><br><span class="line">		`INST_TYPE_B:</span><br><span class="line">			imm = &#123;&#123;<span class="number">20</span>&#123;instr_in[<span class="number">31</span>]&#125;&#125;,instr_in[<span class="number">7</span>],instr_in[<span class="number">30</span>:<span class="number">25</span>],instr_in[<span class="number">11</span>:<span class="number">8</span>],<span class="number">1&#x27;b0</span>&#125;;</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>B型指令的指令定义方式：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260213163913333-1953123729.png">
+
+<p>B型指令译码阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`INST_TYPE_B:<span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">case</span>(func3)</span><br><span class="line">		`INST_BEQ,`INST_BNE,`INST_BLT,`INST_BGE,`INST_BLTU,`INST_BGEU:<span class="keyword">begin</span></span><br><span class="line">			rd_rs1_addr  = rs1	 										;</span><br><span class="line">			rd_rs2_addr  = rs2						    			;</span><br><span class="line">			op1_out			 = rd_rs1_data							;</span><br><span class="line">			op2_out			 = rd_rs2_data							;</span><br><span class="line">		<span class="keyword">end</span>                                   		</span><br><span class="line">		<span class="keyword">default</span>:<span class="keyword">begin</span>                         		</span><br><span class="line">			rd_rs1_addr  = <span class="number">&#x27;h0</span>	 										;</span><br><span class="line">			rd_rs2_addr  = <span class="number">&#x27;h0</span>						    			;</span><br><span class="line">			op1_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">			op2_out			 = <span class="number">&#x27;h0</span>											;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>执行阶段：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span>	imm										= &#123;&#123;<span class="number">20</span>&#123;instr[<span class="number">31</span>]&#125;&#125;,instr[<span class="number">7</span>],instr[<span class="number">30</span>:<span class="number">25</span>],instr[<span class="number">11</span>:<span class="number">8</span>],<span class="number">1&#x27;b0</span>&#125;; </span><br><span class="line"><span class="keyword">assign</span>	equal 								= (op1 == op2) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">assign</span>	less_signed  					= (<span class="built_in">$signed</span>(op1) &lt; <span class="built_in">$signed</span>(op2)) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">assign</span>	less_unsigned  				= (op1 &lt; op2) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;</span><br><span class="line"><span class="keyword">assign</span>	jump_imm							=	instr_addr + imm	;	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		`INST_TYPE_B: <span class="keyword">begin</span></span><br><span class="line">			<span class="keyword">case</span>(func3)</span><br><span class="line">				`INST_BEQ: <span class="keyword">begin</span></span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    						;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>															;</span><br><span class="line">					jump_en			 = equal	 													;	</span><br><span class="line">					jump_addr		 = equal ? jump_imm : <span class="number">&#x27;h0</span>						;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">				`INST_BNE: <span class="keyword">begin</span></span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    						;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>															;</span><br><span class="line">					jump_en			 = ~equal	 													;	</span><br><span class="line">					jump_addr		 = ~equal ? jump_imm : <span class="number">&#x27;h0</span>					;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">				<span class="keyword">end</span>                                       				</span><br><span class="line">				`INST_BLT: <span class="keyword">begin</span></span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    						;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>															;</span><br><span class="line">					jump_en			 = less_signed	 										;	</span><br><span class="line">					jump_addr		 = less_signed ? jump_imm : <span class="number">&#x27;h0</span>			;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">				<span class="keyword">end</span>                                             	</span><br><span class="line">				`INST_BGE: <span class="keyword">begin</span>                                	</span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    						;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>															;</span><br><span class="line">					jump_en			 = ~less_signed	 										;	</span><br><span class="line">					jump_addr		 = ~less_signed ? jump_imm : <span class="number">&#x27;h0</span>		;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">				`INST_BLTU: <span class="keyword">begin</span></span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    						;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>															;</span><br><span class="line">					jump_en			 = less_unsigned	 									;	</span><br><span class="line">					jump_addr		 = less_unsigned ? jump_imm : <span class="number">&#x27;h0</span>		;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">				`INST_BGEU: <span class="keyword">begin</span></span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    						;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>															;</span><br><span class="line">					jump_en			 = ~less_unsigned	 									;	</span><br><span class="line">					jump_addr		 = ~less_unsigned ? jump_imm : <span class="number">&#x27;h0</span>	;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 														;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">				<span class="keyword">default</span>:<span class="keyword">begin</span>                         		</span><br><span class="line">					wr_reg_en  	 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line">					wr_reg_addr  = <span class="number">5&#x27;h0</span>							    							;</span><br><span class="line">					wr_reg_data	 = <span class="number">&#x27;h0</span>																;</span><br><span class="line">					jump_en			 = <span class="number">1&#x27;b0</span>	 															;	</span><br><span class="line">					jump_addr		 = <span class="number">&#x27;h0</span>	 															;</span><br><span class="line">					jump_hold  	 = <span class="number">1&#x27;b0</span>	 															;</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">			<span class="keyword">endcase</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/RISC-V/" class="tag-link">RISC-V</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <div class="post-nav-item prev disabled"></div>
+      
+      
+      
+        <a href="/2026/02/11/4-Altisyn%E7%BB%BC%E5%90%88/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">集创赛(4)---Altisyn综合</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81NOP%E6%8C%87%E4%BB%A4"><span class="toc-text">1、NOP指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81JAL%E6%8C%87%E4%BB%A4-%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC"><span class="toc-text">2、JAL指令(无条件跳转)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81JALR%E9%97%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">3、JALR间接跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81LUI%E6%8C%87%E4%BB%A4"><span class="toc-text">4、LUI指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81LUIPC"><span class="toc-text">5、LUIPC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81B%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-text">6、B型指令</span></a></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>
