@@ -280,7 +280,9 @@
 <h3 id="6、PT文件夹"><a href="#6、PT文件夹" class="headerlink" title="6、PT文件夹"></a>6、PT文件夹</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215160736559-1459979011.png">
 
 <p>针对C_best（Hold时序）和C_worst（Setup时序）两个PVT条件</p>
-<h3 id="7、cali文件夹"><a href="#7、cali文件夹" class="headerlink" title="7、cali文件夹"></a>7、cali文件夹</h3><ul>
+<h3 id="7、calibre文件夹"><a href="#7、calibre文件夹" class="headerlink" title="7、calibre文件夹"></a>7、calibre文件夹</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215170152310-982240757.png">
+
+<ul>
 <li><p>merge (版图合并：拼图的最后一步)<br>专业解析：执行 GDS 合并 (GDS Merge) 操作的工作区。<br>通俗解释：你在 innovus 里连完线导出的版图（通常是 GDSII 格式），其实是个“空壳”。它只有你走的线和各个元器件的“占位符”，没有元器件内部的真实晶体管长相。merge 的任务，就是把你导出的空壳，和代工厂给你的“标准单元真实物理内部图纸”完美拼合在一起，形成一张能直接送去印芯片的终极照片。</p>
 </li>
 <li><p>v2lvs (翻译官：网表格式转换)<br>专业解析：执行 Verilog 转 LVS 网表 (Verilog to SPICE&#x2F;LVS Netlist)。<br>通俗解释：为了检查电路对不对，你需要拿着最初的代码和最终的版图去对账。但是，前端给你的代码是 Verilog 格式（类似于高级编程语言），而 Calibre 工具对账时只认识最底层的 SPICE 网表格式。这个文件夹里的脚本，就是充当翻译官，把高级语言翻译成底层语言。</p>
@@ -330,7 +332,7 @@
       <div class="toc-wrapper">
         <h3 class="toc-title">目录</h3>
         <div class="toc-content">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%B1%95%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">1、项目开展需要准备的文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Input%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">2、Input文件夹下是什么内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81innovus%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E5%86%85%E5%AE%B9"><span class="toc-text">3、innovus文件夹下内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81scripts%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">4、scripts文件夹下的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81starrc%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">5、starrc文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81PT%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">6、PT文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81cali%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">7、cali文件夹</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%B1%95%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">1、项目开展需要准备的文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Input%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">2、Input文件夹下是什么内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81innovus%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E5%86%85%E5%AE%B9"><span class="toc-text">3、innovus文件夹下内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81scripts%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">4、scripts文件夹下的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81starrc%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">5、starrc文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81PT%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">6、PT文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81calibre%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">7、calibre文件夹</span></a></li></ol>
         </div>
       </div>
     </aside>
