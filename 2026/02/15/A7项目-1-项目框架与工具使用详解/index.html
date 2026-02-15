@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>A7项目(1)---项目框架与工具使用详解 | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="A7项目">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="A7项目(1)---项目框架与工具使用详解">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/02/15/A7%E9%A1%B9%E7%9B%AE-1-%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/02/15/A7%E9%A1%B9%E7%9B%AE-1-%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">A7项目(1)---项目框架与工具使用详解</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-02-15">
+      2026-02-15
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      3.9k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 13 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+
+<h3 id="1、项目开展需要准备的文件夹"><a href="#1、项目开展需要准备的文件夹" class="headerlink" title="1、项目开展需要准备的文件夹"></a>1、项目开展需要准备的文件夹</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215145158259-192812871.png">
+
+<ul>
+<li><p>input (源数据&#x2F;弹药库)<br>专业解析：这里必须存放整个后端流程的“三大基石”：门级网表 (Gate-Level Netlist)、时序约束 (SDC - Synopsys Design Constraints)，以及代工厂提供的 物理和时序工艺库 (PDK &#x2F; Standard Cell Libraries)。<br>通俗解释：门级网表 (Gate-Level Netlist)——就像是用代码写成的乐高拼装说明书，告诉你需要哪些基础块；工艺库——就是乐高积木本身，有长条的有方块的。这文件夹就是你的弹药库，打仗前必须检查这里缺不缺东西。</p>
+</li>
+<li><p>innovus (物理实现&#x2F;建楼施工)<br>专业解析：Cadence Innovus 是数字后端的绝对核心平台，负责完成 布图规划 (Floorplanning)、电源网络综合 (Power Network Synthesis)、布局 (Placement)、时钟树综合 (Clock Tree Synthesis, CTS) 以及 布线 (Routing)。<br>通俗解释：时钟树综合 (CTS)——就像是给整个大楼铺设广播系统，确保每一层楼（寄存器）同时听到老板（时钟源）的指令。这个文件夹里装的就是这栋大楼一层层建起来的施工图纸和中间数据。</p>
+</li>
+<li><p>starrc (寄生提取&#x2F;计算阻力)<br>专业解析：这是 Synopsys StarRC 工具的工作区。它的任务是进行 寄生参数提取 (Parasitic Extraction)，将版图中的几何图形转化为带阻容参数的 .spef (Standard Parasitic Exchange Format) 文件。<br>通俗解释：寄生参数 (Parasitics)——理论上电线是瞬间传导的，但现实中，靠得太近的金属线会产生电容，细长的金属线会有电阻。这就好比水管越细水流越慢。starrc 的工作就是精准算出这些“物理摩擦力”到底有多大。</p>
+</li>
+<li><p>pt (时序签核&#x2F;秒表掐表)<br>专业解析：这是 PrimeTime (Synopsys) 的地盘。它负责 静态时序分析 (Static Timing Analysis, STA) 以及 功耗分析 (Power Analysis)。它会吃进 innovus 吐出的网表和 starrc 提取的寄生参数，进行最终的时序签核。<br>通俗解释：建立时间和保持时间 (Setup and Hold Time)——就像接力赛跑，接力棒（数据）必须在规定的区间内稳稳交接，早了晚了都会掉棒（芯片跑飞）。pt 就像是一个苛刻的裁判，拿着秒表计算整个电路几千万条路径有没有违规。</p>
+</li>
+<li><p>calibre (物理签核&#x2F;竣工验收)<br>专业解析：这是 Siemens EDA 的 Calibre 工具。它执行最终的 物理签核 (Physical Sign-off)，核心是 设计规则检查 (Design Rule Check, DRC) 和 版图与原理图一致性检查 (Layout Versus Schematic, LVS)。<br>通俗解释：设计规则检查 (DRC)——代工厂（比如台积电）会告诉你“两根线至少隔开2纳米，否则会短路”。calibre 就是那个拿着尺子一点点量间距的质检员，不合格人家是不给你流片的。</p>
+</li>
+</ul>
+<h3 id="2、Input文件夹下是什么内容"><a href="#2、Input文件夹下是什么内容" class="headerlink" title="2、Input文件夹下是什么内容"></a>2、Input文件夹下是什么内容</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215145537733-1581988617.png">
+
+<ul>
+<li>cortexa7core.synthesis.v (核心代码的“尸体”)<br>专业术语：这是综合工具输出的 门级网表 (Gate-Level Netlist)。</li>
+</ul>
+<p>通俗解释：这就好比一份用代码写成的“乐高拼装终极说明书”。前端工程师本来写的是行为级的 Verilog 代码（比如“如果A大于B，就执行C”），经过综合工具（Synthesis）的残酷翻译后，所有的逻辑都被打碎成了最底层的与非门、或非门、触发器等标准单元。你用文本打开它，会看到密密麻麻的连线关系。innovus 后端工具就是看着这个文件，知道要从库里拿多少个零件来拼。</p>
+<ul>
+<li>cortexa7core.sdc (项目的“生死状”)<br>专业术语：这是 时序约束文件 (SDC - Synopsys Design Constraints)。</li>
+</ul>
+<p>通俗解释：这就是我之前跟你提过的“甲方死命令合同”！里面定义了这颗 A7 芯片的时钟频率（比如它要跑在 800MHz 还是 1.2GHz）、输入输出信号的延迟时间。后端布局布线时，所有的优化拼命都是为了满足这个文件里的“交通规则”。如果最后满足不了，就会报时序违例（Timing Violation），芯片就废了。</p>
+<h3 id="3、innovus文件夹下内容"><a href="#3、innovus文件夹下内容" class="headerlink" title="3、innovus文件夹下内容"></a>3、innovus文件夹下内容</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215150308451-298967319.png">
+
+<p>一开始是只有scripts跟work文件夹哈</p>
+<h3 id="4、scripts文件夹下的内容"><a href="#4、scripts文件夹下的内容" class="headerlink" title="4、scripts文件夹下的内容"></a>4、scripts文件夹下的内容</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215150500205-1059734762.png">
+
+<p>目前是一共有11个脚本，对应这整个工程中的不同步骤过程</p>
+<h3 id="5、starrc文件夹"><a href="#5、starrc文件夹" class="headerlink" title="5、starrc文件夹"></a>5、starrc文件夹</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215150752599-1778064010.png">
+
+<p>cbest注重的是hold time，cworst注重的是setup time</p>
+<ul>
+<li><p>cworst_T_125 (炼狱模式：高温 + 高阻力)<br>专业术语：最差电容&#x2F;最慢工艺角 (Capacitance Worst Corner) @ 125°C。<br>通俗解释：<br>cworst 代表寄生电容最大的极端情况。<br>T_125 代表温度高达 125 摄氏度。<br>生活类比：这就像是大夏天你在沙漠里开车，不仅天气热得发动机拉胯（晶体管变慢），而且路面上全是泥泞（电容最大，信号阻力极大）。<br>战略意义：在这个文件夹底下提取出来的数据，是为了扔给后面的 pt 去检查 建立时间 (Setup Time) 的。也就是看在最恶劣、信号跑得最慢的情况下，数据能不能在规定时间到达。</p>
+</li>
+<li><p>cbest_T_m40 (极寒模式：低温 + 零阻力)<br>专业术语：最佳电容&#x2F;最快工艺角 (Capacitance Best Corner) @ 零下 40°C (-40°C)。<br>通俗解释：<br>cbest 代表寄生电容最小的极端情况。<br>m40 (minus 40) 代表零下 40 摄氏度。<br>生活类比：这就像是哈尔滨的严冬，路面上结了冰（完全没有摩擦力&#x2F;电容极小），你的车（信号）不仅跑得飞快，甚至刹不住车。<br>战略意义：跑得快难道不好吗？在数字电路里，跑太快也是灾难！如果信号提前到达，会把前一个还没处理完的数据给覆盖掉。这个文件夹的数据是为了检查 保持时间 (Hold Time) 违例的。</p>
+</li>
+<li><p>spef (寄生参数的“总账本”)<br>专业术语：存放 标准寄生交换格式 (Standard Parasitic Exchange Format, SPEF) 文件的目录。<br>通俗解释：当你分别在 125°C 和 -40°C 跑完提取后，StarRC 会生成 .spef 文件存放在这里。这就好比是一本厚厚的“账本”，里面密密麻麻地记录了这颗芯片上几千万根连线，每一根线在不同温度下的电阻值 (R) 和电容值 (C) 到底是多少。后面的 PrimeTime (PT) 掐表测速，就指望看这本账本了。</p>
+</li>
+<li><p>Makefile (一键启动的“自动挡”)<br>专业术语：自动化编译脚本 (Make Script)。<br>通俗解释：你不需要手动敲几十行命令去分别跑高温和低温。写这个实验的大佬已经把所有繁琐的启动命令打包进这个文件里了。你只需要在终端敲一个 make，工具就会自动挂上两档温度，去帮你提取账本。</p>
+</li>
+</ul>
+<h3 id="6、PT文件夹"><a href="#6、PT文件夹" class="headerlink" title="6、PT文件夹"></a>6、PT文件夹</h3><img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260215160736559-1459979011.png">
+
+<p>针对C_best（Hold时序）和C_worst（Setup时序）两个PVT条件</p>
+<h3 id="7、cali文件夹"><a href="#7、cali文件夹" class="headerlink" title="7、cali文件夹"></a>7、cali文件夹</h3><ul>
+<li><p>merge (版图合并：拼图的最后一步)<br>专业解析：执行 GDS 合并 (GDS Merge) 操作的工作区。<br>通俗解释：你在 innovus 里连完线导出的版图（通常是 GDSII 格式），其实是个“空壳”。它只有你走的线和各个元器件的“占位符”，没有元器件内部的真实晶体管长相。merge 的任务，就是把你导出的空壳，和代工厂给你的“标准单元真实物理内部图纸”完美拼合在一起，形成一张能直接送去印芯片的终极照片。</p>
+</li>
+<li><p>v2lvs (翻译官：网表格式转换)<br>专业解析：执行 Verilog 转 LVS 网表 (Verilog to SPICE&#x2F;LVS Netlist)。<br>通俗解释：为了检查电路对不对，你需要拿着最初的代码和最终的版图去对账。但是，前端给你的代码是 Verilog 格式（类似于高级编程语言），而 Calibre 工具对账时只认识最底层的 SPICE 网表格式。这个文件夹里的脚本，就是充当翻译官，把高级语言翻译成底层语言。</p>
+</li>
+<li><p>drc (安检局：设计规则检查)<br>专业解析：执行 设计规则检查 (Design Rule Check, DRC)。<br>通俗解释：这就是代工厂的物理安检局。它拿着尺子去量你版图上的每一根线。代工厂会规定：“在 28nm 工艺下，两根金属线之间的距离必须大于 0.05 微米，否则光刻机打光的时候会糊在一起发生短路”。哪怕有一处违例，不好意思，打回重做！</p>
+</li>
+<li><p>lvs (户籍科：版图与原理图一致性)<br>专业解析：执行 版图与原理图一致性检查 (Layout Versus Schematic, LVS)。<br>通俗解释：DRC 只管你的线有没有短路，但不管你连得对不对。LVS 就像是对账单。它左手拿着 v2lvs 翻译出来的“原版设计图纸”，右手拿着你画好的“版图提取结果”，一个晶体管一个晶体管去对比。多连了一根线？错！漏连了一个门？错！把电源地接反了？大错特错！</p>
+</li>
+</ul>
+
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/A7%E9%A1%B9%E7%9B%AE/" class="tag-link">A7项目</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <div class="post-nav-item prev disabled"></div>
+      
+      
+      
+        <a href="/2026/02/13/RISC-V%E6%8C%87%E4%BB%A4%E8%A7%A3%E6%9E%90/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">RISC-V项目(2)---RISC-V指令解析</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%B1%95%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">1、项目开展需要准备的文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Input%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">2、Input文件夹下是什么内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81innovus%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E5%86%85%E5%AE%B9"><span class="toc-text">3、innovus文件夹下内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81scripts%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">4、scripts文件夹下的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81starrc%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">5、starrc文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81PT%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">6、PT文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81cali%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">7、cali文件夹</span></a></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>
