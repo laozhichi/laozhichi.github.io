@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>Synthesis - 如何快速做一个基本综合？ | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="数字中后端">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Synthesis - 如何快速做一个基本综合？">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/02/26/Synthesis-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%BB%BC%E5%90%88%EF%BC%9F/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/02/26/Synthesis-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%BB%BC%E5%90%88%EF%BC%9F/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">Synthesis - 如何快速做一个基本综合？</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-02-26">
+      2026-02-26
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      8.3k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 28 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+<h3 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h3><h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><h3 id="3、查看area-rpt"><a href="#3、查看area-rpt" class="headerlink" title="3、查看area.rpt"></a>3、查看area.rpt</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">****************************************</span><br><span class="line">Report : area</span><br><span class="line">Design : my_module</span><br><span class="line">Version: O-2018.06-SP1</span><br><span class="line">Date   : Thu Feb 26 19:54:00 2026</span><br><span class="line">****************************************</span><br><span class="line"></span><br><span class="line">Library(s) Used:</span><br><span class="line"></span><br><span class="line">    slow (File: /tools/Lib/digit_lib/smic180/std/synopsys/slow.db)</span><br><span class="line"></span><br><span class="line">Number of ports:                           69</span><br><span class="line">Number of nets:                           403</span><br><span class="line">Number of cells:                          366</span><br><span class="line">Number of combinational cells:            238</span><br><span class="line">Number of sequential cells:               128</span><br><span class="line">Number of macros/black boxes:               0</span><br><span class="line">Number of buf/inv:                          6</span><br><span class="line">Number of references:                       5</span><br><span class="line"></span><br><span class="line">Combinational area:               3632.428809</span><br><span class="line">Buf/Inv area:                       39.916800</span><br><span class="line">Noncombinational area:            8089.804688</span><br><span class="line">Macro/Black Box area:                0.000000</span><br><span class="line">Net Interconnect area:      undefined  (No wire load specified)</span><br><span class="line"></span><br><span class="line">Total cell area:                 11722.233497</span><br><span class="line">Total area:                 undefined</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>我们来看一下其中的这个报告做了什么：</p>
+<ul>
+<li><p>Number of ports (69)：芯片对外的引脚总数。你的输入信号 + 输出信号加起来一共有 69 根线。</p>
+</li>
+<li><p>Number of nets (403)：芯片内部的“血管”数量。门电路和门电路之间有 403 根导线连着</p>
+</li>
+<li><p>Number of cells (366)：你的总砖头数！ 整个设计一共用了 366 个标准单元。</p>
+<ul>
+<li><p>Number of combinational cells (238)：干活的员工（组合逻辑）。这就是与非门、或非门、加法器等，一共 238 个，负责疯狂算数。</p>
+</li>
+<li><p>Number of sequential cells (128)：记事本（时序逻辑）。这就是 D 触发器 (Flip-flops) 或者锁存器，一共 128 个，负责把每一拍算好的数据存下来。</p>
+</li>
+</ul>
+</li>
+<li><p>Number of macros&#x2F;black boxes (0)：你没有用到 SRAM 内存块或者第三方大 IP。</p>
+</li>
+<li><p>Number of buf&#x2F;inv: 6 (缓冲器与反相器的数量)</p>
+<ul>
+<li><p>专业全称：Buffer (缓冲器) &#x2F; Inverter (反相器 或 非门)。</p>
+</li>
+<li><p>军师通俗解释：这俩兄弟是芯片里的**“后勤运输队长”和“信号翻转员”**。</p>
+</li>
+<li><p>Inverter (非门)：负责把 0 变成 1，把 1 变成 0。</p>
+</li>
+<li><p>Buffer (缓冲器)：逻辑上它什么都不干（输入 1，输出还是 1）。它的真实物理作用是**“信号放大中继站”**！当你的一个引脚要同时驱动几十个门电路（Fanout 扇出太大），或者要跑一段很长的金属线时，信号会衰减。工具就会强行在中间插一个 Buffer，给信号“打鸡血”续航。</p>
+</li>
+</ul>
+</li>
+<li><p>Number of references: 5 (引用的“乐高积木”种类)<br>Total cells 是 366 个（你一共用了 366 块乐高积木盖房子）。<br>但这行 references: 5 告诉你：这 366 块积木，其实翻来覆去只用了 5 种不同的型号！<br>  DC 工具精确且唯一地使用了以下 5 种标准单元：</p>
+<p>  DFFSXL (带有置位功能的 D触发器)：这是你的记忆体。</p>
+<p>  INVXL (反相器 &#x2F; 非门)：信号翻转员。</p>
+<p>  NOR2XL (两输入或非门)：基础逻辑单元。</p>
+<p>  NAND2XL (两输入与非门)：基础逻辑单元。</p>
+<p>  🔥 AOI22XL (AND-OR-Invert 2-2 复合门)：全场真正的 MVP！</p>
+</li>
+</ul>
+<p>下面这堆内容是啥呢：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Combinational area:               3632.428809</span><br><span class="line">Buf/Inv area:                       39.916800</span><br><span class="line">Noncombinational area:            8089.804688</span><br><span class="line">Macro/Black Box area:                0.000000</span><br><span class="line">Net Interconnect area:      undefined  (No wire load specified)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>Combinational area: 3632.42 (组合逻辑占地)</p>
+<p> 它是啥：这就是你用来做“4选1多路选择器 (MUX)”和“写地址译码器 (Decoder)”的那些砖头——满屏的 AOI22XL、NAND、NOR。</p>
+<p> 军师点评：它们负责纯粹的逻辑计算，一共花了 3600 多平方微米。</p>
+</li>
+<li><p>Buf&#x2F;Inv area: 39.91 (后勤跑腿占地)</p>
+<p> 它是啥：包含在上面那个组合逻辑面积里的一小部分。这就是咱们之前抓出来的仅仅 6 个的反相器（INV）和缓冲器（BUF）。</p>
+<p> 军师点评：你看，面积才区区 39.9！跟总面积比起来简直就是九牛一毛。这再次证明了你代码的数据通路极其通畅，没怎么动用“信号中继站”。</p>
+</li>
+<li><p>Noncombinational area: 8089.80 (非组合逻辑 &#x2F; 时序逻辑占地)它是啥：这就是你那 $4 \times 32 &#x3D; 128$ 个极其金贵的 DFFSXL（D触发器）！🔥 架构师的极度坦诚：兄弟，看到这个极其悬殊的对比了吗？你 238 个组合门才占 3600，而 128 个触发器居然占了 8000 多！工业界铁律：触发器（寄存器）是芯片里最占面积、最吃功耗的“吞金兽”！ 所以为什么现在复杂的 CPU 缓存都要用定制的 SRAM，而不敢直接用触发器去拼（Register File 一般只做小容量的寄存器堆），这就是血淋淋的物理成本！</p>
+</li>
+<li><p>Macro&#x2F;Black Box area: 0.00 (宏单元&#x2F;黑盒占地)</p>
+<p> 它是啥：如果你在代码里调用了现成的、别人画好的大黑盒（比如从内存编译器里生成的 SRAM 模块，或者买来的 PLL 锁相环 IP）。</p>
+<p> 军师点评：你是纯手写的 RTL 代码，全是用标准单元（细碎的乐高积木）拼的，所以大模块面积是 0。</p>
+</li>
+<li><p>Net Interconnect area: undefined (导线互连占地)</p>
+<p> 它是啥：门电路之间那些金属连线所占的面积。</p>
+<p> 军师点评：为什么是 undefined（未知）？因为它后面跟着一句大实话——(No wire load specified)（未指定线负载模型）。DC 综合工具现在只是在脑子里把你建好了，根本没把这些模块真正放在一块二维板子上，所以连线有多长它完全不知道！除非你强制给它一个预估模型（Wire Load Model），否则它拒绝对导线面积负责。</p>
+</li>
+<li><p>Total cell area: 11722.23 (总净使用面积)</p>
+<p> 它是啥：把组合逻辑 (3632) + 触发器 (8089) 加起来的纯室内使用面积。</p>
+</li>
+<li><p>Total area: undefined (带公摊的总建筑面积)</p>
+<p> 它是啥：单元使用面积 + 走线面积。</p>
+<p> 军师点评：既然连线面积是未知的，总面积当然也是未知的。你想知道真正的带走线总面积，只有等到了 Innovus 布局布线之后，看真实的版图数据！</p>
+</li>
+</ol>
+<h3 id="4、timing-rpt"><a href="#4、timing-rpt" class="headerlink" title="4、timing.rpt"></a>4、timing.rpt</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">Information: Updating design information... (UID-85)</span><br><span class="line"> </span><br><span class="line">****************************************</span><br><span class="line">Report : timing</span><br><span class="line">        -path full</span><br><span class="line">        -delay max</span><br><span class="line">        -max_paths 1</span><br><span class="line">Design : my_module</span><br><span class="line">Version: O-2018.06-SP1</span><br><span class="line">Date   : Thu Feb 26 19:54:00 2026</span><br><span class="line">****************************************</span><br><span class="line"></span><br><span class="line">Operating Conditions: slow   Library: slow</span><br><span class="line">Wire Load Model Mode: top</span><br><span class="line"></span><br><span class="line">  Startpoint: register_file_reg_2__1_</span><br><span class="line">              (rising edge-triggered flip-flop clocked by clk)</span><br><span class="line">  Endpoint: register_file_reg_2__1_</span><br><span class="line">            (rising edge-triggered flip-flop clocked by clk)</span><br><span class="line">  Path Group: clk</span><br><span class="line">  Path Type: max</span><br><span class="line"></span><br><span class="line">  Point                                    Incr       Path</span><br><span class="line">  -----------------------------------------------------------</span><br><span class="line">  clock clk (rise edge)                    0.00       0.00</span><br><span class="line">  clock network delay (ideal)              0.00       0.00</span><br><span class="line">  register_file_reg_2__1_/CK (DFFSXL)      0.00       0.00 r</span><br><span class="line">  register_file_reg_2__1_/QN (DFFSXL)      0.57       0.57 f</span><br><span class="line">  U460/Y (AOI22XL)                         0.21       0.78 r</span><br><span class="line">  register_file_reg_2__1_/D (DFFSXL)       0.00       0.78 r</span><br><span class="line">  data arrival time                                   0.78</span><br><span class="line"></span><br><span class="line">  clock clk (rise edge)                   10.00      10.00</span><br><span class="line">  clock network delay (ideal)              0.00      10.00</span><br><span class="line">  register_file_reg_2__1_/CK (DFFSXL)      0.00      10.00 r</span><br><span class="line">  library setup time                      -0.09       9.91</span><br><span class="line">  data required time                                  9.91</span><br><span class="line">  -----------------------------------------------------------</span><br><span class="line">  data required time                                  9.91</span><br><span class="line">  data arrival time                                  -0.78</span><br><span class="line">  -----------------------------------------------------------</span><br><span class="line">  slack (MET)                                         9.12</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>我们先注释一下这个时序报告：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">Operating Conditions: slow   Library: slow </span><br><span class="line">## 军师批注：【环境侦测】当前处于 180nm 的炼狱模式（高温低压），此时晶体管跑得最慢，用来查 Setup 违例最准。</span><br><span class="line">Wire Load Model Mode: top</span><br><span class="line">## 军师批注：【连线预估】因为还没进行物理连线，工具在此使用顶层线负载模型（瞎猜导线延迟）。</span><br><span class="line"></span><br><span class="line">  Startpoint: register_file_reg_2__1_</span><br><span class="line">              (rising edge-triggered flip-flop clocked by clk)</span><br><span class="line">  ## 军师批注：【起跑线】数据的发射源。这是一个由 clk 上升沿触发的 D 触发器。</span><br><span class="line">  </span><br><span class="line">  Endpoint: register_file_reg_2__1_</span><br><span class="line">            (rising edge-triggered flip-flop clocked by clk)</span><br><span class="line">  ## 军师批注：【终点线】数据的接收端。你看，起点和终点是同一个触发器！说明这是一个“自己反馈给自己”的路径（寄存器保持原值）。</span><br><span class="line">  </span><br><span class="line">  Path Group: clk</span><br><span class="line">  Path Type: max</span><br><span class="line">  ## 军师批注：再次确认，这是 clk 时钟域下的 Setup (max) 检查。</span><br><span class="line"></span><br><span class="line">  Point                                    Incr       Path</span><br><span class="line">  -----------------------------------------------------------</span><br><span class="line">  ## ========== 第一幕：计算数据实际到达时间 (Data Arrival Time) ========== ##</span><br><span class="line">  clock clk (rise edge)                    0.00       0.00</span><br><span class="line">  ## 军师批注：【发令枪响】在 0.00ns 时刻，时钟上升沿到来。</span><br><span class="line">  </span><br><span class="line">  clock network delay (ideal)              0.00       0.00</span><br><span class="line">  ## 军师批注：因为这是前端综合，还没做时钟树综合(CTS)，所以工具假设时钟网是“完美的(ideal)”，延迟为0。</span><br><span class="line">  </span><br><span class="line">  register_file_reg_2__1_/CK (DFFSXL)      0.00       0.00 r</span><br><span class="line">  ## 军师批注：时钟信号瞬间到达了发射端触发器的 CK (Clock) 引脚。末尾的 &#x27;r&#x27; 代表上升沿 (rise)。</span><br><span class="line">  </span><br><span class="line">  register_file_reg_2__1_/QN (DFFSXL)      0.57       0.57 f</span><br><span class="line">  ## 军师批注：【触发器出翻转延迟】时钟敲击后，触发器把数据从 QN 引脚吐出来，花了 0.57ns。末尾的 &#x27;f&#x27; 代表数据是个下降沿 (fall，从1变0)。</span><br><span class="line">  </span><br><span class="line">  U460/Y (AOI22XL)                         0.21       0.78 r</span><br><span class="line">  ## 军师批注：【组合逻辑延迟】数据跑在走廊上，穿过了 U460 这个复合逻辑门，花了 0.21ns。此时总耗时累加为 0.78ns。数据变成上升沿 &#x27;r&#x27;。</span><br><span class="line">  </span><br><span class="line">  register_file_reg_2__1_/D (DFFSXL)       0.00       0.78 r</span><br><span class="line">  ## 军师批注：数据终于抵达了接收端触发器的 D 引脚。路上导线延迟为 0.00 (综合阶段忽略不计)。</span><br><span class="line">  </span><br><span class="line">  data arrival time                                   0.78</span><br><span class="line">  ## 军师批注：【总结算 1】数据实际跑到终点，总共花了 0.78ns。</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  ## ========== 第二幕：计算系统死线 (Data Required Time) ========== ##</span><br><span class="line">  clock clk (rise edge)                   10.00      10.00</span><br><span class="line">  ## 军师批注：【下一次发令枪响】因为你在脚本里约束了周期是 10.00ns，所以下一个时钟沿在 10.00ns 时刻到来。</span><br><span class="line">  </span><br><span class="line">  clock network delay (ideal)              0.00      10.00</span><br><span class="line">  ## 军师批注：接收端的时钟树延迟，依然假设是完美的 0.00ns。</span><br><span class="line">  </span><br><span class="line">  register_file_reg_2__1_/CK (DFFSXL)      0.00      10.00 r</span><br><span class="line">  ## 军师批注：10.00ns 时刻，时钟准确敲击接收端触发器。</span><br><span class="line">  </span><br><span class="line">  library setup time                      -0.09       9.91</span><br><span class="line">  ## 军师批注：【傲娇的建立时间】查阅 slow.db 发现，这个 DFFSXL 触发器要求数据必须“提前 0.09ns”到达并保持稳定。所以 10.00 减去 0.09。</span><br><span class="line">  </span><br><span class="line">  data required time                                  9.91</span><br><span class="line">  ## 军师批注：【总结算 2】工具下达最后通牒：数据必须在 9.91ns 之前到达！(这就是死线)</span><br><span class="line">  -----------------------------------------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ## ========== 第三幕：最终审判 (Slack Calculation) ========== ##</span><br><span class="line">  data required time                                  9.91</span><br><span class="line">  ## 军师批注：这是要求的死线。</span><br><span class="line">  </span><br><span class="line">  data arrival time                                  -0.78</span><br><span class="line">  ## 军师批注：这是实际到达时间。公式是 Required 减去 Arrival。</span><br><span class="line">  -----------------------------------------------------------</span><br><span class="line">  slack (MET)                                         9.12</span><br><span class="line">  ## 军师批注：【宣判结果】9.91 - 0.78 = 9.12ns。</span><br><span class="line">  ## 因为是正数，所以是 MET（满足要求）！你不仅没迟到，还提前了 9.12ns 抵达终点，时序极其宽裕！</span><br><span class="line">  ## 如果这里是负数，就会显示 VIOLATED（违例），那就得回去改代码或者降频了。</span><br><span class="line"></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%90%8E%E7%AB%AF/" class="tag-link">数字中后端</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <div class="post-nav-item prev disabled"></div>
+      
+      
+      
+        <a href="/2026/02/16/%E9%9B%86%E5%88%9B%E8%B5%9B-8-optimus-training/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">集创赛(8)---optimus training</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81"><span class="toc-text">1、</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%9F%A5%E7%9C%8Barea-rpt"><span class="toc-text">3、查看area.rpt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81timing-rpt"><span class="toc-text">4、timing.rpt</span></a></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>
