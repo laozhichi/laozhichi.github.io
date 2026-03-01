@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>19_3pathgroup约束 | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="数字后端概念基础">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="19_3pathgroup约束">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/03/01/19-3-pathgroup%E7%BA%A6%E6%9D%9F/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/03/01/19-3-pathgroup%E7%BA%A6%E6%9D%9F/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">19_3pathgroup约束</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-03-01">
+      2026-03-01
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      5.1k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 17 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+<h3 id="1、Path-Grouping（路径分组）"><a href="#1、Path-Grouping（路径分组）" class="headerlink" title="1、Path Grouping（路径分组）"></a>1、Path Grouping（路径分组）</h3><p>这部分代码的专业术语叫 Path Grouping（路径分组）。如果说之前的 OCV 设置是在给芯片“加难度”，那么这段代码就是你在给 Innovus 这个优化工具**“划重点、分配算力”**。</p>
+<p>在默认情况下，EDA 工具是个“死心眼”。它看到哪里有时序违例（Violation）就去修哪里。如果你的输入输出引脚（I&#x2F;O）因为外部环境设置得太严苛而出现了巨大的违例，工具就会把 90% 的 CPU 时间和内存都耗在修 I&#x2F;O 上，反而把你芯片内部真正核心的计算逻辑给忽略了。</p>
+<p>这段代码，就是大厂 Team Leader 用来夺回优化控制权的终极武器。</p>
+<h3 id="2、整个代码："><a href="#2、整个代码：" class="headerlink" title="2、整个代码："></a>2、整个代码：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"># Group path</span><br><span class="line"></span><br><span class="line"># Reset all existing path groups, including basic path groupsreset_path_group -#? Reset all options set on all path groups.resetPathGroupOptions?(CUI :reset_path_group_options)</span><br><span class="line"></span><br><span class="line">reset_path_group -all</span><br><span class="line"></span><br><span class="line">### get sequentials</span><br><span class="line"></span><br><span class="line">set reg [filter_collection [all_registers ] &quot;is_integrated_clock_gating_cell != true&quot;]</span><br><span class="line"></span><br><span class="line">set inp [all_inputs]</span><br><span class="line"></span><br><span class="line">set out [all_outputs]</span><br><span class="line"></span><br><span class="line">set mem [get_cells -q -hier -filter &quot;@is_hierarchical == false &amp;&amp; @is_macro_cell == true&quot;]</span><br><span class="line"></span><br><span class="line">set ckgating [filter_collection [all_registers] &quot;is_integrated_clock_gating_cell == true&quot;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">set ignore_path_groups [list inp2reg reg2out feedthr]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### create path groups</span><br><span class="line"></span><br><span class="line">group_path -name reg2reg -from $reg -to $reg</span><br><span class="line"></span><br><span class="line">group_path -name mem2reg -from $mem -to $reg</span><br><span class="line"></span><br><span class="line">group_path -name mem2cg -from $mem -to $ckgating</span><br><span class="line"></span><br><span class="line">group_path -name reg2mem -from $reg -to $mem</span><br><span class="line"></span><br><span class="line">group_path -name mem2mem -from $mem -to $mem</span><br><span class="line"></span><br><span class="line">group_path -name reg2cg -from $reg -to $ckgating</span><br><span class="line"></span><br><span class="line">group_path -name in2reg -from $inp</span><br><span class="line"></span><br><span class="line">group_path -name reg2out -to $out</span><br><span class="line"></span><br><span class="line">group_path -name feedthr -from $inp -to $out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### set weight</span><br><span class="line"></span><br><span class="line">setPathGroupOptions reg2reg -effortLevel high </span><br><span class="line"></span><br><span class="line">setPathGroupOptions reg2cg -effortLevel high </span><br><span class="line"></span><br><span class="line">setPathGroupOptions mem2cg -effortLevel high </span><br><span class="line"></span><br><span class="line">setPathGroupOptions reg2mem -effortLevel high</span><br><span class="line"></span><br><span class="line">setPathGroupOptions mem2reg -effortLevel high </span><br><span class="line"></span><br><span class="line">setPathGroupOptions mem2mem -effortLevel high </span><br><span class="line"></span><br><span class="line">setPathGroupOptions in2reg -effortLevel low </span><br><span class="line"></span><br><span class="line">setPathGroupOptions reg2out -effortLevel low</span><br><span class="line"></span><br><span class="line">setPathGroupOptions feedthr -effortLevel low</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#setPathGroupOptions? $name? -effortLevel $effort -weight $weight -slackAdjustment $slack_adj</span><br><span class="line"></span><br><span class="line">puts &quot;ignore path groups for hold : \&#123;$ignore_path_groups\&#125; .&quot;</span><br><span class="line"></span><br><span class="line">setOptMode -ignorePathGroupsForHold $ignore_path_groups</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、代码的注释："><a href="#3、代码的注释：" class="headerlink" title="3、代码的注释："></a>3、代码的注释：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reset_path_group -all</span><br></pre></td></tr></table></figure>
+<p>作用：清除工具默认按时钟域划分的所有路径组。</p>
+<p>潜台词：“别用你默认的那套笨办法，接下来按我的规矩来分。”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">### get sequentials (获取时序逻辑元件)</span><br><span class="line"></span><br><span class="line"># 1. 提取普通步兵：常规寄存器</span><br><span class="line"># all_registers 会抓取设计中所有的时序单元。</span><br><span class="line"># filter_collection 结合 &quot;is_integrated_clock_gating_cell != true&quot; 条件，</span><br><span class="line"># 把那些作为“时钟门控”的特殊单元剔除掉，只保留纯粹用来打拍子、存数据的普通触发器 (Flip-Flops)。</span><br><span class="line">set reg [filter_collection [all_registers ] &quot;is_integrated_clock_gating_cell != true&quot;]</span><br><span class="line"></span><br><span class="line"># 2. 提取边防哨所：输入/输出端口</span><br><span class="line"># 获取芯片最外围的所有输入管脚 (Input Ports) 和输出管脚 (Output Ports)。</span><br><span class="line">set inp [all_inputs]</span><br><span class="line">set out [all_outputs]</span><br><span class="line"></span><br><span class="line"># 3. 提取重型装甲：宏单元 (SRAM / IP)</span><br><span class="line"># get_cells -hier: 遍历整个层级结构去抓取单元。</span><br><span class="line"># @is_hierarchical == false: 必须是底层物理单元 (Leaf Cell)，不能是逻辑模块 (Module)。</span><br><span class="line"># @is_macro_cell == true: 必须是宏单元 (通常指 SRAM 存储器、PLL、ROM 等硬核 IP)。</span><br><span class="line">set mem [get_cells -q -hier -filter &quot;@is_hierarchical == false &amp;&amp; @is_macro_cell == true&quot;]</span><br><span class="line"></span><br><span class="line"># 4. 提取指挥枢纽：时钟门控单元 (ICG)</span><br><span class="line"># 专门把刚才剔除掉的“集成时钟门控单元” (ICG) 单独抓取出来。</span><br><span class="line"># 它是低功耗设计的核心，负责在模块不工作时关断时钟网络。</span><br><span class="line">set ckgating [filter_collection [all_registers] &quot;is_integrated_clock_gating_cell == true&quot;]</span><br></pre></td></tr></table></figure>
+<p>ICG 的全称是 Integrated Clock Gating（集成时钟门控单元）。</p>
+<p>如果把芯片里的时钟网络（Clock Tree）比作城市的供水管网，把成千上万的寄存器比作千家万户的自来水龙头，那么 ICG 就是安装在每个小区门口的“智能总阀门”。</p>
+<p>它存在的唯一目的就是四个字：极致省电。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301120310809-371434767.png">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">### create path groups (创建时序路径分组)</span><br><span class="line"></span><br><span class="line"># 1. 核心计算战区 (纯逻辑打拍子)</span><br><span class="line"># reg2reg: 普通寄存器到普通寄存器。这是芯片算力的基本盘，通常占芯片路径的 80% 以上。</span><br><span class="line">group_path -name reg2reg -from $reg -to $reg</span><br><span class="line"></span><br><span class="line"># 2. 存储器交互战区 (SRAM 读写)</span><br><span class="line"># mem2reg: 内存读出路径。SRAM 的 clock-to-q 延迟通常比较大，这部分数据跑到下一级寄存器很容易违例。</span><br><span class="line">group_path -name mem2reg -from $mem -to $reg</span><br><span class="line"># reg2mem: 内存写入路径（包含地址线、数据线、写使能）。SRAM 的 Setup 要求极为苛刻，必须单独盯防。</span><br><span class="line">group_path -name reg2mem -from $reg -to $mem</span><br><span class="line"># mem2mem: 内存到内存直连。极其罕见且危险，两个巨无霸直接对话，通常延迟极大。</span><br><span class="line">group_path -name mem2mem -from $mem -to $mem</span><br><span class="line"></span><br><span class="line"># 3. 低功耗生命线 (时钟门控使能信号)</span><br><span class="line"># mem2cg: 内存的输出直接去控制某个模块的时钟门控单元 (ICG)。</span><br><span class="line">group_path -name mem2cg -from $mem -to $ckgating</span><br><span class="line"># reg2cg: 普通寄存器去控制 ICG 的 Enable 引脚。</span><br><span class="line"># 【TL 划重点】：ICG 内部带 Latch，Setup 要求极高，如果跟 reg2reg 混在一起，工具根本照应不过来。必须单独建组！</span><br><span class="line">group_path -name reg2cg -from $reg -to $ckgating</span><br><span class="line"></span><br><span class="line"># 4. 外部接口战区 (I/O 边界)</span><br><span class="line"># in2reg: 外部输入引脚到第一级寄存器 (Input Delay 路径)。</span><br><span class="line">group_path -name in2reg -from $inp</span><br><span class="line"># reg2out: 最后一级寄存器到外部输出引脚 (Output Delay 路径)。</span><br><span class="line">group_path -name reg2out -to $out</span><br><span class="line"># feedthr: 纯直通路径。从输入引脚进来，连个触发器都没过，直接做点纯组合逻辑就送出去了（最不受待见的路径，外部环境决定它的生死）。</span><br><span class="line">group_path -name feedthr -from $inp -to $out</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">group_path -name reg2cg -from $reg -to $ckgating</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301121533122-1008120480.png">
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301123324567-1870111049.png">
+
+<p>谁来决定它的最终位置？（后端流程）</p>
+<ul>
+<li><p>Placement 阶段（初步占位）：就是咱们刚聊完的那个阶段。工具会根据逻辑连线关系，给 ICG 找个大概的合理位置。</p>
+</li>
+<li><p>CTS 阶段（最终定死）：在跑 时钟树综合（Clock Tree Synthesis, 比如 Innovus 里的 ccopt_design） 时，工具会对 ICG 的位置进行微调。为了保证时钟树的完美平衡（Balance），工具可能会把 ICG 稍微挪动一下，甚至在它前面或后面插入几个 Clock Buffer，然后把它的坐标彻底锁死。</p>
+</li>
+</ul>
+<h3 id="4、导出报告"><a href="#4、导出报告" class="headerlink" title="4、导出报告"></a>4、导出报告</h3><p>最后的setOptMode则是告诉工具，关于IO相关的path我们是不修hold的，虽然此时是place阶段，但是我们也可以提前设置这个约束，避免在ctsopt和route阶段修hold的时候在io path上插入过多的buffer，因为我们预估的input delay和output delay是不准的，所以io path的hold timing可能存在violation，此时插入过多的buffer去修hold也是没有什么意义的。</p>
+<p>上述命令设置完毕之后，我们也可以report_path_groups &gt; path_groups.rpt这条命令将设计中的group path划分写入到path_groups.rpt这个文件里面，然后打开这个文件来查看工具有没有按照我们的约束正确设置上面的group path。</p>
+
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/%E6%95%B0%E5%AD%97%E5%90%8E%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/" class="tag-link">数字后端概念基础</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <a href="/2026/03/01/19-4-place%E7%BA%A6%E6%9D%9F%E8%AE%BE%E7%BD%AE/" class="post-nav-item prev">
+          <span class="post-nav-label">上一篇</span>
+          <span class="post-nav-title">19_4-place约束设置</span>
+        </a>
+      
+      
+      
+        <a href="/2026/02/28/placeopt%E9%98%B6%E6%AE%B5/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">placeopt阶段</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Path-Grouping%EF%BC%88%E8%B7%AF%E5%BE%84%E5%88%86%E7%BB%84%EF%BC%89"><span class="toc-text">1、Path Grouping（路径分组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%95%B4%E4%B8%AA%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">2、整个代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%BB%A3%E7%A0%81%E7%9A%84%E6%B3%A8%E9%87%8A%EF%BC%9A"><span class="toc-text">3、代码的注释：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AF%BC%E5%87%BA%E6%8A%A5%E5%91%8A"><span class="toc-text">4、导出报告</span></a></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>

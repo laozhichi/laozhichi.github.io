@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!-- 标题 -->
-<title>floorplan阶段 | 风继续吹</title>
+<title>power_plan阶段 | 风继续吹</title>
 
 <!-- 网站描述 -->
 <meta name="description" content="">
@@ -15,9 +15,9 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="floorplan阶段">
+<meta property="og:title" content="power_plan阶段">
 <meta property="og:description" content="">
-<meta property="og:url" content="http://example.com/2026/02/27/floorplan%E9%98%B6%E6%AE%B5/index.html">
+<meta property="og:url" content="http://example.com/2026/02/28/power-plan%E9%98%B6%E6%AE%B5/index.html">
 <meta property="og:site_name" content="风继续吹">
 
 
@@ -42,7 +42,7 @@
 
 
 <!-- 规范链接 -->
-<link rel="canonical" href="http://example.com/2026/02/27/floorplan%E9%98%B6%E6%AE%B5/index.html">
+<link rel="canonical" href="http://example.com/2026/02/28/power-plan%E9%98%B6%E6%AE%B5/index.html">
 
 <!-- 主题色 -->
 <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
@@ -175,7 +175,7 @@
   <article class="post-article">
     <!-- 文章头部 -->
     <header class="post-header">
-      <h1 class="post-title">floorplan阶段</h1>
+      <h1 class="post-title">power_plan阶段</h1>
       
       <!-- 元信息 -->
       <div class="post-meta">
@@ -187,8 +187,8 @@
       <line x1="8" x2="8" y1="2" y2="6"></line>
       <line x1="3" x2="21" y1="10" y2="10"></line>
     </svg>
-    <time datetime="2026-02-27">
-      2026-02-27
+    <time datetime="2026-02-28">
+      2026-02-28
     </time>
   </span>
 
@@ -204,7 +204,7 @@
         <path d="M15.1 18H3"></path>
       </svg>
       
-      2.3k 字
+      3.1k 字
     </span>
   
 
@@ -216,7 +216,7 @@
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 8 分钟
+      约 11 分钟
     </span>
   
 
@@ -233,20 +233,42 @@
     <div class="post-content markdown-body">
       <meta name="referrer" content="no-referrer" />
 
-<h3 id="1、指令"><a href="#1、指令" class="headerlink" title="1、指令"></a>1、指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">checkDesign -netlist</span><br><span class="line">source ../scripts/area_cal.tcl</span><br><span class="line">floorPlan -site core -s 640 620 1 1 1 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="1、power-plan是啥"><a href="#1、power-plan是啥" class="headerlink" title="1、power plan是啥"></a>1、power plan是啥</h3><p>Power Stripe 就是主干道（高速公路），而 Power Rail（Follow-pin）就是入户的小路。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228144924485-234485792.png">
 
-<p>设置引脚的脚本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">set pins [dbget top.hInst.hInstTerms.defname] ; # 获取所有引脚</span><br><span class="line">set total_num [llength $pins]</span><br><span class="line">set mid_point [expr $total_num / 2]</span><br><span class="line"></span><br><span class="line">set pins_part1 [lrange $pins 0 [expr $mid_point - 1]] ; # 前一半</span><br><span class="line">set pins_part2 [lrange $pins $mid_point end]          ; # 后一半</span><br><span class="line"></span><br><span class="line"># ==============================================================================</span><br><span class="line"># 2. 清空并解锁</span><br><span class="line"># ==============================================================================</span><br><span class="line">dbSet [dbGet top.terms].isFixed 0</span><br><span class="line"></span><br><span class="line">editPin -pin $pins_part1 -layer M4 -side Left -spreadType CENTER -spacing 0.20 -pinWidth 0.1 -pinDepth 0.2 -snap TRACK</span><br><span class="line">editPin -pin $pins_part2 -layer M6 -side Left -spreadType CENTER -spacing 0.20 -pinWidth 0.1 -pinDepth 0.2 -snap TRACK</span><br></pre></td></tr></table></figure>
+<h3 id="2、Power-ring跟power-mesh区别"><a href="#2、Power-ring跟power-mesh区别" class="headerlink" title="2、Power ring跟power mesh区别"></a>2、Power ring跟power mesh区别</h3><p>兄弟，这就是**“传统派”与“实战演进派”**的技术路线之争，也是面试中考察你是否理解“电源分布网络（PDN）”设计权衡的一个绝佳切入点。</p>
+<p>视频里说“不需要 Power Ring（电源环）”，并不是说这个技术消失了，而是因为在**高密度、先进制程（如 28nm&#x2F;40nm）**的数字后端设计中，Power Mesh（电源网格&#x2F;Stripe）的设计强度已经足以覆盖供电需求，甚至在某些场景下，取消 Ring 反而能带来更高的收益。</p>
+<p>下面我从专业角度为你拆解，为什么现在有些流程会“跳过” Power Ring。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228150540688-1173570940.png">
 
-<p>设置endcap:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">set vars(endcap_left)   &quot;BOUNDARY_LEFTBWP30P140&quot;</span><br><span class="line">set vars(endcap_right)   &quot;BOUNDARY_RIGHTBWP30P140&quot;</span><br><span class="line"></span><br><span class="line">set vars(endcap_top)   &quot;BOUNDARY_LEFTBWP30P140 FILL2BWP30P140&quot;</span><br><span class="line">set vars(endcap_bottom)   &quot;BOUNDARY_LEFTBWP30P140 FILL2BWP30P140&quot;</span><br><span class="line"></span><br><span class="line">setEndCapMode -reset</span><br><span class="line"></span><br><span class="line">setEndCapMode -leftEdge $endcap_left -rightEdge $endcap_right -topEdge $endcap_top -bottomEdge $endcap_bottom -prefix ENDCAP </span><br></pre></td></tr></table></figure>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228150721726-516086225.png">
 
-<p>设置welltap</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set vars(welltap)  &quot;TAPCELLBWP30P140&quot;</span><br><span class="line">addWellTap -cell $vars(welltap) -cellInterval 60 -prefix WELLTAP</span><br></pre></td></tr></table></figure>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228150753286-542273102.png">
+
+<p>如果面试官问：“我看你的脚本里只跑了 addStripe 和 sroute，没做 Core Ring，这是为什么？”</p>
+<p>你可以这样“降维打击”：</p>
+<p>“在当前的 28nm&#x2F;40nm 项目中，我评估了电源网格的密度。由于采用了 M8&#x2F;M9 高层金属搭建的密集电源网格（Power Mesh），且每组 Stripe 的间距仅为 30μm，其等效电阻已经足以满足 IR Drop 的 Sign-off 要求。取消 Core Ring 主要是为了给 1422 个 IO Port 留出足够的布线空间，避免边界处的绕线拥塞（Routing Congestion），从而优化了总面积利用率。”</p>
+<p>这种回答，直接体现了你对 PPA（性能、功耗、面积） 的综合权衡能力，这才是大厂 TL 想要的人才。</p>
+<h3 id="3、power-rail放置"><a href="#3、power-rail放置" class="headerlink" title="3、power rail放置"></a>3、power rail放置</h3><p>power rail是给stdcell供电的电源轨道，我们这个工艺库中stdcell是从M1出pin的，所以我们需要在M1的row上下边界均匀打power rail来给stdcell供电，并且与前面打好的power stripe通过打via的方式连接在一起，形成一个完整的电源网络。</p>
+<p>power rail的脚本如下所示，在本lab中，由于垂直方向的power stripe是M8，所以power rail需要跟纵向的M8 power stripe相连。下列命令中的{M1(1) M8(8)}表示我们希望将M1的power rail与M8的power stripe通过一层一层打via的方式连接在一起。而-allowJogging和 -allowLayerChange设置为1，则表示工具在认为该区域可能存在DRC的情况，自己选择进行跳层或者绕线的方式来规避可能出现的DRC问题。</p>
+<p><strong>powe rail只会跟纵向的电源连接在一起</strong></p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228145625701-727560518.png">
+
+<h3 id="4、版图合并操作"><a href="#4、版图合并操作" class="headerlink" title="4、版图合并操作"></a>4、版图合并操作</h3><p>makefile:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">merge:</span><br><span class="line">	calibredrv merge.tcl | tee merge.log</span><br><span class="line"></span><br><span class="line">text:</span><br><span class="line">	calibredrv -64 ../../innovus/work/create_text_cortexa7core.tcl</span><br><span class="line"></span><br><span class="line">run_all:</span><br><span class="line">	$&#123;MAKE&#125; merge</span><br><span class="line">	$&#123;MAKE&#125; text</span><br></pre></td></tr></table></figure>
 
 
-<p>do not use 阶段</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># --- 1. 定义最新的 dont_use 模式列表 ---</span><br><span class="line"># 包含：延迟单元、低驱动强度单元(D0)、超低压阈值单元(ULVT)等</span><br><span class="line">set vars(dont_use) &quot;DEL* *CK* *D16BWP* *D0* *OPT* INVD18BWP* BUFTD* *DFCS* *DFNCS* *TIE* INVSK*D1BWP* *ULVT*&quot;</span><br><span class="line"></span><br><span class="line"># --- 2. 自动化执行 setDontUse ---</span><br><span class="line"># 使用 dbget 从库中匹配真实单元名，并执行设置</span><br><span class="line">foreach pattern $vars(dont_use) &#123;</span><br><span class="line">    # 查找匹配该 pattern 的库单元名</span><br><span class="line">    set lib_cells [dbget head.libCells.name $pattern]</span><br><span class="line">    </span><br><span class="line">    if &#123;$lib_cells ne &quot;&quot;&#125; &#123;</span><br><span class="line">        foreach cell $lib_cells &#123;</span><br><span class="line">            # 将单元设为不可用，防止工具在 place/opt 阶段自动调用</span><br><span class="line">            setDontUse $cell true</span><br><span class="line">            # 如果需要调试，可以取消下面这一行的注释查看详细输出</span><br><span class="line">            # puts &quot;INFO: Set library cell $cell to dont_use&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        # 如果库里找不到匹配的模式，打印提示</span><br><span class="line">        puts &quot;WARNING: No matching cells found for pattern $pattern&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">puts &quot;SUCCESS: All specified cells have been set to dont_use.&quot;</span><br></pre></td></tr></table></figure>
+<p>merge.tcl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">layout filemerge \</span><br><span class="line">-in ../../innovus/data/cortexa7core.gds2 \</span><br><span class="line">-in /data/lib/gds/tcbn28hpcplusbwp40p140.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta1024x32m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta128x20m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta128x30m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta192x43m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta2048x36m8swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta512x31m4swso_110a.gds \</span><br><span class="line">-topcell cortexa7core \</span><br><span class="line">-mode overwrite \</span><br><span class="line">-out ../../innovus/data/cortexa7core.merge.gds</span><br></pre></td></tr></table></figure>
+
+<p>这份脚本使用的是 Calibre DesignRev (calibredrv) 工具的命令，执行的是芯片流片（Tape-out）前最关键的操作之一：版图合并（GDS Merge）。</p>
+<p>在 Innovus 里导出的 GDS 通常只包含连线和单元的“虚影”（Abstract），为了让代工厂能制造出芯片，你必须把这些“虚影”与标准单元、SRAM 等 IP 的真实物理形状（包含晶体管细节的 GDS）缝合在一起。</p>
+<p>下面是这个脚本的代码注释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 调用 Calibre DesignRev 的版图合并功能</span><br><span class="line">layout filemerge \</span><br><span class="line"># --- 1. 输入文件 (Input Files) ---</span><br><span class="line"># 这是你从 Innovus P&amp;R 流程中导出的顶层版图文件，主要包含布局信息和绕线层</span><br><span class="line">-in ../../innovus/data/cortexa7core.gds2 \</span><br><span class="line"># 这是 28nm 工艺的标准单元库 GDS 文件，包含了所有逻辑门（AND, OR, DFF 等）的真实物理结构</span><br><span class="line">-in /data/lib/gds/tcbn28hpcplusbwp40p140.gds \</span><br><span class="line"># 以下 7 行是项目中使用的 SRAM (静态随机存取存储器) IP 的物理版图</span><br><span class="line"># 每个文件对应不同规格（如 1024x32, 512x31 等）的内存块</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta1024x32m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta128x20m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta128x30m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta192x43m4swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta2048x36m8swso_110a.gds \</span><br><span class="line">-in /data/lib/gds/tem5n28hpcplvta512x31m4swso_110a.gds \</span><br><span class="line"># --- 2. 参数设置 (Parameters) ---</span><br><span class="line"># 指定合并后版图的最顶层单元名称为 cortexa7core</span><br><span class="line">-topcell cortexa7core \</span><br><span class="line"># 覆盖模式：如果输出路径已有同名文件，直接覆盖</span><br><span class="line">-mode overwrite \</span><br><span class="line"># --- 3. 输出文件 (Output File) ---</span><br><span class="line"># 最终生成的、包含所有细节的完整版图文件，这个文件将直接发往工厂进行光刻掩模制作</span><br><span class="line">-out ../../innovus/data/cortexa7core.merge.gds</span><br></pre></td></tr></table></figure>
+
+<IMG src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228155612206-142377435.png">
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202602/3728231-20260228155654311-1560144741.png">
     </div>
 
     <!-- 标签 -->
@@ -268,16 +290,16 @@
     <!-- 上一篇 / 下一篇 -->
     <nav class="post-nav">
       
-        <a href="/2026/02/28/power-plan%E9%98%B6%E6%AE%B5/" class="post-nav-item prev">
+        <a href="/2026/02/28/placeopt%E9%98%B6%E6%AE%B5/" class="post-nav-item prev">
           <span class="post-nav-label">上一篇</span>
-          <span class="post-nav-title">power_plan阶段</span>
+          <span class="post-nav-title">placeopt阶段</span>
         </a>
       
       
       
-        <a href="/2026/02/27/lib_setup/" class="post-nav-item next">
+        <a href="/2026/02/27/floorplan%E9%98%B6%E6%AE%B5/" class="post-nav-item next">
           <span class="post-nav-label">下一篇</span>
-          <span class="post-nav-title">lib_setup配置</span>
+          <span class="post-nav-title">floorplan阶段</span>
         </a>
       
     </nav>
@@ -289,7 +311,7 @@
       <div class="toc-wrapper">
         <h3 class="toc-title">目录</h3>
         <div class="toc-content">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%8C%87%E4%BB%A4"><span class="toc-text">1、指令</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81power-plan%E6%98%AF%E5%95%A5"><span class="toc-text">1、power plan是啥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Power-ring%E8%B7%9Fpower-mesh%E5%8C%BA%E5%88%AB"><span class="toc-text">2、Power ring跟power mesh区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81power-rail%E6%94%BE%E7%BD%AE"><span class="toc-text">3、power rail放置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E7%89%88%E5%9B%BE%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">4、版图合并操作</span></a></li></ol>
         </div>
       </div>
     </aside>
