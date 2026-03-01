@@ -6,18 +6,18 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!-- 标题 -->
-<title>风继续吹</title>
+<title>5_1-标准单元概念解析 | 风继续吹</title>
 
 <!-- 网站描述 -->
 <meta name="description" content="">
-<meta name="keywords" content="">
+<meta name="keywords" content="数字后端概念基础">
 <meta name="author" content="风继续吹">
 
 <!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="风继续吹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5_1-标准单元概念解析">
 <meta property="og:description" content="">
-<meta property="og:url" content="http://example.com/tags/%E6%95%B0%E5%AD%97%E5%90%8E%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="http://example.com/2026/03/01/5-1-%E6%A0%87%E5%87%86%E5%8D%95%E5%85%83%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="风继续吹">
 
 
@@ -42,7 +42,7 @@
 
 
 <!-- 规范链接 -->
-<link rel="canonical" href="http://example.com/tags/%E6%95%B0%E5%AD%97%E5%90%8E%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/index.html">
+<link rel="canonical" href="http://example.com/2026/03/01/5-1-%E6%A0%87%E5%87%86%E5%8D%95%E5%85%83%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90/index.html">
 
 <!-- 主题色 -->
 <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
@@ -171,79 +171,135 @@
   
   <main class="main-content">
     <div class="container">
-      <div class="page-layout archive-layout">
-  <div class="archive-wrapper">
-    <header class="archive-header">
-      <h1 class="archive-title">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">5_1-标准单元概念解析</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-03-01">
+      2026-03-01
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      894 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 3 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+<p>典型的数字电路没计拥有大量的单元数目， 一个标准的单元库通常含有数百个单元。从电路功能上看， 在ASIC和SoC 设计中常用到的标准单元电路可以分为组合逻辑电路和时序逻辑电路。</p>
+<ul>
+<li><p>“拥有大量的单元数目”：这是指你最终设计出来的这颗 ASIC 或 SoC 芯片（物理实体）。一个现代的数字芯片里，往往塞了几千万甚至上百亿个像微小积木一样的单元。</p>
+</li>
+<li><p>含有数百个单元”：这是指代工厂（比如台积电）发给你的 Standard Cell Library（标准单元库）。这就像一本武器目录，里面虽然只有几百种不同型号的零件（比如 NAND、NOR、INV，以及它们对应的 D1 到 D24 各种驱动强度，还有省电版的 HVT、提速版的 LVT 等），但你正是用这几百种基础零件，拼搭出了那上百亿规模的芯片。你之前做 CTS 时精挑细选的 cts_inv_cells 列表，就是在翻这本目录。</p>
+</li>
+</ul>
+<img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301234616711-1673230035.png">
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301234710718-1114624274.png">
+
+<p>组合逻辑电路亦简称为组合电路, 它是指任意时刻的输出信号与信号作用前电路的状态无关，输出仅取决于该时刻输人信号的电路。组合电路包括：</p>
+<p>（1）反向逻辑电路。</p>
+<p> （2）非反向逻辑电路。 </p>
+<p>（3）其他常用逻辑电路。</p>
+<p> (4) 特殊功能的逻辑电路。</p>
+<p>标准单元通常采用静态互补CMOS电路结构实现， 这种结构具有互补对偶的上拉网络(PUN, pull-up network)与下拉网络(PDN，pull-down network)，其特点是电路简单、容易设计、鲁棒性好， 每一时间每个门的输出总是通过低阻连至V m 或适用于自动化的综合工具和布线工具。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301235139755-1771794985.png">
+
+<p>PMOS跟NMOS区别：<br><img src="https://img2024.cnblogs.com/blog/3728231/202603/3728231-20260301235432896-86534605.png"></p>
+<p>反向逻辑电路有： 反向器( INV， inverter)、与非门( NAND gate)、或非门( NOR gate)。反向逻辑电路中与非门和或非门的输入端通常为2 〜4 , 当输人端为1 则等效于反向器。</p>
+<p>非反向逻辑电路有: 缓冲^( BUF, buffer). 与门( AND gate), 或门( OR gate). 同样， 非反向逻辑电路中与门和或门的输人端通常为2 〜4 , 当输人端为1 则等效于缓冲器。</p>
+
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
           <path d="M7 7h.01"></path>
         </svg>
-        数字后端概念基础
-      </h1>
-      <p class="archive-count">共 10 篇文章</p>
-    </header>
-
-    <div class="archive-content">
-      <ul class="archive-list">
         
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/5-1-%E6%A0%87%E5%87%86%E5%8D%95%E5%85%83%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90/" class="archive-link">5_1-标准单元概念解析</a>
-          </li>
+          <a href="/tags/%E6%95%B0%E5%AD%97%E5%90%8E%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/" class="tag-link">数字后端概念基础</a>
         
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/27-2-%E7%94%9F%E6%88%90%E6%97%B6%E9%92%9F%E6%A0%91%E7%BA%A6%E6%9D%9F%E6%96%87%E4%BB%B6%E5%B9%B6%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%92%9F%E6%A0%91%E7%BB%BC%E5%90%88/" class="archive-link">27_2-生成时钟树约束文件并进行时钟树综合</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/25-2-detailroute%E7%9A%84%E7%BB%95%E7%BA%BF%E5%B1%82%E7%BA%A6%E6%9D%9F/" class="archive-link">25_2-detailroute的绕线层约束</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/25-1-NDR%E7%BB%95%E7%BA%BF%E8%A7%84%E5%88%99%E5%AE%9A%E4%B9%89/" class="archive-link">25-1-NDR绕线规则定义</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/20-4-densitymap%E7%9A%84%E6%9F%A5%E7%9C%8B/" class="archive-link">20_4-densitymap的查看</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/20-1-%E8%BF%90%E8%A1%8Cplace/" class="archive-link">20_1-运行place</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/19-6-%E5%B7%A5%E8%89%BA%E8%8A%82%E7%82%B9%E7%9A%84%E7%BA%A6%E6%9D%9F/" class="archive-link">19_6-工艺节点的约束</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/19-5-globalroute%E7%BA%A6%E6%9D%9F/" class="archive-link">19_5-globalroute约束</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/19-4-place%E7%BA%A6%E6%9D%9F%E8%AE%BE%E7%BD%AE/" class="archive-link">19_4-place约束设置</a>
-          </li>
-        
-          <li class="archive-item">
-            <span class="archive-date">2026-03-01</span>
-            <a href="/2026/03/01/19-3-pathgroup%E7%BA%A6%E6%9D%9F/" class="archive-link">19_3pathgroup约束</a>
-          </li>
-        
-      </ul>
-    </div>
-
-    <!-- 分页 -->
+      </div>
     
 
-  </div>
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <div class="post-nav-item prev disabled"></div>
+      
+      
+      
+        <a href="/2026/03/01/27-2-%E7%94%9F%E6%88%90%E6%97%B6%E9%92%9F%E6%A0%91%E7%BA%A6%E6%9D%9F%E6%96%87%E4%BB%B6%E5%B9%B6%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%92%9F%E6%A0%91%E7%BB%BC%E5%90%88/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">27_2-生成时钟树约束文件并进行时钟树综合</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          
+        </div>
+      </div>
+    </aside>
+  
 </div>
 
     </div>
@@ -369,6 +425,10 @@
 
   
   
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
   
 </body>
 </html>
