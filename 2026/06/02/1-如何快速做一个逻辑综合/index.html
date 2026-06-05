@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>(1)如何快速做一个逻辑综合 | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="数字中端概念基础">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="(1)如何快速做一个逻辑综合">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">(1)如何快速做一个逻辑综合</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-06-02">
+      2026-06-02
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      9.8k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 33 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+
+
+<h2 id="一、逻辑综合是什么"><a href="#一、逻辑综合是什么" class="headerlink" title="一、逻辑综合是什么"></a>一、逻辑综合是什么</h2><h3 id="1-逻辑综合的定义"><a href="#1-逻辑综合的定义" class="headerlink" title="1. 逻辑综合的定义"></a>1. 逻辑综合的定义</h3><p>逻辑综合是指将硬件描述语言编写的 RTL 代码转换成门级网表的过程。</p>
+<p>常见的硬件描述语言包括：</p>
+<ul>
+<li>VHDL</li>
+<li>SystemVerilog</li>
+<li>Verilog</li>
+</ul>
+<p>综合前的 RTL 代码主要描述电路功能；综合后的门级网表则由具体标准单元库中的逻辑门、触发器、多路选择器等单元组成。</p>
+<hr>
+<h3 id="2-为什么要做逻辑综合"><a href="#2-为什么要做逻辑综合" class="headerlink" title="2. 为什么要做逻辑综合"></a>2. 为什么要做逻辑综合</h3><p>RTL 代码本身并没有直接和制造工艺绑定。</p>
+<p>经过逻辑综合之后，设计会被映射到具体工艺库中的标准单元上，从而生成后端物理设计可以继续使用的门级网表。</p>
+<p>逻辑综合不仅仅是代码转换，还包括对电路进行优化和平衡，使设计尽量满足以下目标：</p>
+<ul>
+<li>功能正确</li>
+<li>速度满足时序要求</li>
+<li>面积尽量小</li>
+<li>功耗尽量低</li>
+</ul>
+<p>这些目标通常合称为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PPA = Performance + Power + Area</span><br></pre></td></tr></table></figure>
+
+<p>也就是：</p>
+<ul>
+<li>Performance：性能 &#x2F; 速度</li>
+<li>Power：功耗</li>
+<li>Area：面积</li>
+</ul>
+<hr>
+<h3 id="3-什么时候做逻辑综合"><a href="#3-什么时候做逻辑综合" class="headerlink" title="3. 什么时候做逻辑综合"></a>3. 什么时候做逻辑综合</h3><p>逻辑综合一般发生在前端设计完成到一定程度之后。</p>
+<p>当 RTL 功能设计基本完成，并且准备进入后端物理设计阶段时，就需要进行逻辑综合。</p>
+<p>因此，在一些公司或流程中，逻辑综合也会被称为“中端设计”。</p>
+<p>整体流程可以简单理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RTL 设计</span><br><span class="line">   ↓</span><br><span class="line">逻辑综合</span><br><span class="line">   ↓</span><br><span class="line">门级网表</span><br><span class="line">   ↓</span><br><span class="line">后端物理设计</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="二、Design-Compiler-基本使用方法"><a href="#二、Design-Compiler-基本使用方法" class="headerlink" title="二、Design Compiler 基本使用方法"></a>二、Design Compiler 基本使用方法</h2><p>Design Compiler，简称 DC，是常用的逻辑综合工具。</p>
+<h3 id="1-打开-DC"><a href="#1-打开-DC" class="headerlink" title="1. 打开 DC"></a>1. 打开 DC</h3><p>在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dc_shell</span><br></pre></td></tr></table></figure>
+
+<p>即可进入 DC 的交互式命令环境。</p>
+<hr>
+<h3 id="2-直接执行-TCL-脚本"><a href="#2-直接执行-TCL-脚本" class="headerlink" title="2. 直接执行 TCL 脚本"></a>2. 直接执行 TCL 脚本</h3><p>如果已经写好了完整的综合脚本，可以使用下面的命令运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dc_shell -f syn.tcl | <span class="built_in">tee</span> dc.log</span><br></pre></td></tr></table></figure>
+
+<p>含义说明：</p>
+<table>
+<thead>
+<tr>
+<th>命令部分</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dc_shell</code></td>
+<td>启动 DC</td>
+</tr>
+<tr>
+<td><code>-f syn.tcl</code></td>
+<td>执行指定的 TCL 脚本</td>
+</tr>
+<tr>
+<td><code>tee dc.log</code></td>
+<td>将终端输出同时保存到 <code>dc.log</code> 文件中</td>
+</tr>
+</tbody></table>
+<p>这样做的好处是：</p>
+<ul>
+<li>可以自动执行完整综合流程</li>
+<li>可以保存综合日志</li>
+<li>方便后续查看报错和 warning</li>
+</ul>
+<hr>
+<h2 id="三、DC-查询命令的使用"><a href="#三、DC-查询命令的使用" class="headerlink" title="三、DC 查询命令的使用"></a>三、DC 查询命令的使用</h2><h3 id="1-查询某个命令是否存在"><a href="#1-查询某个命令是否存在" class="headerlink" title="1. 查询某个命令是否存在"></a>1. 查询某个命令是否存在</h3><p>可以使用：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help *命令关键字*</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help *<span class="keyword">clock</span>*</span><br></pre></td></tr></table></figure>
+
+<p>该命令可以查询和 <code>clock</code> 相关的 DC 命令。</p>
+<hr>
+<h3 id="2-查看某个命令的详细用法"><a href="#2-查看某个命令的详细用法" class="headerlink" title="2. 查看某个命令的详细用法"></a>2. 查看某个命令的详细用法</h3><p>可以使用：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 命令名</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man create_clock</span><br></pre></td></tr></table></figure>
+
+<p>该命令会显示 <code>create_clock</code> 的详细说明、参数和使用方法。</p>
+<hr>
+<h3 id="3-退出帮助页面"><a href="#3-退出帮助页面" class="headerlink" title="3. 退出帮助页面"></a>3. 退出帮助页面</h3><p>如果查看帮助时出现很多内容，并且屏幕下方显示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--More--</span><br></pre></td></tr></table></figure>
+
+<p>此时可以按：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q</span><br></pre></td></tr></table></figure>
+
+<p>退出当前帮助页面。</p>
+<hr>
+<h2 id="四、TCL-综合脚本示例"><a href="#四、TCL-综合脚本示例" class="headerlink" title="四、TCL 综合脚本示例"></a>四、TCL 综合脚本示例</h2><p>下面是一个简单的 DC 逻辑综合 TCL 脚本。</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#------------------------------</span></span><br><span class="line"><span class="comment">#set initials</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> DESIGN_NAME my_module</span><br><span class="line"><span class="keyword">set</span> TAG justrun</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置使用的 CPU 核数</span></span><br><span class="line">set_host_options -max_cores <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 WORK 库，用于存放中间文件</span></span><br><span class="line">define_design_lib WORK -path ./WORK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置结果输出目录</span></span><br><span class="line"><span class="keyword">set</span> RESULTS_DIR ./results/<span class="variable">$&#123;TAG&#125;</span></span><br><span class="line"><span class="keyword">if</span> &#123;![<span class="keyword">file</span> exists <span class="variable">$RESULTS_DIR</span>]&#125; &#123;</span><br><span class="line">    <span class="keyword">file</span> mkdir <span class="variable">$RESULTS_DIR</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------</span></span><br><span class="line"><span class="comment">#set library path</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置库文件搜索路径</span></span><br><span class="line">set_app_var search_path <span class="string">&quot;/tools/Lib/digit_lib/smic180/std/synopsys&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置目标库</span></span><br><span class="line"><span class="comment"># 一般综合时使用 slow 库，因为如果最慢角都能满足时序，说明设计比较稳妥</span></span><br><span class="line">set_app_var target_library <span class="string">&quot;slow.db&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 link_path</span></span><br><span class="line"><span class="comment"># target_library 只是告诉 DC 要用哪个库文件</span></span><br><span class="line"><span class="comment"># link_path 才是让 DC 在链接设计时真正可以找到并使用这些库</span></span><br><span class="line">set_app_var link_path <span class="string">&quot;* slow.db&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------</span></span><br><span class="line"><span class="comment">#elaborate and analyze</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取 RTL 文件</span></span><br><span class="line">read_file -<span class="keyword">format</span> sverilog <span class="string">&quot;./sources/$&#123;DESIGN_NAME&#125;.sv&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置当前设计</span></span><br><span class="line">current_design <span class="variable">$&#123;DESIGN_NAME&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 链接设计与库文件</span></span><br><span class="line">link</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出综合前的中间文件</span></span><br><span class="line">write_file -hierarchy -<span class="keyword">format</span> ddc     -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.precompile.ddc</span><br><span class="line">write_file -hierarchy -<span class="keyword">format</span> verilog -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.precompile.v</span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------</span></span><br><span class="line"><span class="comment">#add constraint</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建时钟约束，周期为 1.0 ns</span></span><br><span class="line">create_clock -period <span class="number">1.0</span> [get_ports clk]</span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------</span></span><br><span class="line"><span class="comment">#compile</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行综合优化</span></span><br><span class="line">compile_ultra</span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------</span></span><br><span class="line"><span class="comment">#write output files</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出综合后的网表和 ddc 文件</span></span><br><span class="line">write_file -<span class="keyword">format</span> verilog -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.postcompile.v</span><br><span class="line">write_file -<span class="keyword">format</span> ddc     -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.postcompile.ddc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改命名规则</span></span><br><span class="line"><span class="comment"># 综合生成的 Verilog 网表中可能会出现反斜杠等特殊符号</span></span><br><span class="line"><span class="comment"># 后端工具读入时可能会有问题</span></span><br><span class="line"><span class="comment"># change_names 可以把这些不规范命名转换成 Verilog 兼容格式</span></span><br><span class="line">change_names -rules verilog -hierarchy</span><br><span class="line"></span><br><span class="line"><span class="comment"># mapped.v 是最终交给后端使用的门级网表</span></span><br><span class="line">write_file -<span class="keyword">format</span> verilog -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.mapped.v</span><br><span class="line">write_file -<span class="keyword">format</span> ddc     -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.mapped.ddc</span><br><span class="line"></span><br><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、脚本关键命令解释"><a href="#五、脚本关键命令解释" class="headerlink" title="五、脚本关键命令解释"></a>五、脚本关键命令解释</h2><h3 id="1-设置设计名称"><a href="#1-设置设计名称" class="headerlink" title="1. 设置设计名称"></a>1. 设置设计名称</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> DESIGN_NAME my_module</span><br></pre></td></tr></table></figure>
+
+<p>表示当前要综合的顶层模块名是 <code>my_module</code>。</p>
+<p>这个名字通常要和 Verilog &#x2F; SystemVerilog 代码中的顶层模块名一致。</p>
+<hr>
+<h3 id="2-设置运行标签"><a href="#2-设置运行标签" class="headerlink" title="2. 设置运行标签"></a>2. 设置运行标签</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> TAG justrun</span><br></pre></td></tr></table></figure>
+
+<p><code>TAG</code> 用来区分不同综合结果的输出目录。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./results/justrun</span><br></pre></td></tr></table></figure>
+
+<p>后续如果做多次实验，可以改成：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> TAG run_1</span><br><span class="line"><span class="keyword">set</span> TAG timing_opt</span><br><span class="line"><span class="keyword">set</span> TAG area_opt</span><br></pre></td></tr></table></figure>
+
+<p>这样方便管理不同版本的综合结果。</p>
+<hr>
+<h3 id="3-设置-CPU-核数"><a href="#3-设置-CPU-核数" class="headerlink" title="3. 设置 CPU 核数"></a>3. 设置 CPU 核数</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_host_options -max_cores <span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<p>表示 DC 最多使用 8 个 CPU 核心进行综合。</p>
+<p>核数设置得合理可以提高运行速度。</p>
+<hr>
+<h3 id="4-定义-WORK-库"><a href="#4-定义-WORK-库" class="headerlink" title="4. 定义 WORK 库"></a>4. 定义 WORK 库</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define_design_lib WORK -path ./WORK</span><br></pre></td></tr></table></figure>
+
+<p><code>WORK</code> 是 DC 用来存放中间分析结果的设计库。</p>
+<p>如果不定义，工具可能无法正确保存和管理中间文件。</p>
+<hr>
+<h3 id="5-设置结果目录"><a href="#5-设置结果目录" class="headerlink" title="5. 设置结果目录"></a>5. 设置结果目录</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> RESULTS_DIR ./results/<span class="variable">$&#123;TAG&#125;</span></span><br><span class="line"><span class="keyword">if</span> &#123;![<span class="keyword">file</span> exists <span class="variable">$RESULTS_DIR</span>]&#125; &#123;</span><br><span class="line">    <span class="keyword">file</span> mkdir <span class="variable">$RESULTS_DIR</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码的作用是：</p>
+<ul>
+<li>设置综合结果保存路径</li>
+<li>如果目录不存在，就自动创建目录</li>
+</ul>
+<hr>
+<h3 id="6-设置搜索路径"><a href="#6-设置搜索路径" class="headerlink" title="6. 设置搜索路径"></a>6. 设置搜索路径</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_app_var search_path <span class="string">&quot;/tools/Lib/digit_lib/smic180/std/synopsys&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>search_path</code> 用来告诉 DC 去哪里查找库文件、RTL 文件或其他相关文件。</p>
+<p>设置之后，后续使用库文件时可以直接写文件名，不一定要写完整绝对路径。</p>
+<hr>
+<h3 id="7-设置目标库"><a href="#7-设置目标库" class="headerlink" title="7. 设置目标库"></a>7. 设置目标库</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_app_var target_library <span class="string">&quot;slow.db&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>target_library</code> 是综合时用于映射的目标标准单元库。</p>
+<p>简单理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RTL 代码中的逻辑</span><br><span class="line">    ↓</span><br><span class="line">映射到 target_library 中的标准单元</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<ul>
+<li>与门</li>
+<li>或门</li>
+<li>非门</li>
+<li>触发器</li>
+<li>多路选择器</li>
+</ul>
+<p>都会从 <code>slow.db</code> 这个库中选择对应单元。</p>
+<hr>
+<h3 id="8-设置链接库"><a href="#8-设置链接库" class="headerlink" title="8. 设置链接库"></a>8. 设置链接库</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_app_var link_path <span class="string">&quot;* slow.db&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>link_path</code> 用来告诉 DC 在链接设计时可以去哪些库中寻找模块或标准单元。</p>
+<p>其中：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*</span><br></pre></td></tr></table></figure>
+
+<p>表示当前已经读入 DC 的设计。</p>
+<p><code>slow.db</code> 表示标准单元库。</p>
+<p>所以这句话可以理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链接时，既要查找当前设计，也要查找 slow.db 标准单元库。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="9-读取-RTL-文件"><a href="#9-读取-RTL-文件" class="headerlink" title="9. 读取 RTL 文件"></a>9. 读取 RTL 文件</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read_file -<span class="keyword">format</span> sverilog <span class="string">&quot;./sources/$&#123;DESIGN_NAME&#125;.sv&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>表示以 SystemVerilog 格式读取 RTL 文件。</p>
+<p>如果：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> DESIGN_NAME my_module</span><br></pre></td></tr></table></figure>
+
+<p>那么实际读取的文件就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sources/my_module.sv</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="10-设置当前设计"><a href="#10-设置当前设计" class="headerlink" title="10. 设置当前设计"></a>10. 设置当前设计</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">current_design <span class="variable">$&#123;DESIGN_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>告诉 DC 当前正在处理的顶层设计是哪一个。</p>
+<hr>
+<h3 id="11-链接设计"><a href="#11-链接设计" class="headerlink" title="11. 链接设计"></a>11. 链接设计</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link</span><br></pre></td></tr></table></figure>
+
+<p><code>link</code> 的作用是将 RTL 设计和库文件连接起来。</p>
+<p>如果设计中例化了子模块，或者需要使用标准单元库，<code>link</code> 就会检查这些模块和单元能不能找到。</p>
+<p>如果找不到，就可能出现 unresolved reference 之类的错误。</p>
+<hr>
+<h3 id="12-输出综合前文件"><a href="#12-输出综合前文件" class="headerlink" title="12. 输出综合前文件"></a>12. 输出综合前文件</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">write_file -hierarchy -<span class="keyword">format</span> ddc -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.precompile.ddc</span><br><span class="line">write_file -hierarchy -<span class="keyword">format</span> verilog -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.precompile.v</span><br></pre></td></tr></table></figure>
+
+<p>这两条命令用于保存综合前的设计状态。</p>
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.ddc</code></td>
+<td>DC 自己使用的二进制设计文件</td>
+</tr>
+<tr>
+<td><code>.v</code></td>
+<td>Verilog 格式文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="13-创建时钟约束"><a href="#13-创建时钟约束" class="headerlink" title="13. 创建时钟约束"></a>13. 创建时钟约束</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_clock -period <span class="number">1.0</span> [get_ports clk]</span><br></pre></td></tr></table></figure>
+
+<p>表示给端口 <code>clk</code> 创建一个周期为 1.0 ns 的时钟。</p>
+<p>周期 1.0 ns 对应频率为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 / 1 ns = 1 GHz</span><br></pre></td></tr></table></figure>
+
+<p>这个约束会告诉 DC：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">电路中的寄存器到寄存器路径必须尽量在 1.0 ns 内完成。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="14-执行综合"><a href="#14-执行综合" class="headerlink" title="14. 执行综合"></a>14. 执行综合</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile_ultra</span><br></pre></td></tr></table></figure>
+
+<p><code>compile_ultra</code> 是 DC 中常用的高强度综合优化命令。</p>
+<p>它会根据约束对设计进行优化，主要目标包括：</p>
+<ul>
+<li>修复时序</li>
+<li>减小面积</li>
+<li>优化逻辑结构</li>
+<li>进行技术映射</li>
+</ul>
+<hr>
+<h3 id="15-输出综合后文件"><a href="#15-输出综合后文件" class="headerlink" title="15. 输出综合后文件"></a>15. 输出综合后文件</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">write_file -<span class="keyword">format</span> verilog -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.postcompile.v</span><br><span class="line">write_file -<span class="keyword">format</span> ddc     -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.postcompile.ddc</span><br></pre></td></tr></table></figure>
+
+<p>这两条命令用于输出综合后的结果。</p>
+<p>此时的 Verilog 文件已经不再是纯 RTL，而是综合后的门级结构。</p>
+<hr>
+<h3 id="16-修改命名规则"><a href="#16-修改命名规则" class="headerlink" title="16. 修改命名规则"></a>16. 修改命名规则</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change_names -rules verilog -hierarchy</span><br></pre></td></tr></table></figure>
+
+<p>综合后的网表中可能会出现一些特殊命名，例如带有反斜杠的名字。</p>
+<p>这些名字虽然 DC 可以识别，但后端工具读入时可能会不方便。</p>
+<p>因此需要用 <code>change_names</code> 将名称转换成更规范的 Verilog 命名形式。</p>
+<hr>
+<h3 id="17-输出最终门级网表"><a href="#17-输出最终门级网表" class="headerlink" title="17. 输出最终门级网表"></a>17. 输出最终门级网表</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">write_file -<span class="keyword">format</span> verilog -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.mapped.v</span><br><span class="line">write_file -<span class="keyword">format</span> ddc     -hierarchy -output <span class="variable">$&#123;RESULTS_DIR&#125;</span>/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.mapped.ddc</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapped.v</span><br></pre></td></tr></table></figure>
+
+<p>通常就是最终交给后端 APR 工具使用的门级网表。</p>
+<hr>
+<h2 id="六、综合后的数据怎么看"><a href="#六、综合后的数据怎么看" class="headerlink" title="六、综合后的数据怎么看"></a>六、综合后的数据怎么看</h2><p>综合后，DC 会输出一些统计信息。</p>
+<p>例如寄存器统计：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">===============================================================================</span><br><span class="line">|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |</span><br><span class="line">===============================================================================</span><br><span class="line">|  register_file_reg  | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |</span><br><span class="line">===============================================================================</span><br></pre></td></tr></table></figure>
+
+<p>可以看出：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Register Name</td>
+<td>寄存器名称</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>类型，例如 Flip-flop</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>位宽</td>
+</tr>
+<tr>
+<td>Bus</td>
+<td>是否是总线</td>
+</tr>
+<tr>
+<td>AR</td>
+<td>是否有异步复位</td>
+</tr>
+<tr>
+<td>AS</td>
+<td>是否有异步置位</td>
+</tr>
+<tr>
+<td>SR</td>
+<td>是否有同步复位</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>是否有同步置位</td>
+</tr>
+</tbody></table>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register_file_reg</span><br></pre></td></tr></table></figure>
+
+<p>是一个宽度为 128 bit 的触发器寄存器。</p>
+<hr>
+<h2 id="七、MUX-统计信息"><a href="#七、MUX-统计信息" class="headerlink" title="七、MUX 统计信息"></a>七、MUX 统计信息</h2><p>综合后还可能看到 MUX 相关统计，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statistics for MUX_OPs</span><br><span class="line">======================================================</span><br><span class="line">| block name/line  | Inputs | Outputs | # sel inputs |</span><br><span class="line">======================================================</span><br><span class="line">|   my_module/32   |   4    |   32    |      2       |</span><br><span class="line">======================================================</span><br></pre></td></tr></table></figure>
+
+<p>这表示：</p>
+<p>在 <code>my_module</code> 的第 32 行，DC 推断出了一个多路选择器。</p>
+<p>具体含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>block name&#x2F;line</td>
+<td>模块名和代码行号</td>
+</tr>
+<tr>
+<td>Inputs</td>
+<td>MUX 输入数量</td>
+</tr>
+<tr>
+<td>Outputs</td>
+<td>MUX 输出位宽</td>
+</tr>
+<tr>
+<td># sel inputs</td>
+<td>选择信号位数</td>
+</tr>
+</tbody></table>
+<p>这一行：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|   my_module/32   |   4    |   32    |      2       |</span><br></pre></td></tr></table></figure>
+
+<p>可以理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在 my_module 第 32 行，推断出了一个 4 选 1、输出位宽为 32 bit 的多路选择器。</span><br></pre></td></tr></table></figure>
+
+<p>因为 4 选 1 MUX 需要 2 bit 选择信号：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 bit 选择信号可以表示 4 种情况：</span><br><span class="line">00、01、10、11</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、一个最小-DC-综合流程总结"><a href="#八、一个最小-DC-综合流程总结" class="headerlink" title="八、一个最小 DC 综合流程总结"></a>八、一个最小 DC 综合流程总结</h2><p>一个最基础的逻辑综合流程可以总结为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 设置设计名称</span><br><span class="line">2. 设置库路径</span><br><span class="line">3. 设置 target_library</span><br><span class="line">4. 设置 link_path</span><br><span class="line">5. 读取 RTL 文件</span><br><span class="line">6. 设置 current_design</span><br><span class="line">7. link 设计</span><br><span class="line">8. 添加时钟约束</span><br><span class="line">9. 执行 compile_ultra</span><br><span class="line">10. 输出 mapped.v</span><br></pre></td></tr></table></figure>
+
+<p>对应的简化 TCL 流程为：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> DESIGN_NAME my_module</span><br><span class="line">set_app_var search_path <span class="string">&quot;/tools/Lib/digit_lib/smic180/std/synopsys&quot;</span></span><br><span class="line">set_app_var target_library <span class="string">&quot;slow.db&quot;</span></span><br><span class="line">set_app_var link_path <span class="string">&quot;* slow.db&quot;</span></span><br><span class="line"></span><br><span class="line">read_file -<span class="keyword">format</span> sverilog <span class="string">&quot;./sources/$&#123;DESIGN_NAME&#125;.sv&quot;</span></span><br><span class="line">current_design <span class="variable">$&#123;DESIGN_NAME&#125;</span></span><br><span class="line">link</span><br><span class="line"></span><br><span class="line">create_clock -period <span class="number">1.0</span> [get_ports clk]</span><br><span class="line"></span><br><span class="line">compile_ultra</span><br><span class="line"></span><br><span class="line">change_names -rules verilog -hierarchy</span><br><span class="line">write_file -<span class="keyword">format</span> verilog -hierarchy -output ./results/<span class="variable">$&#123;DESIGN_NAME&#125;</span>.mapped.v</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="九、学习重点"><a href="#九、学习重点" class="headerlink" title="九、学习重点"></a>九、学习重点</h2><p>这篇内容适合刚开始学习 DC 逻辑综合时入门。</p>
+<p>重点需要掌握：</p>
+<ol>
+<li>逻辑综合的作用</li>
+<li>RTL 和门级网表的区别</li>
+<li><code>target_library</code> 和 <code>link_path</code> 的区别</li>
+<li>如何读取 RTL 文件</li>
+<li>如何创建时钟约束</li>
+<li>如何运行 <code>compile_ultra</code></li>
+<li>为什么要输出 <code>mapped.v</code></li>
+<li>如何简单查看综合报告中的寄存器和 MUX 信息</li>
+</ol>
+<hr>
+<h2 id="十、常见理解误区"><a href="#十、常见理解误区" class="headerlink" title="十、常见理解误区"></a>十、常见理解误区</h2><h3 id="误区-1：RTL-代码可以直接给后端使用"><a href="#误区-1：RTL-代码可以直接给后端使用" class="headerlink" title="误区 1：RTL 代码可以直接给后端使用"></a>误区 1：RTL 代码可以直接给后端使用</h3><p>不准确。</p>
+<p>后端 APR 一般需要的是门级网表，而不是 RTL 代码。</p>
+<p>RTL 代码需要先经过逻辑综合，映射成标准单元之后，才能继续进入后端流程。</p>
+<hr>
+<h3 id="误区-2：设置了-target-library-就够了"><a href="#误区-2：设置了-target-library-就够了" class="headerlink" title="误区 2：设置了 target_library 就够了"></a>误区 2：设置了 target_library 就够了</h3><p>不够。</p>
+<p><code>target_library</code> 只是告诉 DC 综合映射时使用哪个库。</p>
+<p>但链接设计时，还需要通过 <code>link_path</code> 告诉 DC 去哪里找这些库和当前设计。</p>
+<hr>
+<h3 id="误区-3：postcompile-v-就一定是最终网表"><a href="#误区-3：postcompile-v-就一定是最终网表" class="headerlink" title="误区 3：postcompile.v 就一定是最终网表"></a>误区 3：postcompile.v 就一定是最终网表</h3><p>不一定。</p>
+<p>通常还需要执行：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change_names -rules verilog -hierarchy</span><br></pre></td></tr></table></figure>
+
+<p>然后再输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapped.v</span><br></pre></td></tr></table></figure>
+
+<p><code>mapped.v</code> 才更适合作为后端工具输入。</p>
+<hr>
+<h3 id="误区-4：只要能综合成功就说明设计没问题"><a href="#误区-4：只要能综合成功就说明设计没问题" class="headerlink" title="误区 4：只要能综合成功就说明设计没问题"></a>误区 4：只要能综合成功就说明设计没问题</h3><p>不一定。</p>
+<p>综合成功只说明工具生成了门级网表。</p>
+<p>后面还需要继续检查：</p>
+<ul>
+<li>时序是否满足</li>
+<li>面积是否合理</li>
+<li>功耗是否可接受</li>
+<li>是否有 warning</li>
+<li>是否有 unresolved reference</li>
+<li>是否需要做形式验证</li>
+<li>是否可以被后端工具正确读入</li>
+</ul>
+<hr>
+<h2 id="十一、建议补充的报告命令"><a href="#十一、建议补充的报告命令" class="headerlink" title="十一、建议补充的报告命令"></a>十一、建议补充的报告命令</h2><p>实际做综合时，建议在脚本中加入一些报告输出命令，方便查看结果。</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">report_timing      &gt; <span class="variable">$&#123;RESULTS_DIR&#125;</span>/timing.rpt</span><br><span class="line">report_area        &gt; <span class="variable">$&#123;RESULTS_DIR&#125;</span>/area.rpt</span><br><span class="line">report_power       &gt; <span class="variable">$&#123;RESULTS_DIR&#125;</span>/power.rpt</span><br><span class="line">report_qor         &gt; <span class="variable">$&#123;RESULTS_DIR&#125;</span>/qor.rpt</span><br><span class="line">report_constraint  &gt; <span class="variable">$&#123;RESULTS_DIR&#125;</span>/constraint.rpt</span><br><span class="line">check_design       &gt; <span class="variable">$&#123;RESULTS_DIR&#125;</span>/check_design.rpt</span><br></pre></td></tr></table></figure>
+
+<p>这些报告的作用如下：</p>
+<table>
+<thead>
+<tr>
+<th>报告</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>report_timing</code></td>
+<td>查看关键路径和时序 slack</td>
+</tr>
+<tr>
+<td><code>report_area</code></td>
+<td>查看面积</td>
+</tr>
+<tr>
+<td><code>report_power</code></td>
+<td>查看功耗</td>
+</tr>
+<tr>
+<td><code>report_qor</code></td>
+<td>查看综合整体质量</td>
+</tr>
+<tr>
+<td><code>report_constraint</code></td>
+<td>查看约束是否满足</td>
+</tr>
+<tr>
+<td><code>check_design</code></td>
+<td>检查设计是否存在结构或连接问题</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十二、最终复习版总结"><a href="#十二、最终复习版总结" class="headerlink" title="十二、最终复习版总结"></a>十二、最终复习版总结</h2><p>逻辑综合的核心目的可以概括为一句话：</p>
+<blockquote>
+<p>把 RTL 代码转换成满足时序、面积、功耗要求的门级网表。</p>
+</blockquote>
+<p>一个完整的 DC 入门综合流程大致是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">准备 RTL</span><br><span class="line">  ↓</span><br><span class="line">设置库路径</span><br><span class="line">  ↓</span><br><span class="line">设置 target_library / link_path</span><br><span class="line">  ↓</span><br><span class="line">读取 RTL</span><br><span class="line">  ↓</span><br><span class="line">current_design</span><br><span class="line">  ↓</span><br><span class="line">link</span><br><span class="line">  ↓</span><br><span class="line">添加时钟和 IO 约束</span><br><span class="line">  ↓</span><br><span class="line">compile_ultra</span><br><span class="line">  ↓</span><br><span class="line">输出 mapped.v / mapped.ddc</span><br><span class="line">  ↓</span><br><span class="line">查看 timing、area、power、qor 等报告</span><br></pre></td></tr></table></figure>
+
+<p>最需要重点理解的是：</p>
+<ul>
+<li><code>target_library</code>：综合映射时用哪个标准单元库</li>
+<li><code>link_path</code>：链接设计时去哪里找当前设计和库单元</li>
+<li><code>create_clock</code>：告诉工具时钟周期要求</li>
+<li><code>compile_ultra</code>：执行综合优化</li>
+<li><code>mapped.v</code>：最终交给后端使用的门级网表</li>
+</ul>
+
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/" class="tag-link">数字中端概念基础</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <div class="post-nav-item prev disabled"></div>
+      
+      
+      
+        <div class="post-nav-item next disabled"></div>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">一、逻辑综合是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">1. 逻辑综合的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88"><span class="toc-text">2. 为什么要做逻辑综合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%81%9A%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88"><span class="toc-text">3. 什么时候做逻辑综合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Design-Compiler-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">二、Design Compiler 基本使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80-DC"><span class="toc-text">1. 打开 DC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C-TCL-%E8%84%9A%E6%9C%AC"><span class="toc-text">2. 直接执行 TCL 脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81DC-%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">三、DC 查询命令的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9F%A5%E8%AF%A2%E6%9F%90%E4%B8%AA%E5%91%BD%E4%BB%A4%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-text">1. 查询某个命令是否存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E5%91%BD%E4%BB%A4%E7%9A%84%E8%AF%A6%E7%BB%86%E7%94%A8%E6%B3%95"><span class="toc-text">2. 查看某个命令的详细用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%80%80%E5%87%BA%E5%B8%AE%E5%8A%A9%E9%A1%B5%E9%9D%A2"><span class="toc-text">3. 退出帮助页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81TCL-%E7%BB%BC%E5%90%88%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B"><span class="toc-text">四、TCL 综合脚本示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%84%9A%E6%9C%AC%E5%85%B3%E9%94%AE%E5%91%BD%E4%BB%A4%E8%A7%A3%E9%87%8A"><span class="toc-text">五、脚本关键命令解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BE%E7%BD%AE%E8%AE%BE%E8%AE%A1%E5%90%8D%E7%A7%B0"><span class="toc-text">1. 设置设计名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E8%BF%90%E8%A1%8C%E6%A0%87%E7%AD%BE"><span class="toc-text">2. 设置运行标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE-CPU-%E6%A0%B8%E6%95%B0"><span class="toc-text">3. 设置 CPU 核数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AE%9A%E4%B9%89-WORK-%E5%BA%93"><span class="toc-text">4. 定义 WORK 库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%AE%BE%E7%BD%AE%E7%BB%93%E6%9E%9C%E7%9B%AE%E5%BD%95"><span class="toc-text">5. 设置结果目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%AE%BE%E7%BD%AE%E6%90%9C%E7%B4%A2%E8%B7%AF%E5%BE%84"><span class="toc-text">6. 设置搜索路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E8%AE%BE%E7%BD%AE%E7%9B%AE%E6%A0%87%E5%BA%93"><span class="toc-text">7. 设置目标库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E8%AE%BE%E7%BD%AE%E9%93%BE%E6%8E%A5%E5%BA%93"><span class="toc-text">8. 设置链接库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E8%AF%BB%E5%8F%96-RTL-%E6%96%87%E4%BB%B6"><span class="toc-text">9. 读取 RTL 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E8%AE%BE%E7%BD%AE%E5%BD%93%E5%89%8D%E8%AE%BE%E8%AE%A1"><span class="toc-text">10. 设置当前设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E9%93%BE%E6%8E%A5%E8%AE%BE%E8%AE%A1"><span class="toc-text">11. 链接设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E8%BE%93%E5%87%BA%E7%BB%BC%E5%90%88%E5%89%8D%E6%96%87%E4%BB%B6"><span class="toc-text">12. 输出综合前文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E5%88%9B%E5%BB%BA%E6%97%B6%E9%92%9F%E7%BA%A6%E6%9D%9F"><span class="toc-text">13. 创建时钟约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E6%89%A7%E8%A1%8C%E7%BB%BC%E5%90%88"><span class="toc-text">14. 执行综合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E8%BE%93%E5%87%BA%E7%BB%BC%E5%90%88%E5%90%8E%E6%96%87%E4%BB%B6"><span class="toc-text">15. 输出综合后文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E4%BF%AE%E6%94%B9%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-text">16. 修改命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-%E8%BE%93%E5%87%BA%E6%9C%80%E7%BB%88%E9%97%A8%E7%BA%A7%E7%BD%91%E8%A1%A8"><span class="toc-text">17. 输出最终门级网表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%BB%BC%E5%90%88%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E6%80%8E%E4%B9%88%E7%9C%8B"><span class="toc-text">六、综合后的数据怎么看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81MUX-%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-text">七、MUX 统计信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8F-DC-%E7%BB%BC%E5%90%88%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-text">八、一个最小 DC 综合流程总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%AD%A6%E4%B9%A0%E9%87%8D%E7%82%B9"><span class="toc-text">九、学习重点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%B8%B8%E8%A7%81%E7%90%86%E8%A7%A3%E8%AF%AF%E5%8C%BA"><span class="toc-text">十、常见理解误区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%8C%BA-1%EF%BC%9ARTL-%E4%BB%A3%E7%A0%81%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%BB%99%E5%90%8E%E7%AB%AF%E4%BD%BF%E7%94%A8"><span class="toc-text">误区 1：RTL 代码可以直接给后端使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%8C%BA-2%EF%BC%9A%E8%AE%BE%E7%BD%AE%E4%BA%86-target-library-%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="toc-text">误区 2：设置了 target_library 就够了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%8C%BA-3%EF%BC%9Apostcompile-v-%E5%B0%B1%E4%B8%80%E5%AE%9A%E6%98%AF%E6%9C%80%E7%BB%88%E7%BD%91%E8%A1%A8"><span class="toc-text">误区 3：postcompile.v 就一定是最终网表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%8C%BA-4%EF%BC%9A%E5%8F%AA%E8%A6%81%E8%83%BD%E7%BB%BC%E5%90%88%E6%88%90%E5%8A%9F%E5%B0%B1%E8%AF%B4%E6%98%8E%E8%AE%BE%E8%AE%A1%E6%B2%A1%E9%97%AE%E9%A2%98"><span class="toc-text">误区 4：只要能综合成功就说明设计没问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%BB%BA%E8%AE%AE%E8%A1%A5%E5%85%85%E7%9A%84%E6%8A%A5%E5%91%8A%E5%91%BD%E4%BB%A4"><span class="toc-text">十一、建议补充的报告命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E6%9C%80%E7%BB%88%E5%A4%8D%E4%B9%A0%E7%89%88%E6%80%BB%E7%BB%93"><span class="toc-text">十二、最终复习版总结</span></a></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>
