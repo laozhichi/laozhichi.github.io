@@ -204,7 +204,7 @@
         <path d="M15.1 18H3"></path>
       </svg>
       
-      6.4k 字
+      8.3k 字
     </span>
   
 
@@ -216,7 +216,7 @@
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 22 分钟
+      约 28 分钟
     </span>
   
 
@@ -803,6 +803,189 @@
 <p>进一步理解：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Placement Blockage 是独立画出来的禁放区域；</span><br><span class="line">Placement Halo 是 macro 自带或指定的一圈禁放区域；</span><br><span class="line">Routing Blockage 是限制布线经过的区域。</span><br></pre></td></tr></table></figure>
 
+
+
+
+
+<p>placement blockage这里也有很多知识点需要学习，例如如下：</p>
+<h2 id="Hard-Blockage、Soft-Blockage-和-Partial-Blockage-区别"><a href="#Hard-Blockage、Soft-Blockage-和-Partial-Blockage-区别" class="headerlink" title="Hard Blockage、Soft Blockage 和 Partial Blockage 区别"></a>Hard Blockage、Soft Blockage 和 Partial Blockage 区别</h2><p>在 Innovus 中，<code>hard blockage</code> 和 <code>soft blockage</code> 通常指的是 <strong>Placement Blockage 的不同类型</strong>，也就是对 <strong>standard cell 摆放限制程度</strong>的不同。</p>
+<p>核心记忆：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hard Blockage：完全禁止摆放 cell</span><br><span class="line">Soft Blockage：尽量不摆放 cell，但必要时工具可以放</span><br><span class="line">Partial Blockage：允许摆放 cell，但限制摆放密度</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="1-Hard-Blockage"><a href="#1-Hard-Blockage" class="headerlink" title="1. Hard Blockage"></a>1. Hard Blockage</h3><p><code>Hard Blockage</code> 可以理解为：</p>
+<blockquote>
+<p>硬阻塞区 &#x2F; 强制禁放区。</p>
+</blockquote>
+<p>它表示该区域 <strong>严格禁止 standard cell 摆放</strong>。</p>
+<p>也就是说：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">standard cell 不能放进去</span><br><span class="line">buffer 不能放进去</span><br><span class="line">inverter 不能放进去</span><br><span class="line">普通逻辑 cell 也不能放进去</span><br></pre></td></tr></table></figure>
+
+<p>常见用途：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>macro 周围必须留空</td>
+<td>防止 cell 挤占布线空间</td>
+</tr>
+<tr>
+<td>power ring &#x2F; power stripe 区域</td>
+<td>给电源结构预留空间</td>
+</tr>
+<tr>
+<td>IO 附近区域</td>
+<td>避免标准单元太靠近 IO</td>
+</tr>
+<tr>
+<td>必须完全空出来的区域</td>
+<td>用于后续特殊结构或布线通道</td>
+</tr>
+</tbody></table>
+<p>一句话理解：</p>
+<blockquote>
+<p>Hard Blockage 是“绝对不让 cell 放进去”。</p>
+</blockquote>
+<hr>
+<h3 id="2-Soft-Blockage"><a href="#2-Soft-Blockage" class="headerlink" title="2. Soft Blockage"></a>2. Soft Blockage</h3><p><code>Soft Blockage</code> 可以理解为：</p>
+<blockquote>
+<p>软阻塞区 &#x2F; 弱禁放区。</p>
+</blockquote>
+<p>它表示该区域 <strong>普通 placement 时工具会尽量避开</strong>，但不是完全禁止。</p>
+<p>也就是说：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">普通摆放阶段，工具尽量不放 cell；</span><br><span class="line">但如果后续 timing optimization、buffer insertion、CTS 等需要，</span><br><span class="line">工具可能会在里面放少量 cell。</span><br></pre></td></tr></table></figure>
+
+<p>常见用途：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>macro 周围希望留空间</td>
+<td>但不想完全浪费面积</td>
+</tr>
+<tr>
+<td>拥塞区域</td>
+<td>希望降低 cell 密度</td>
+</tr>
+<tr>
+<td>timing 优化区域</td>
+<td>允许工具必要时插 buffer</td>
+</tr>
+<tr>
+<td>弹性控制区域</td>
+<td>给工具保留一定优化自由度</td>
+</tr>
+</tbody></table>
+<p>一句话理解：</p>
+<blockquote>
+<p>Soft Blockage 是“尽量别放，但真有需要可以放”。</p>
+</blockquote>
+<hr>
+<h3 id="3-Partial-Blockage"><a href="#3-Partial-Blockage" class="headerlink" title="3. Partial Blockage"></a>3. Partial Blockage</h3><p>有些工具中还会有 <code>Partial Blockage</code>，可以理解为：</p>
+<blockquote>
+<p>部分阻塞区 &#x2F; 密度限制区。</p>
+</blockquote>
+<p>它不是完全禁止 cell 摆放，而是限制该区域内的最大摆放密度。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Partial Blockage = 30%</span><br></pre></td></tr></table></figure>
+
+<p>表示：</p>
+<blockquote>
+<p>这块区域可以放 standard cell，但最多只能放到 30% 的利用率。</p>
+</blockquote>
+<p>常见用途：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制局部拥塞</td>
+<td>降低某一区域 cell 密度</td>
+</tr>
+<tr>
+<td>给布线留空间</td>
+<td>防止某块区域放得太满</td>
+</tr>
+<tr>
+<td>保留优化弹性</td>
+<td>既不完全禁放，也不完全开放</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="4-三者对比"><a href="#4-三者对比" class="headerlink" title="4. 三者对比"></a>4. 三者对比</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>中文理解</th>
+<th>是否允许 standard cell 放入</th>
+<th>限制程度</th>
+<th>常用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hard Blockage</td>
+<td>硬阻塞区 &#x2F; 强制禁放区</td>
+<td>不允许</td>
+<td>最严格</td>
+<td>必须完全留空的区域</td>
+</tr>
+<tr>
+<td>Soft Blockage</td>
+<td>软阻塞区 &#x2F; 弱禁放区</td>
+<td>一般不允许，但优化时可能允许</td>
+<td>中等</td>
+<td>希望留空但允许工具优化</td>
+</tr>
+<tr>
+<td>Partial Blockage</td>
+<td>部分阻塞区 &#x2F; 密度限制区</td>
+<td>允许，但限制密度</td>
+<td>较灵活</td>
+<td>控制局部 cell 密度</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="5-简单类比"><a href="#5-简单类比" class="headerlink" title="5. 简单类比"></a>5. 简单类比</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hard Blockage</td>
+<td>禁止进入区，绝对不能进</td>
+</tr>
+<tr>
+<td>Soft Blockage</td>
+<td>尽量不要进入，特殊情况可以进</td>
+</tr>
+<tr>
+<td>Partial Blockage</td>
+<td>限流区域，可以进，但不能太多人</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="6-核心总结"><a href="#6-核心总结" class="headerlink" title="6. 核心总结"></a>6. 核心总结</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hard Blockage：完全不让 cell 放进去。</span><br><span class="line">Soft Blockage：尽量不让 cell 放进去，但工具优化时可能会使用。</span><br><span class="line">Partial Blockage：可以放 cell，但限制摆放密度。</span><br></pre></td></tr></table></figure>
+
+<p>在实际 floorplan 中：</p>
+<ul>
+<li>如果某块区域必须完全留空，用 <code>Hard Blockage</code>。</li>
+<li>如果希望工具尽量避开，但又想保留优化空间，用 <code>Soft Blockage</code>。</li>
+<li>如果只是想降低局部密度，用 <code>Partial Blockage</code>。</li>
+</ul>
+
     </div>
 
     <!-- 标签 -->
@@ -831,9 +1014,9 @@
       
       
       
-        <a href="/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/" class="post-nav-item next">
+        <a href="/2026/06/03/9-LAB7-1%20powerplan/" class="post-nav-item next">
           <span class="post-nav-label">下一篇</span>
-          <span class="post-nav-title">(1)如何快速做一个逻辑综合</span>
+          <span class="post-nav-title">(5) Innovus LAB7-1 Powerplan</span>
         </a>
       
     </nav>
@@ -845,7 +1028,7 @@
       <div class="toc-wrapper">
         <h3 class="toc-title">目录</h3>
         <div class="toc-content">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Innovus-LAB7-1%EF%BC%9A%E6%89%8B%E5%B7%A5-Floorplan-%E4%B8%8E-Blockage-Halo"><span class="toc-text">Innovus LAB7-1：手工 Floorplan 与 Blockage &#x2F; Halo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9C%AC%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="toc-text">1. 本章学习目标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9AHalo"><span class="toc-text">2. 核心概念：Halo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Halo-%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="toc-text">2.1 Halo 是什么意思？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Placement-Halo-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2.2 Placement Halo 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Placement-Halo-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">2.3 Placement Halo 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Placement-Halo-%E5%8F%82%E6%95%B0%E7%90%86%E8%A7%A3"><span class="toc-text">2.4 Placement Halo 参数理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9ARouting-Blockage"><span class="toc-text">3. 核心概念：Routing Blockage</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Routing-Blockage-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3.1 Routing Blockage 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Routing-Blockage-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">3.2 Routing Blockage 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Routing-Blockage-%E5%8F%AF%E4%BB%A5%E9%99%90%E5%88%B6%E5%93%AA%E4%BA%9B%E5%B1%82%EF%BC%9F"><span class="toc-text">3.3 Routing Blockage 可以限制哪些层？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Placement-Blockage%E3%80%81Routing-Blockage-%E4%B8%8E-Halo-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4. Placement Blockage、Routing Blockage 与 Halo 的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Placement-Blockage-%E5%92%8C-Routing-Blockage-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4.1 Placement Blockage 和 Routing Blockage 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Placement-Blockage"><span class="toc-text">4.2 Placement Blockage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Routing-Blockage"><span class="toc-text">4.3 Routing Blockage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-Halo-%E5%92%8C-Placement-Blockage-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4.4 Halo 和 Placement Blockage 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E4%B8%89%E8%80%85%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%E7%90%86%E8%A7%A3"><span class="toc-text">4.5 三者放在一起理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-LAB-%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">5. LAB 操作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%8A%A0%E8%BD%BD%E5%B7%B2%E6%9C%89-Floorplan"><span class="toc-text">5.1 加载已有 Floorplan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%9F%A5%E7%9C%8B-PLL-%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">5.2 查看 PLL 的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%88%B7%E6%96%B0-Layout-%E6%98%BE%E7%A4%BA"><span class="toc-text">5.3 刷新 Layout 显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E6%B7%BB%E5%8A%A0-Routing-Blockage"><span class="toc-text">5.4 添加 Routing Blockage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E4%BF%9D%E5%AD%98-Floorplan"><span class="toc-text">5.5 保存 Floorplan</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93"><span class="toc-text">6. 常用快捷键总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%9C%AC%E7%AB%A0%E6%A0%B8%E5%BF%83%E6%80%BB%E7%BB%93"><span class="toc-text">7. 本章核心总结</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Innovus-LAB7-1%EF%BC%9A%E6%89%8B%E5%B7%A5-Floorplan-%E4%B8%8E-Blockage-Halo"><span class="toc-text">Innovus LAB7-1：手工 Floorplan 与 Blockage &#x2F; Halo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9C%AC%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="toc-text">1. 本章学习目标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9AHalo"><span class="toc-text">2. 核心概念：Halo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Halo-%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="toc-text">2.1 Halo 是什么意思？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Placement-Halo-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2.2 Placement Halo 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Placement-Halo-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">2.3 Placement Halo 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Placement-Halo-%E5%8F%82%E6%95%B0%E7%90%86%E8%A7%A3"><span class="toc-text">2.4 Placement Halo 参数理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9ARouting-Blockage"><span class="toc-text">3. 核心概念：Routing Blockage</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Routing-Blockage-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3.1 Routing Blockage 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Routing-Blockage-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">3.2 Routing Blockage 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Routing-Blockage-%E5%8F%AF%E4%BB%A5%E9%99%90%E5%88%B6%E5%93%AA%E4%BA%9B%E5%B1%82%EF%BC%9F"><span class="toc-text">3.3 Routing Blockage 可以限制哪些层？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Placement-Blockage%E3%80%81Routing-Blockage-%E4%B8%8E-Halo-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4. Placement Blockage、Routing Blockage 与 Halo 的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Placement-Blockage-%E5%92%8C-Routing-Blockage-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4.1 Placement Blockage 和 Routing Blockage 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Placement-Blockage"><span class="toc-text">4.2 Placement Blockage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Routing-Blockage"><span class="toc-text">4.3 Routing Blockage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-Halo-%E5%92%8C-Placement-Blockage-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">4.4 Halo 和 Placement Blockage 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E4%B8%89%E8%80%85%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%E7%90%86%E8%A7%A3"><span class="toc-text">4.5 三者放在一起理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-LAB-%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">5. LAB 操作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%8A%A0%E8%BD%BD%E5%B7%B2%E6%9C%89-Floorplan"><span class="toc-text">5.1 加载已有 Floorplan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%9F%A5%E7%9C%8B-PLL-%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">5.2 查看 PLL 的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%88%B7%E6%96%B0-Layout-%E6%98%BE%E7%A4%BA"><span class="toc-text">5.3 刷新 Layout 显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E6%B7%BB%E5%8A%A0-Routing-Blockage"><span class="toc-text">5.4 添加 Routing Blockage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E4%BF%9D%E5%AD%98-Floorplan"><span class="toc-text">5.5 保存 Floorplan</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93"><span class="toc-text">6. 常用快捷键总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%9C%AC%E7%AB%A0%E6%A0%B8%E5%BF%83%E6%80%BB%E7%BB%93"><span class="toc-text">7. 本章核心总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hard-Blockage%E3%80%81Soft-Blockage-%E5%92%8C-Partial-Blockage-%E5%8C%BA%E5%88%AB"><span class="toc-text">Hard Blockage、Soft Blockage 和 Partial Blockage 区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Hard-Blockage"><span class="toc-text">1. Hard Blockage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Soft-Blockage"><span class="toc-text">2. Soft Blockage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Partial-Blockage"><span class="toc-text">3. Partial Blockage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%89%E8%80%85%E5%AF%B9%E6%AF%94"><span class="toc-text">4. 三者对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%AE%80%E5%8D%95%E7%B1%BB%E6%AF%94"><span class="toc-text">5. 简单类比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A0%B8%E5%BF%83%E6%80%BB%E7%BB%93"><span class="toc-text">6. 核心总结</span></a></li></ol></li></ol></li></ol>
         </div>
       </div>
     </aside>
