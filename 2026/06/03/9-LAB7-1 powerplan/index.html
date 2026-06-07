@@ -204,7 +204,7 @@
         <path d="M15.1 18H3"></path>
       </svg>
       
-      3.0k 字
+      3.6k 字
     </span>
   
 
@@ -216,7 +216,7 @@
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 11 分钟
+      约 12 分钟
     </span>
   
 
@@ -436,6 +436,28 @@
 <img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260607105101321-1857699453.png" width="60%">
 
 
+<p>添加power rail并与power stripe打孔 ( follow pin)</p>
+<p>在创建powr rail前，我们需要做好derive pg，你得告诉工具power rail对应的power net，比如power是叫VDD还是VDD_LOCAL，ground是叫VSS还是AVSS。</p>
+<p>Innovus中做derive pg的命令是globalNetConnect，具体命令如下。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608005136630-318550459.png" width="70%">
+
+
+<p>因为我们加的power stripe是高层metal，比如我们这个lab是M6，follow pin一般是M1。那么整个供电网络应该是M6一直打孔到M1。所以我们希望在创建power rail时同时打上各层的通孔VIA。</p>
+<p>GUI界面操作方法如下：</p>
+<p>Route ‒ Special Route</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608005255489-2141473418.png" width="70%">
+
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608005748659-2110153208.png" width="70%">
+
+
+<p>点击OK后效果如下图所示。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608005838411-309785029.png" width="70%">
+
+
+<p>至此，powerplan就打好了。正常打完power后，我们需要做前期ir drop分析 ，主要目的是分析当前的powerplan是否足够强壮。</p>
+<p>本lab是用了innovus自带的Early Rail Analysis，但实际项目中不会用这个来做，所以这部分内容建议大家直接跳过。</p>
+<p>业界ir drop 分析工具大部分都是用redhawk来做的。利用redhawk来做ir drop的内容属于进阶内容，今年后面有一个专门的课程来讲解和实战的。</p>
 
     </div>
 
@@ -465,9 +487,9 @@
       
       
       
-        <a href="/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/" class="post-nav-item next">
+        <a href="/2026/06/03/10-LAB10_1%20placement/" class="post-nav-item next">
           <span class="post-nav-label">下一篇</span>
-          <span class="post-nav-title">(1)如何快速做一个逻辑综合</span>
+          <span class="post-nav-title">(6) Innovus LAB10-1 placement</span>
         </a>
       
     </nav>
