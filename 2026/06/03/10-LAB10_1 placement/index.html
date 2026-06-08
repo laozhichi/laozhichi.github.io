@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!-- 标题 -->
-<title>(6) Innovus LAB10-1 placement | 风继续吹</title>
+<title>Innovus LAB10-1 Placement 笔记整理版 | 风继续吹</title>
 
 <!-- 网站描述 -->
 <meta name="description" content="">
@@ -15,7 +15,7 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="(6) Innovus LAB10-1 placement">
+<meta property="og:title" content="Innovus LAB10-1 Placement 笔记整理版">
 <meta property="og:description" content="">
 <meta property="og:url" content="http://example.com/2026/06/03/10-LAB10_1%20placement/index.html">
 <meta property="og:site_name" content="风继续吹">
@@ -175,7 +175,7 @@
   <article class="post-article">
     <!-- 文章头部 -->
     <header class="post-header">
-      <h1 class="post-title">(6) Innovus LAB10-1 placement</h1>
+      <h1 class="post-title">Innovus LAB10-1 Placement 笔记整理版</h1>
       
       <!-- 元信息 -->
       <div class="post-meta">
@@ -204,7 +204,7 @@
         <path d="M15.1 18H3"></path>
       </svg>
       
-      2.4k 字
+      5.4k 字
     </span>
   
 
@@ -216,7 +216,7 @@
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 8 分钟
+      约 19 分钟
     </span>
   
 
@@ -233,183 +233,379 @@
     <div class="post-content markdown-body">
       <meta name="referrer" content="no-referrer" />
 
-<p>本章节目的是load进一个floorplan，跑通一个placement并完成post-placement的timing优化</p>
-<p>导入设计和floorplan</p>
-<p>这步之前的lab已经做过了，大家再按照下面的步骤再练习巩固下。</p>
+
+<h2 id="1-本章目标"><a href="#1-本章目标" class="headerlink" title="1. 本章目标"></a>1. 本章目标</h2><p>本节主要练习 Innovus 中的 placement 流程：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">导入设计与 floorplan</span><br><span class="line">  ↓</span><br><span class="line">查看 / 设置 place mode</span><br><span class="line">  ↓</span><br><span class="line">读入 scan DEF</span><br><span class="line">  ↓</span><br><span class="line">执行 placement 优化</span><br><span class="line">  ↓</span><br><span class="line">分析 density 和 routing overflow</span><br><span class="line">  ↓</span><br><span class="line">查看 scan chain</span><br><span class="line">  ↓</span><br><span class="line">保存设计</span><br></pre></td></tr></table></figure>
+
+<p>核心目标：</p>
+<ul>
+<li>跑通 placement；</li>
+<li>理解 placement 前读入 scan DEF 的作用；</li>
+<li>学会查看 placement 后的 density &#x2F; routing overflow；</li>
+<li>掌握 scan chain DEF 的读入与写出；</li>
+<li>掌握保存与恢复设计的方法。</li>
+</ul>
+<hr>
+<h2 id="2-导入设计和-Floorplan"><a href="#2-导入设计和-Floorplan" class="headerlink" title="2. 导入设计和 Floorplan"></a>2. 导入设计和 Floorplan</h2><p>前面 lab 已经完成过设计和 floorplan 的导入，本节是在已有设计基础上继续做 placement。</p>
+<p>导入完成后的界面示意如下：</p>
 <img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608011653209-430238871.png">
 
+<hr>
+<h2 id="3-查看-Place-Mode"><a href="#3-查看-Place-Mode" class="headerlink" title="3. 查看 Place Mode"></a>3. 查看 Place Mode</h2><p>加载好设计和 floorplan 后，先查看当前 placement 设置。</p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getPlaceMode</span><br></pre></td></tr></table></figure>
 
-<p>加载好设计和floorplan后，我们先获取下当前的placeMode，命令如下。</p>
-<p>getPlaceMode</p>
-<p>输入以上命令后，工具会输出当前的所有place mode。</p>
+<p>作用：</p>
+<blockquote>
+<p>查看当前 Innovus 中所有 placement 相关设置。</p>
+</blockquote>
+<p>工具会输出当前的 place mode 参数：</p>
 <img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608011613369-705270902.png" width="100%">
 
+<p>其中很多选项是工具默认值，不需要全部背下来，常用选项在项目中慢慢积累即可。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">place_global_timing_effort = medium</span><br></pre></td></tr></table></figure>
 
-<p>这些变量很多都是工具默认值，而且这些变量不需要我们都背下来，需要在做项目过程中不断熟悉积累一些常用的选项。</p>
-<p>这里比如place_global_timing_effort选项是medium，代表工具优化时序的力度是中等力度。如果对于timing比较紧的设计，我们可以通过setPlaceMode来给这个选项设上high值。</p>
-<p>Scan def读入</p>
-<p>如果综合有写出scan chain的def文件，在place之前我们可以读入scan chain的def来进一步优化congestion。</p>
-<p>命令： defIn  scan_input.def (innovus是通过defIn来读入这部分信息的)</p>
+<p>表示工具在 global placement 阶段优化 timing 的力度是中等。</p>
+<p>如果设计 timing 较紧，可以考虑提高优化强度：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setPlaceMode -place_global_timing_effort high</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-Scan-DEF-读入"><a href="#4-Scan-DEF-读入" class="headerlink" title="4. Scan DEF 读入"></a>4. Scan DEF 读入</h2><p>如果综合或 DFT 阶段写出了 scan chain 的 DEF 文件，可以在 placement 前读入。</p>
+<h3 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defIn scan_input.def</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<blockquote>
+<p>在 placement 前读入 scan chain 信息，让 Innovus 知道 scan chain 的结构和顺序。</p>
+</blockquote>
+<p>示意图：</p>
 <img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608013026322-329830071.png">
 
-
-<h2 id="Scan-DEF-读入笔记"><a href="#Scan-DEF-读入笔记" class="headerlink" title="Scan DEF 读入笔记"></a>Scan DEF 读入笔记</h2><h3 id="1-Scan-Chain-是什么？"><a href="#1-Scan-Chain-是什么？" class="headerlink" title="1. Scan Chain 是什么？"></a>1. Scan Chain 是什么？</h3><p><code>Scan Chain</code> 是 DFT（Design For Test，可测性设计）中用于芯片测试的一种结构。</p>
-<p>普通寄存器在加入 scan 功能后，会被串成一条或多条扫描链：</p>
+<hr>
+<h2 id="5-Scan-与-Scan-DEF-简要理解"><a href="#5-Scan-与-Scan-DEF-简要理解" class="headerlink" title="5. Scan 与 Scan DEF 简要理解"></a>5. Scan 与 Scan DEF 简要理解</h2><h3 id="5-1-Scan-是什么？"><a href="#5-1-Scan-是什么？" class="headerlink" title="5.1 Scan 是什么？"></a>5.1 Scan 是什么？</h3><p><code>scan</code> 是 DFT（Design For Test，可测性设计）中的技术，用于提高芯片制造后的可测试性。</p>
+<p>普通寄存器加入 scan 功能后，可以被串成扫描链：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan_in → scan flop1 → scan flop2 → scan flop3 → scan_out</span><br></pre></td></tr></table></figure>
 
-<p>这样测试时可以把测试数据一位一位扫入芯片内部，再从 scan_out 扫出来，用于检查芯片内部逻辑是否正常。</p>
+<p>这样测试机可以：</p>
+<ul>
+<li>通过 <code>scan_in</code> 控制内部寄存器状态；</li>
+<li>通过 <code>scan_out</code> 观察内部寄存器结果。</li>
+</ul>
 <hr>
-<h3 id="2-Scan-DEF-是什么？"><a href="#2-Scan-DEF-是什么？" class="headerlink" title="2. Scan DEF 是什么？"></a>2. Scan DEF 是什么？</h3><p><code>scan_input.def</code> 是保存 scan chain 信息的 DEF 文件。</p>
-<p>它通常包含：</p>
-<table>
+<h3 id="5-2-Scan-Chain-的两个核心能力"><a href="#5-2-Scan-Chain-的两个核心能力" class="headerlink" title="5.2 Scan Chain 的两个核心能力"></a>5.2 Scan Chain 的两个核心能力</h3><table>
 <thead>
 <tr>
-<th>内容</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>scan chain 数量</td>
-<td>设计中有几条扫描链</td>
-</tr>
-<tr>
-<td>scan flop 列表</td>
-<td>哪些寄存器属于 scan chain</td>
-</tr>
-<tr>
-<td>scan chain 顺序</td>
-<td>scan flop 之间的连接顺序</td>
-</tr>
-<tr>
-<td>scan_in &#x2F; scan_out</td>
-<td>扫描链的输入和输出端</td>
-</tr>
-<tr>
-<td>scan 相关约束</td>
-<td>工具优化时需要参考的信息</td>
-</tr>
-</tbody></table>
-<p>简单理解：</p>
-<blockquote>
-<p>Scan DEF 记录的是扫描链结构和扫描寄存器连接顺序。</p>
-</blockquote>
-<hr>
-<h3 id="3-为什么要在-placement-前读入-Scan-DEF？"><a href="#3-为什么要在-placement-前读入-Scan-DEF？" class="headerlink" title="3. 为什么要在 placement 前读入 Scan DEF？"></a>3. 为什么要在 placement 前读入 Scan DEF？</h3><p>Placement 阶段会决定 standard cell 和 scan flop 的物理位置。</p>
-<p>如果在 placement 前读入 scan DEF，Innovus 就能知道：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">哪些寄存器属于同一条 scan chain；</span><br><span class="line">这些 scan flop 的连接顺序是什么。</span><br></pre></td></tr></table></figure>
-
-<p>这样工具可以在摆放时考虑 scan chain 的物理连接关系，从而优化 scan chain 的走线。</p>
-<hr>
-<h3 id="4-读入-Scan-DEF-的作用"><a href="#4-读入-Scan-DEF-的作用" class="headerlink" title="4. 读入 Scan DEF 的作用"></a>4. 读入 Scan DEF 的作用</h3><p>读入 scan DEF 后，工具可以进一步优化：</p>
-<table>
-<thead>
-<tr>
-<th>作用</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>减少 scan 线长度</td>
-<td>避免 scan flop 之间距离太远</td>
-</tr>
-<tr>
-<td>减少绕线</td>
-<td>降低 scan 线来回穿越芯片的情况</td>
-</tr>
-<tr>
-<td>优化 scan chain 物理顺序</td>
-<td>让扫描链顺序更符合实际摆放位置</td>
-</tr>
-<tr>
-<td>降低 congestion</td>
-<td>减少后续 routing 阶段的布线拥塞</td>
-</tr>
-<tr>
-<td>提高后端实现质量</td>
-<td>让 scan 相关连线更容易布通</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="5-为什么能优化-congestion？"><a href="#5-为什么能优化-congestion？" class="headerlink" title="5. 为什么能优化 congestion？"></a>5. 为什么能优化 congestion？</h3><p>如果 scan chain 顺序不合理，可能出现：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">左边 flop → 右边 flop → 左边 flop → 右边 flop</span><br></pre></td></tr></table></figure>
-
-<p>这样 scan 线会在芯片中来回穿越，容易造成布线拥塞。</p>
-<p>读入 scan DEF 后，工具可以结合物理位置优化成类似：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">左边 flop → 左边 flop → 右边 flop → 右边 flop</span><br></pre></td></tr></table></figure>
-
-<p>这样 scan 线更短，交叉更少，routing congestion 也会降低。</p>
-<hr>
-<h3 id="6-Innovus-中读入-Scan-DEF-的命令"><a href="#6-Innovus-中读入-Scan-DEF-的命令" class="headerlink" title="6. Innovus 中读入 Scan DEF 的命令"></a>6. Innovus 中读入 Scan DEF 的命令</h3><p>命令格式：</p>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defIn scan_input.def</span><br></pre></td></tr></table></figure>
-
-<p>含义：</p>
-<blockquote>
-<p>使用 Innovus 的 <code>defIn</code> 命令读入 <code>scan_input.def</code> 文件。</p>
-</blockquote>
-<p>其中：</p>
-<table>
-<thead>
-<tr>
-<th>部分</th>
+<th>能力</th>
 <th>含义</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>defIn</code></td>
-<td>Innovus 中读入 DEF 文件的命令</td>
+<td>可控性 Controllability</td>
+<td>通过 <code>scan_in</code> 控制内部寄存器</td>
 </tr>
 <tr>
-<td><code>scan_input.def</code></td>
-<td>综合或 DFT 工具生成的 scan chain DEF 文件</td>
+<td>可观测性 Observability</td>
+<td>通过 <code>scan_out</code> 读出内部寄存器</td>
 </tr>
 </tbody></table>
+<p>测试流程可以简单理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 打开 scan enable，进入 scan 模式</span><br><span class="line">2. 从 scan_in 移入测试向量</span><br><span class="line">3. 关闭 scan enable，切回功能模式</span><br><span class="line">4. 打一拍功能时钟</span><br><span class="line">5. 再打开 scan enable</span><br><span class="line">6. 从 scan_out 移出结果</span><br><span class="line">7. 和期望值比较</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h3 id="7-什么时候需要读入-Scan-DEF？"><a href="#7-什么时候需要读入-Scan-DEF？" class="headerlink" title="7. 什么时候需要读入 Scan DEF？"></a>7. 什么时候需要读入 Scan DEF？</h3><table>
+<h3 id="5-3-Scan-DEF-是什么？"><a href="#5-3-Scan-DEF-是什么？" class="headerlink" title="5.3 Scan DEF 是什么？"></a>5.3 Scan DEF 是什么？</h3><p><code>scan_input.def</code> 是一个保存 scan chain 信息的 DEF 文件。</p>
+<p>它主要记录：</p>
+<ul>
+<li>设计中有几条 scan chain；</li>
+<li>每条 scan chain 的入口 <code>scan_in</code>；</li>
+<li>每条 scan chain 的出口 <code>scan_out</code>;</li>
+<li>每条 scan chain 经过哪些 scan flop；</li>
+<li>scan flop 的连接顺序；</li>
+<li>哪些 segment 可以 reorder，哪些顺序固定。</li>
+</ul>
+<hr>
+<h3 id="5-4-为什么-placement-前要读入-Scan-DEF？"><a href="#5-4-为什么-placement-前要读入-Scan-DEF？" class="headerlink" title="5.4 为什么 placement 前要读入 Scan DEF？"></a>5.4 为什么 placement 前要读入 Scan DEF？</h3><p>Placement 阶段会决定 standard cell 和 scan flop 的物理位置。</p>
+<p>如果提前读入 scan DEF，Innovus 就可以知道：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">哪些 flop 属于同一条 scan chain；</span><br><span class="line">scan flop 之间的连接顺序是什么。</span><br></pre></td></tr></table></figure>
+
+<p>这样工具可以在摆放时优化 scan 线：</p>
+<ul>
+<li>减少 scan 线长度；</li>
+<li>减少 scan 线来回穿越芯片；</li>
+<li>降低 routing congestion；</li>
+<li>改善后续 routing 质量；</li>
+<li>便于后续 scan chain reorder。</li>
+</ul>
+<hr>
+<h2 id="6-scan-input-def-常见字段"><a href="#6-scan-input-def-常见字段" class="headerlink" title="6. scan_input.def 常见字段"></a>6. <code>scan_input.def</code> 常见字段</h2><h3 id="6-1-SCANCHAINS"><a href="#6-1-SCANCHAINS" class="headerlink" title="6.1 SCANCHAINS"></a>6.1 <code>SCANCHAINS</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SCANCHAINS 2 ;</span><br></pre></td></tr></table></figure>
+
+<p>表示设计中有 2 条 scan chain。</p>
+<hr>
+<h3 id="6-2-START-PIN"><a href="#6-2-START-PIN" class="headerlink" title="6.2 START PIN"></a>6.2 <code>START PIN</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ START PIN scan_in_1</span><br></pre></td></tr></table></figure>
+
+<p>表示该 scan chain 的输入端口是 <code>scan_in_1</code>。</p>
+<hr>
+<h3 id="6-3-STOP-PIN"><a href="#6-3-STOP-PIN" class="headerlink" title="6.3 STOP PIN"></a>6.3 <code>STOP PIN</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ STOP PIN scan_out_1 ;</span><br></pre></td></tr></table></figure>
+
+<p>表示该 scan chain 的输出端口是 <code>scan_out_1</code>。</p>
+<hr>
+<h3 id="6-4-IN-SI-OUT-Q"><a href="#6-4-IN-SI-OUT-Q" class="headerlink" title="6.4 ( IN SI ) ( OUT Q )"></a>6.4 <code>( IN SI ) ( OUT Q )</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DTMF_INST/SPI_INST/bit_cnt_reg_0 ( IN SI ) ( OUT Q )</span><br></pre></td></tr></table></figure>
+
+<p>含义：</p>
+<table>
 <thead>
 <tr>
-<th>场景</th>
-<th>是否需要</th>
+<th>字段</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>综合 &#x2F; DFT 后生成了 <code>scan_input.def</code></td>
-<td>建议读入</td>
+<td><code>DTMF_INST/SPI_INST/bit_cnt_reg_0</code></td>
+<td>scan flop 实例名</td>
 </tr>
 <tr>
-<td>设计中有 scan chain</td>
-<td>建议读入</td>
+<td><code>IN SI</code></td>
+<td>scan 输入端是 <code>SI</code></td>
 </tr>
 <tr>
-<td>需要做 scan chain reorder</td>
-<td>建议读入</td>
+<td><code>OUT Q</code></td>
+<td>scan 输出端是 <code>Q</code></td>
+</tr>
+</tbody></table>
+<p>可以理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">前一个 scan cell 的 Q → 当前 scan cell 的 SI</span><br><span class="line">当前 scan cell 的 Q → 下一个 scan cell 的 SI</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-5-FLOATING-和-ORDERED"><a href="#6-5-FLOATING-和-ORDERED" class="headerlink" title="6.5 FLOATING 和 ORDERED"></a>6.5 <code>FLOATING</code> 和 <code>ORDERED</code></h3><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>FLOATING</code></td>
+<td>scan cell 顺序可以由后端工具根据物理位置优化</td>
 </tr>
 <tr>
-<td>需要降低 scan 线布线拥塞</td>
-<td>建议读入</td>
-</tr>
-<tr>
-<td>设计没有 scan chain</td>
-<td>不需要</td>
-</tr>
-<tr>
-<td>Lab 没有提供 scan DEF</td>
-<td>可以跳过</td>
-</tr>
-<tr>
-<td>只是普通功能设计，不涉及 DFT</td>
-<td>一般不用管</td>
+<td><code>ORDERED</code></td>
+<td>scan cell 顺序已经指定，工具应尽量保持</td>
 </tr>
 </tbody></table>
 <hr>
-<h3 id="8-简单总结"><a href="#8-简单总结" class="headerlink" title="8. 简单总结"></a>8. 简单总结</h3><p><code>Scan DEF</code> 记录了扫描链中 scan flop 的连接关系和顺序。</p>
-<p>在 placement 之前读入：</p>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defIn scan_input.def</span><br></pre></td></tr></table></figure>
+<h2 id="7-写出-Scan-Chain-DEF-文件"><a href="#7-写出-Scan-Chain-DEF-文件" class="headerlink" title="7. 写出 Scan Chain DEF 文件"></a>7. 写出 Scan Chain DEF 文件</h2><p>如果需要从当前 Innovus &#x2F; Encounter 数据库中写出 scan chain 信息，可以使用：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defOutBySection -noNets -noComps -scanChains <span class="keyword">scan</span>.def</span><br></pre></td></tr></table></figure>
 
-<p>可以让 Innovus 在摆放阶段考虑 scan chain 结构，从而减少 scan 线长度、降低布线拥塞，并提升后续 routing 的质量。</p>
-<p>核心记忆：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Scan DEF：记录 scan chain 信息；</span><br><span class="line">defIn：读入 DEF 文件；</span><br><span class="line">placement 前读入 scan DEF：方便工具优化 scan chain，降低 congestion。</span><br></pre></td></tr></table></figure>
+<p>参数含义：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>defOutBySection</code></td>
+<td>按 DEF section 导出内容</td>
+</tr>
+<tr>
+<td><code>-noNets</code></td>
+<td>不导出普通 net</td>
+</tr>
+<tr>
+<td><code>-noComps</code></td>
+<td>不导出普通 component &#x2F; cell</td>
+</tr>
+<tr>
+<td><code>-scanChains</code></td>
+<td>只导出 scan chain 信息</td>
+</tr>
+<tr>
+<td><code>scan.def</code></td>
+<td>输出文件名</td>
+</tr>
+</tbody></table>
+<p>该命令生成的不是完整 DEF，而是只包含 <code>SCANCHAINS</code> 信息的 DEF 片段。</p>
+<hr>
+<h2 id="8-执行-Placement"><a href="#8-执行-Placement" class="headerlink" title="8. 执行 Placement"></a>8. 执行 Placement</h2><h3 id="命令-2"><a href="#命令-2" class="headerlink" title="命令"></a>命令</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">place_opt_design</span><br></pre></td></tr></table></figure>
 
+<p>作用：</p>
+<blockquote>
+<p>执行 placement，并在 placement 阶段做一定的 timing &#x2F; congestion 优化。</p>
+</blockquote>
+<p>执行完成后，可以从 log 中查看 placement 结果，例如 density、routing overflow 等。</p>
+<p>Placement 后示意图：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608121337266-1125947933.png" width="70%">
 
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608121438454-351716243.png" width="70%">
+
+<hr>
+<h2 id="9-查看-Scan-Chain-连接"><a href="#9-查看-Scan-Chain-连接" class="headerlink" title="9. 查看 Scan Chain 连接"></a>9. 查看 Scan Chain 连接</h2><p>可以在图形界面中高亮 scan chain：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Place → Display → Scan Chain</span><br></pre></td></tr></table></figure>
+
+<p>选择某条 scan chain，例如 <code>scan1</code>，工具会显示扫描链连接路径。</p>
+<p>示意图：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608121545340-956035409.png">
+
+<p>作用：</p>
+<ul>
+<li>查看 scan chain 是否连接正确；</li>
+<li>观察 scan chain 是否绕线过长；</li>
+<li>判断是否需要 scan chain reorder；</li>
+<li>观察 scan chain 对 congestion 的影响。</li>
+</ul>
+<hr>
+<h2 id="10-Placement-结果分析"><a href="#10-Placement-结果分析" class="headerlink" title="10. Placement 结果分析"></a>10. Placement 结果分析</h2><p>示例结果：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Density: 48.590%</span><br><span class="line">Routing Overflow: 0.02% H and 0.01% V</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="10-1-Density"><a href="#10-1-Density" class="headerlink" title="10.1 Density"></a>10.1 Density</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Density: 48.590%</span><br></pre></td></tr></table></figure>
+
+<p>表示布局密度 &#x2F; 单元利用率约为 48.59%。</p>
+<p>可以理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标准单元面积 / 可放置区域面积 = 48.590%</span><br></pre></td></tr></table></figure>
+
+<p>这个密度不算高，说明当前 placement 比较宽松，后续 routing、buffer 插入、CTS 和 ECO 还有一定空间。</p>
+<hr>
+<h3 id="10-2-Routing-Overflow"><a href="#10-2-Routing-Overflow" class="headerlink" title="10.2 Routing Overflow"></a>10.2 Routing Overflow</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Routing Overflow: 0.02% H and 0.01% V</span><br></pre></td></tr></table></figure>
+
+<p><code>Routing Overflow</code> 表示布线资源不够用的比例。</p>
+<p>简单理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">需要走的线数量 &gt; 可用 routing track 数量</span><br></pre></td></tr></table></figure>
+
+<p>就会产生 overflow。</p>
+<hr>
+<h3 id="10-3-H-和-V-的区别"><a href="#10-3-H-和-V-的区别" class="headerlink" title="10.3 H 和 V 的区别"></a>10.3 H 和 V 的区别</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>对应方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>H</code></td>
+<td>Horizontal</td>
+<td>水平方向布线资源</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>Vertical</td>
+<td>垂直方向布线资源</td>
+</tr>
+</tbody></table>
+<p>示意：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">H：水平方向</span><br><span class="line">←────────────→</span><br><span class="line"></span><br><span class="line">V：垂直方向</span><br><span class="line">      ↑</span><br><span class="line">      │</span><br><span class="line">      ↓</span><br></pre></td></tr></table></figure>
+
+<p>示例中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.02% H and 0.01% V</span><br></pre></td></tr></table></figure>
+
+<p>说明横向和纵向布线资源都只有极少量溢出，congestion 很轻，整体 placement 结果比较健康。</p>
+<p>相关界面示意：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608121616252-617410885.png">
+
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608121832614-1304297058.png">
+
+<hr>
+<h2 id="11-Track-Routing-Grid-笔记"><a href="#11-Track-Routing-Grid-笔记" class="headerlink" title="11. Track &#x2F; Routing Grid 笔记"></a>11. Track &#x2F; Routing Grid 笔记</h2><h3 id="11-1-Track-是什么？"><a href="#11-1-Track-是什么？" class="headerlink" title="11.1 Track 是什么？"></a>11.1 Track 是什么？</h3><p><code>track</code> 可以理解为后端布线轨道。</p>
+<p>后端 route 时，金属线不是随便画在任意位置，而是尽量沿着工艺规定好的 routing track 走。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Horizontal tracks:</span><br><span class="line">────────────────</span><br><span class="line">────────────────</span><br><span class="line">────────────────</span><br><span class="line"></span><br><span class="line">Vertical tracks:</span><br><span class="line">│   │   │   │</span><br><span class="line">│   │   │   │</span><br><span class="line">│   │   │   │</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="11-2-Track-和-H-V-Overflow-的关系"><a href="#11-2-Track-和-H-V-Overflow-的关系" class="headerlink" title="11.2 Track 和 H &#x2F; V Overflow 的关系"></a>11.2 Track 和 H &#x2F; V Overflow 的关系</h3><table>
+<thead>
+<tr>
+<th>方向</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>H overflow</code></td>
+<td>水平方向 routing track 不够用</td>
+</tr>
+<tr>
+<td><code>V overflow</code></td>
+<td>垂直方向 routing track 不够用</td>
+</tr>
+</tbody></table>
+<p>如果某个方向 overflow 很高，说明该方向布线资源紧张。</p>
+<hr>
+<h3 id="11-3-Track-和-Placement-Row-的区别"><a href="#11-3-Track-和-Placement-Row-的区别" class="headerlink" title="11.3 Track 和 Placement Row 的区别"></a>11.3 Track 和 Placement Row 的区别</h3><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Placement Row</td>
+<td>给 standard cell 摆放用</td>
+</tr>
+<tr>
+<td>Routing Track</td>
+<td>给 metal wire 布线用</td>
+</tr>
+</tbody></table>
+<p>简单理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">placement row：放 cell 的行</span><br><span class="line">routing track：走 wire 的轨道</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="11-4-Macro-附近为什么容易拥塞？"><a href="#11-4-Macro-附近为什么容易拥塞？" class="headerlink" title="11.4 Macro 附近为什么容易拥塞？"></a>11.4 Macro 附近为什么容易拥塞？</h3><p>RAM &#x2F; SRAM &#x2F; hard macro 通常会占用或阻挡部分 metal layer，导致其周围布线资源减少。</p>
+<p>因此 macro 附近要重点关注：</p>
+<ul>
+<li>routing channel 是否足够；</li>
+<li>H &#x2F; V overflow 是否明显；</li>
+<li>blockages 是否设置合理；</li>
+<li>pin access 是否困难。</li>
+</ul>
+<hr>
+<h2 id="12-保存和恢复设计"><a href="#12-保存和恢复设计" class="headerlink" title="12. 保存和恢复设计"></a>12. 保存和恢复设计</h2><h3 id="12-1-保存设计"><a href="#12-1-保存设计" class="headerlink" title="12.1 保存设计"></a>12.1 保存设计</h3><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saveDesign place_Opt.inn</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<blockquote>
+<p>保存当前 Innovus 数据库，便于后续继续从该阶段恢复。</p>
+</blockquote>
+<p>保存示意：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608122148635-1898143796.png">
+
+<hr>
+<h3 id="12-2-恢复设计"><a href="#12-2-恢复设计" class="headerlink" title="12.2 恢复设计"></a>12.2 恢复设计</h3><p>如果后续想恢复到该阶段，可以使用 restore 功能重新加载保存的设计数据库。</p>
+<p>恢复示意：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608122252223-1847745399.png">
+
+<hr>
+<h2 id="13-常用命令汇总"><a href="#13-常用命令汇总" class="headerlink" title="13. 常用命令汇总"></a>13. 常用命令汇总</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getPlaceMode</code></td>
+<td>查看当前 placement 设置</td>
+</tr>
+<tr>
+<td><code>setPlaceMode -place_global_timing_effort high</code></td>
+<td>提高 placement timing 优化力度</td>
+</tr>
+<tr>
+<td><code>defIn scan_input.def</code></td>
+<td>读入 scan chain DEF</td>
+</tr>
+<tr>
+<td><code>place_opt_design</code></td>
+<td>执行 placement 和优化</td>
+</tr>
+<tr>
+<td><code>defOutBySection -noNets -noComps -scanChains scan.def</code></td>
+<td>写出 scan chain DEF</td>
+</tr>
+<tr>
+<td><code>saveDesign place_Opt.inn</code></td>
+<td>保存当前设计数据库</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="14-一句话总结"><a href="#14-一句话总结" class="headerlink" title="14. 一句话总结"></a>14. 一句话总结</h2><p>本节主要完成 Innovus placement 流程：在导入设计和 floorplan 后，先查看 place mode，再在 placement 前读入 <code>scan_input.def</code>，使工具能够考虑 scan chain 结构并优化 scan 线。执行 <code>place_opt_design</code> 后，需要重点查看 density 和 routing overflow。示例中 density 为 48.590%，routing overflow 仅为 0.02% H 和 0.01% V，说明当前布局拥塞很轻，placement 结果较健康。</p>
 
     </div>
 
@@ -439,9 +635,9 @@
       
       
       
-        <a href="/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/" class="post-nav-item next">
+        <a href="/2026/06/03/11-LAB10-2%20Running%20the%20Early%20Global%20Router/" class="post-nav-item next">
           <span class="post-nav-label">下一篇</span>
-          <span class="post-nav-title">(1)如何快速做一个逻辑综合</span>
+          <span class="post-nav-title">LAB10-2 Running the Early Global Router</span>
         </a>
       
     </nav>
@@ -453,7 +649,7 @@
       <div class="toc-wrapper">
         <h3 class="toc-title">目录</h3>
         <div class="toc-content">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scan-DEF-%E8%AF%BB%E5%85%A5%E7%AC%94%E8%AE%B0"><span class="toc-text">Scan DEF 读入笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Scan-Chain-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1. Scan Chain 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Scan-DEF-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2. Scan DEF 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%9C%A8-placement-%E5%89%8D%E8%AF%BB%E5%85%A5-Scan-DEF%EF%BC%9F"><span class="toc-text">3. 为什么要在 placement 前读入 Scan DEF？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AF%BB%E5%85%A5-Scan-DEF-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">4. 读入 Scan DEF 的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E4%BC%98%E5%8C%96-congestion%EF%BC%9F"><span class="toc-text">5. 为什么能优化 congestion？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Innovus-%E4%B8%AD%E8%AF%BB%E5%85%A5-Scan-DEF-%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">6. Innovus 中读入 Scan DEF 的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E8%AF%BB%E5%85%A5-Scan-DEF%EF%BC%9F"><span class="toc-text">7. 什么时候需要读入 Scan DEF？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93"><span class="toc-text">8. 简单总结</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87"><span class="toc-text">1. 本章目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%BC%E5%85%A5%E8%AE%BE%E8%AE%A1%E5%92%8C-Floorplan"><span class="toc-text">2. 导入设计和 Floorplan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9F%A5%E7%9C%8B-Place-Mode"><span class="toc-text">3. 查看 Place Mode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Scan-DEF-%E8%AF%BB%E5%85%A5"><span class="toc-text">4. Scan DEF 读入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-1"><span class="toc-text">命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Scan-%E4%B8%8E-Scan-DEF-%E7%AE%80%E8%A6%81%E7%90%86%E8%A7%A3"><span class="toc-text">5. Scan 与 Scan DEF 简要理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Scan-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">5.1 Scan 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Scan-Chain-%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B"><span class="toc-text">5.2 Scan Chain 的两个核心能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Scan-DEF-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">5.3 Scan DEF 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E4%B8%BA%E4%BB%80%E4%B9%88-placement-%E5%89%8D%E8%A6%81%E8%AF%BB%E5%85%A5-Scan-DEF%EF%BC%9F"><span class="toc-text">5.4 为什么 placement 前要读入 Scan DEF？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-scan-input-def-%E5%B8%B8%E8%A7%81%E5%AD%97%E6%AE%B5"><span class="toc-text">6. scan_input.def 常见字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-SCANCHAINS"><span class="toc-text">6.1 SCANCHAINS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-START-PIN"><span class="toc-text">6.2 START PIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-STOP-PIN"><span class="toc-text">6.3 STOP PIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-IN-SI-OUT-Q"><span class="toc-text">6.4 ( IN SI ) ( OUT Q )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-FLOATING-%E5%92%8C-ORDERED"><span class="toc-text">6.5 FLOATING 和 ORDERED</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%86%99%E5%87%BA-Scan-Chain-DEF-%E6%96%87%E4%BB%B6"><span class="toc-text">7. 写出 Scan Chain DEF 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%89%A7%E8%A1%8C-Placement"><span class="toc-text">8. 执行 Placement</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-2"><span class="toc-text">命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%9F%A5%E7%9C%8B-Scan-Chain-%E8%BF%9E%E6%8E%A5"><span class="toc-text">9. 查看 Scan Chain 连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Placement-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="toc-text">10. Placement 结果分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-Density"><span class="toc-text">10.1 Density</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-Routing-Overflow"><span class="toc-text">10.2 Routing Overflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-H-%E5%92%8C-V-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">10.3 H 和 V 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Track-Routing-Grid-%E7%AC%94%E8%AE%B0"><span class="toc-text">11. Track &#x2F; Routing Grid 笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-Track-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">11.1 Track 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-Track-%E5%92%8C-H-V-Overflow-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">11.2 Track 和 H &#x2F; V Overflow 的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-Track-%E5%92%8C-Placement-Row-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">11.3 Track 和 Placement Row 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-4-Macro-%E9%99%84%E8%BF%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%B9%E6%98%93%E6%8B%A5%E5%A1%9E%EF%BC%9F"><span class="toc-text">11.4 Macro 附近为什么容易拥塞？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E4%BF%9D%E5%AD%98%E5%92%8C%E6%81%A2%E5%A4%8D%E8%AE%BE%E8%AE%A1"><span class="toc-text">12. 保存和恢复设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1-%E4%BF%9D%E5%AD%98%E8%AE%BE%E8%AE%A1"><span class="toc-text">12.1 保存设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-2-%E6%81%A2%E5%A4%8D%E8%AE%BE%E8%AE%A1"><span class="toc-text">12.2 恢复设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB"><span class="toc-text">13. 常用命令汇总</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">14. 一句话总结</span></a></li></ol>
         </div>
       </div>
     </aside>

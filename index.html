@@ -690,7 +690,7 @@ Power-Power Planning ‒ Add Ring
           <div class="post-card-content">
             <!-- 标题 -->
             <h2 class="post-title">
-              <a href="/2026/06/03/10-LAB10_1%20placement/">(6) Innovus LAB10-1 placement</a>
+              <a href="/2026/06/03/10-LAB10_1%20placement/">Innovus LAB10-1 Placement 笔记整理版</a>
             </h2>
             
             <!-- 元信息 -->
@@ -720,7 +720,7 @@ Power-Power Planning ‒ Add Ring
         <path d="M15.1 18H3"></path>
       </svg>
       
-      2.4k 字
+      5.4k 字
     </span>
   
 
@@ -732,7 +732,7 @@ Power-Power Planning ‒ Add Ring
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 8 分钟
+      约 19 分钟
     </span>
   
 
@@ -756,16 +756,13 @@ Power-Power Planning ‒ Add Ring
               
                 
 
-本章节目的是load进一个floorplan，跑通一个placement并完成post-placement的timing优化
-导入设计和floorplan
-这步之前的lab已经做过了，大家再按照下面的步骤再练习巩固下。
 
+1. 本章目标本节主要练习 Innovus 中的 placement 流程：
+12345678910111213导入设计与 floorplan  ↓查看 / 设置 place mode  ↓读入 scan DEF  ↓执行 placement 优化  ↓分析 density 和 routing overflow  ↓查看 scan chain  ↓保存设计
 
+核心目标：
 
-加载好设计和floorplan后，我们先获取下当前的placeMode，命令如下。
-getPlaceMode
-输入以上命令后，工具会输出当前的所有place mode。
-...
+跑通 placem...
               
             </div>
             
@@ -787,7 +784,7 @@ getPlaceMode
           <div class="post-card-content">
             <!-- 标题 -->
             <h2 class="post-title">
-              <a href="/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/">(1)如何快速做一个逻辑综合</a>
+              <a href="/2026/06/03/11-LAB10-2%20Running%20the%20Early%20Global%20Router/">LAB10-2 Running the Early Global Router</a>
             </h2>
             
             <!-- 元信息 -->
@@ -800,8 +797,8 @@ getPlaceMode
       <line x1="8" x2="8" y1="2" y2="6"></line>
       <line x1="3" x2="21" y1="10" y2="10"></line>
     </svg>
-    <time datetime="2026-06-02">
-      2026-06-02
+    <time datetime="2026-06-03">
+      2026-06-03
     </time>
   </span>
 
@@ -817,7 +814,7 @@ getPlaceMode
         <path d="M15.1 18H3"></path>
       </svg>
       
-      9.8k 字
+      1.2k 字
     </span>
   
 
@@ -829,7 +826,7 @@ getPlaceMode
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 33 分钟
+      约 5 分钟
     </span>
   
 
@@ -841,7 +838,7 @@ getPlaceMode
         <path d="M7 7h.01"></path>
       </svg>
       
-        <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/">数字中端概念基础</a>
+        <a href="/tags/innovus-lab/">innovus lab</a>
       
     </span>
   
@@ -854,23 +851,17 @@ getPlaceMode
                 
 
 
+本章节学习目标是通过工具的前期global router 引擎来分析发现潜在绕线问题
+GUI操作步骤：Route—Early Global Route  （等效命令是earlyGlobalRoute）
 
-一、逻辑综合是什么1. 逻辑综合的定义逻辑综合是指将硬件描述语言编写的 RTL 代码转换成门级网表的过程。
-常见的硬件描述语言包括：
 
-VHDL
-SystemVerilog
-Verilog
-
-综合前的 RTL 代码主要描述电路功能；综合后的门级网表则由具体标准单元库中的逻辑门、触发器、多路选择器等单元组成。
-
-2. 为什么要做逻辑综合RTL 代码本身并没有直接和制造工艺绑定。
-经过逻辑综合...
+上图中选择的Route layer这步界面操作等效于使用下面的命令。
+setRouteMode -earlyGlobalMaxRouteLayer 3 -earlyGlobalMinRou...
               
             </div>
             
             <!-- 阅读更多 -->
-            <a href="/2026/06/02/1-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%81%9A%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88/" class="read-more">
+            <a href="/2026/06/03/11-LAB10-2%20Running%20the%20Early%20Global%20Router/" class="read-more">
               阅读全文
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14"></path>
@@ -887,7 +878,7 @@ Verilog
           <div class="post-card-content">
             <!-- 标题 -->
             <h2 class="post-title">
-              <a href="/2026/06/02/2-%E6%80%8E%E4%B9%88%E6%A3%80%E6%9F%A5%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C/">(2)怎么检查逻辑综合结果</a>
+              <a href="/2026/06/03/13_LAB14_1%20%E6%97%B6%E9%92%9F%E6%A0%91%E7%BB%BC%E5%90%88/">LAB14_1 时钟树综合</a>
             </h2>
             
             <!-- 元信息 -->
@@ -900,8 +891,8 @@ Verilog
       <line x1="8" x2="8" y1="2" y2="6"></line>
       <line x1="3" x2="21" y1="10" y2="10"></line>
     </svg>
-    <time datetime="2026-06-02">
-      2026-06-02
+    <time datetime="2026-06-03">
+      2026-06-03
     </time>
   </span>
 
@@ -917,7 +908,7 @@ Verilog
         <path d="M15.1 18H3"></path>
       </svg>
       
-      19.5k 字
+      25.2k 字
     </span>
   
 
@@ -929,7 +920,7 @@ Verilog
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 65 分钟
+      约 85 分钟
     </span>
   
 
@@ -941,7 +932,7 @@ Verilog
         <path d="M7 7h.01"></path>
       </svg>
       
-        <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/">数字中端概念基础</a>
+        <a href="/tags/innovus-lab/">innovus lab</a>
       
     </span>
   
@@ -953,21 +944,20 @@ Verilog
               
                 
 
-
-DC 逻辑综合脚本与日志分析整理
-来源：用户粘贴文本整理主题：Design Compiler 逻辑综合脚本、多时钟约束、库文件区别、check_design、dc.log 分析说明：本文档为学习笔记式整理，内容经过重新排版、归纳和补充，便于复习与查阅。
-
-
-目录
-一、示例综合脚本
-二、多时钟注意点
-三、link_path 中 * 的含义
-四、target_library 与 syntheti...
+这个章节的主要学习目标如下：
+1）时钟树综合前的准备工作熟悉
+2）时钟树综合的跑法
+3）时钟树结果分析
+4）时钟树综合后的时序优化（PostCTS的timing优化）
+首先，我们按照lab的要求来打开pr.inv这个数据。
+我们可以直接用我们打开数据的命令：
+restoreDesign ..&#x2F;saved&#x2F;pr.inv.dat DTMF_CHIP
+打开数据后，我们要读入做时钟...
               
             </div>
             
             <!-- 阅读更多 -->
-            <a href="/2026/06/02/2-%E6%80%8E%E4%B9%88%E6%A3%80%E6%9F%A5%E9%80%BB%E8%BE%91%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C/" class="read-more">
+            <a href="/2026/06/03/13_LAB14_1%20%E6%97%B6%E9%92%9F%E6%A0%91%E7%BB%BC%E5%90%88/" class="read-more">
               阅读全文
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14"></path>
@@ -984,7 +974,7 @@ DC 逻辑综合脚本与日志分析整理
           <div class="post-card-content">
             <!-- 标题 -->
             <h2 class="post-title">
-              <a href="/2026/06/02/3-%E6%80%8E%E4%B9%88%E5%88%A4%E6%96%AD%E7%BB%93%E6%9E%9C%E7%9A%84%E5%A5%BD%E5%9D%8F/">(3)如何判断设计的好坏</a>
+              <a href="/2026/06/03/12_LAB12_1/">LAB12_1</a>
             </h2>
             
             <!-- 元信息 -->
@@ -997,8 +987,8 @@ DC 逻辑综合脚本与日志分析整理
       <line x1="8" x2="8" y1="2" y2="6"></line>
       <line x1="3" x2="21" y1="10" y2="10"></line>
     </svg>
-    <time datetime="2026-06-02">
-      2026-06-02
+    <time datetime="2026-06-03">
+      2026-06-03
     </time>
   </span>
 
@@ -1014,7 +1004,7 @@ DC 逻辑综合脚本与日志分析整理
         <path d="M15.1 18H3"></path>
       </svg>
       
-      22.2k 字
+      3.5k 字
     </span>
   
 
@@ -1026,7 +1016,7 @@ DC 逻辑综合脚本与日志分析整理
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 74 分钟
+      约 12 分钟
     </span>
   
 
@@ -1038,7 +1028,7 @@ DC 逻辑综合脚本与日志分析整理
         <path d="M7 7h.01"></path>
       </svg>
       
-        <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/">数字中端概念基础</a>
+        <a href="/tags/innovus-lab/">innovus lab</a>
       
     </span>
   
@@ -1051,16 +1041,15 @@ DC 逻辑综合脚本与日志分析整理
                 
 
 
-
-
-一、脚本整体作用这份脚本用于使用 Synopsys Design Compiler 对顶层设计 my_top 进行逻辑综合。
-整体流程如下：
-12345678910111213141516171819202122232425设置设计名和运行目录  ↓设置标准单元库和综合库  ↓读取 RTL  ↓展开顶层设计  ↓链接设计和库  ↓综合前检查  ↓写出 precompile 文件  ↓创建...
+这个章节的目标很明确——基于工具placement阶段做的global route结果来做RC提取。做这步是为了后续的timing计算和分析做准备。
+按照lab的要求，我们先打开Innovus的pr.inv这个database（做这个之前请退出innovus后再重新打开），命令如下：
+restoreDesign ..&#x2F;saved&#x2F;pr.inv.dat DTMF_CHIP
+...
               
             </div>
             
             <!-- 阅读更多 -->
-            <a href="/2026/06/02/3-%E6%80%8E%E4%B9%88%E5%88%A4%E6%96%AD%E7%BB%93%E6%9E%9C%E7%9A%84%E5%A5%BD%E5%9D%8F/" class="read-more">
+            <a href="/2026/06/03/12_LAB12_1/" class="read-more">
               阅读全文
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14"></path>
@@ -1077,7 +1066,7 @@ DC 逻辑综合脚本与日志分析整理
           <div class="post-card-content">
             <!-- 标题 -->
             <h2 class="post-title">
-              <a href="/2026/06/02/4-SDC%20Constraints%20%E5%A6%82%E4%BD%95%E5%86%99SDC%E7%BA%A6%E6%9D%9F%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%97%B6%E9%92%9F/">(4)SDC Constraints 如何写SDC约束文件中的时钟</a>
+              <a href="/2026/06/03/14_LAB14_2/">LAB14_2 RC系数</a>
             </h2>
             
             <!-- 元信息 -->
@@ -1090,8 +1079,8 @@ DC 逻辑综合脚本与日志分析整理
       <line x1="8" x2="8" y1="2" y2="6"></line>
       <line x1="3" x2="21" y1="10" y2="10"></line>
     </svg>
-    <time datetime="2026-06-02">
-      2026-06-02
+    <time datetime="2026-06-03">
+      2026-06-03
     </time>
   </span>
 
@@ -1107,7 +1096,7 @@ DC 逻辑综合脚本与日志分析整理
         <path d="M15.1 18H3"></path>
       </svg>
       
-      6.6k 字
+      3.8k 字
     </span>
   
 
@@ -1119,7 +1108,7 @@ DC 逻辑综合脚本与日志分析整理
         <polyline points="12 6 12 12 16 14"></polyline>
       </svg>
       
-      约 23 分钟
+      约 13 分钟
     </span>
   
 
@@ -1131,7 +1120,7 @@ DC 逻辑综合脚本与日志分析整理
         <path d="M7 7h.01"></path>
       </svg>
       
-        <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/">数字中端概念基础</a>
+        <a href="/tags/innovus-lab/">innovus lab</a>
       
     </span>
   
@@ -1143,23 +1132,14 @@ DC 逻辑综合脚本与日志分析整理
               
                 
 
-
-
-
-
-SDC Constraints：时钟约束文件笔记1. 本节核心这份 SDC 脚本主要用于描述综合阶段的时钟约束，包括：
-
-基本单位设置
-主时钟 create_clock
-生成时钟 create_generated_clock
-时钟不确定性 set_clock_uncertainty
-时钟边沿转换时间 set_clock_transition
-时钟延迟 set_clock_latency...
+这个章节主要是了产生一个比较合适的rc scale factor系数，使得PT和Innovus之间的timing比较接近。
+值得注意的是，工具自动产生出来的rc factor不一定是最佳的，很多时候还是需要工程师来辅助一些分析。对于初学者来说，这部分内容可以大体上了解即可。
+generateRCFactor –preroute true -postroute medium   -referen...
               
             </div>
             
             <!-- 阅读更多 -->
-            <a href="/2026/06/02/4-SDC%20Constraints%20%E5%A6%82%E4%BD%95%E5%86%99SDC%E7%BA%A6%E6%9D%9F%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%97%B6%E9%92%9F/" class="read-more">
+            <a href="/2026/06/03/14_LAB14_2/" class="read-more">
               阅读全文
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14"></path>
@@ -1173,6 +1153,44 @@ SDC Constraints：时钟约束文件笔记1. 本节核心这份 SDC 脚本主要
 
     <!-- 分页 -->
     
+  <nav class="pagination">
+    
+      <span class="page-link prev disabled">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+        上一页
+      </span>
+    
+
+    <div class="page-numbers">
+      
+      
+      
+      
+      
+        
+          <span class="page-number current">1</span>
+        
+      
+        
+          <a href="/page/2/" class="page-number">2</a>
+        
+      
+      
+      
+    </div>
+
+    
+      <a href="/page/2/" class="page-link next">
+        下一页
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </a>
+    
+  </nav>
+
 
   </div>
 
@@ -1191,7 +1209,7 @@ SDC Constraints：时钟约束文件笔记1. 本节核心这份 SDC 脚本主要
     <p class="author-desc"></p>
     <div class="author-stats">
       <div class="stat-item">
-        <span class="stat-count">10</span>
+        <span class="stat-count">14</span>
         <span class="stat-label">文章</span>
       </div>
       <div class="stat-item">
@@ -1257,7 +1275,7 @@ SDC Constraints：时钟约束文件笔记1. 本节核心这份 SDC 脚本主要
       <div class="sidebar-tags">
         
           <a href="/tags/innovus-lab/" class="sidebar-tag">
-            innovus lab<span class="tag-count">6</span>
+            innovus lab<span class="tag-count">10</span>
           </a>
         
           <a href="/tags/%E6%95%B0%E5%AD%97%E4%B8%AD%E7%AB%AF%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/" class="sidebar-tag">
@@ -1278,7 +1296,7 @@ SDC Constraints：时钟约束文件笔记1. 本节核心这份 SDC 脚本主要
           <li class="archive-item">
             <a href="/archives/2026/06/">
               <span class="archive-date">2026-06</span>
-              <span class="archive-count">(10)</span>
+              <span class="archive-count">(14)</span>
             </a>
           </li>
         

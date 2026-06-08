@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 标题 -->
+<title>LAB14_1 时钟树综合 | 风继续吹</title>
+
+<!-- 网站描述 -->
+<meta name="description" content="">
+<meta name="keywords" content="innovus lab">
+<meta name="author" content="风继续吹">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="LAB14_1 时钟树综合">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://example.com/2026/06/03/13_LAB14_1%20%E6%97%B6%E9%92%9F%E6%A0%91%E7%BB%BC%E5%90%88/index.html">
+<meta property="og:site_name" content="风继续吹">
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="/images/laozhichi.ico">
+
+
+<!-- 预连接 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- 字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 样式表 -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<!-- RSS -->
+
+
+<!-- 规范链接 -->
+<link rel="canonical" href="http://example.com/2026/06/03/13_LAB14_1%20%E6%97%B6%E9%92%9F%E6%A0%91%E7%BB%BC%E5%90%88/index.html">
+
+<!-- 主题色 -->
+<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+
+<!-- 自定义样式变量 -->
+<style>
+  :root {
+    --primary-color: #2563eb;
+  }
+</style>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <!-- Logo / 站点标题 -->
+    <div class="site-brand">
+      <a href="/" class="site-logo">
+        
+          <img src="/images/laozhichi.ico#%20%E7%95%99%E7%A9%BA%E5%88%99%E6%98%BE%E7%A4%BA%E7%AB%99%E7%82%B9%E6%A0%87%E9%A2%98" alt="风继续吹">
+        
+      </a>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="site-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-item">
+            <a href="/" 
+               class="nav-link ">
+              首页
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/archives" 
+               class="nav-link ">
+              归档
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="/about" 
+               class="nav-link ">
+              关于
+            </a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <!-- 工具栏 -->
+    <div class="header-tools">
+      <!-- 搜索按钮 -->
+      
+        <button class="tool-btn search-toggle" aria-label="搜索" title="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 主题切换 -->
+      
+        <button class="tool-btn theme-toggle" aria-label="切换主题" title="切换主题">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      
+
+      <!-- 移动端菜单按钮 -->
+      <button class="tool-btn menu-toggle" aria-label="菜单" title="菜单">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 移动端导航 -->
+  <div class="mobile-nav">
+    <ul class="mobile-nav-list">
+      
+        <li class="mobile-nav-item">
+          <a href="/" 
+             class="mobile-nav-link ">
+            首页
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/archives" 
+             class="mobile-nav-link ">
+            归档
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item">
+          <a href="/about" 
+             class="mobile-nav-link ">
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="page-layout post-layout">
+  <article class="post-article">
+    <!-- 文章头部 -->
+    <header class="post-header">
+      <h1 class="post-title">LAB14_1 时钟树综合</h1>
+      
+      <!-- 元信息 -->
+      <div class="post-meta">
+  <!-- 发布日期 -->
+  <span class="meta-item meta-date">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+      <line x1="16" x2="16" y1="2" y2="6"></line>
+      <line x1="8" x2="8" y1="2" y2="6"></line>
+      <line x1="3" x2="21" y1="10" y2="10"></line>
+    </svg>
+    <time datetime="2026-06-03">
+      2026-06-03
+    </time>
+  </span>
+
+  <!-- 更新日期 -->
+  
+
+  <!-- 字数统计 -->
+  
+    <span class="meta-item meta-wordcount">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 6.1H3"></path>
+        <path d="M21 12.1H3"></path>
+        <path d="M15.1 18H3"></path>
+      </svg>
+      
+      25.2k 字
+    </span>
+  
+
+  <!-- 阅读时间 -->
+  
+    <span class="meta-item meta-readtime">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      
+      约 85 分钟
+    </span>
+  
+
+  <!-- 标签（仅在列表页显示前几个） -->
+  
+</div>
+
+      
+      <!-- 封面图 -->
+      
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="post-content markdown-body">
+      <meta name="referrer" content="no-referrer" />
+
+<p>这个章节的主要学习目标如下：</p>
+<p>1）时钟树综合前的准备工作熟悉</p>
+<p>2）时钟树综合的跑法</p>
+<p>3）时钟树结果分析</p>
+<p>4）时钟树综合后的时序优化（PostCTS的timing优化）</p>
+<p>首先，我们按照lab的要求来打开pr.inv这个数据。</p>
+<p>我们可以直接用我们打开数据的命令：</p>
+<p>restoreDesign ..&#x2F;saved&#x2F;pr.inv.dat DTMF_CHIP</p>
+<p>打开数据后，我们要读入做时钟树综合前的一些设置，比如这个lab中的dtmf.ccopt。这个文件的内容如下（用gvim  dtmf.ccopt即可打开该文件）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set_ccopt_property buffer_cells [ list CLKBUFX1 CLKBUFX12 CLKBUFX16 CLKBUFX2 CLKBUFX20 CLKBUFX3 CLKBUFX4 CLKBUFX8 CLKBUFXL ]</span><br><span class="line">set_ccopt_property inverter_cells [ list CLKINVX1 CLKINVX12 CLKINVX16 CLKINVX2 CLKINVX20 CLKINVX3 CLKINVX4 CLKINVX8 CLKINVXL ]</span><br></pre></td></tr></table></figure>
+<p>这两句其实就是设置工具长时钟树时可用的clock buffer和clock inverter cell list 。</p>
+<p>很多新手肯定会有疑问，我是初学者，我哪里能知道做时钟树前要设置哪些设置，而且我压根不知道ccopt有哪些相关的property。</p>
+<p>这里教大家一个大招，可以通过下面的命令来报告出所有ccopt相关的property。至于要设置哪些，这是慢慢积累的一个过程。刚开始只要知道设置一些常用的设置即可，等后续经验多了，自然就都会了。</p>
+<h1 id="CTS-中-Buffer-和-Inverter-的区别与使用场景"><a href="#CTS-中-Buffer-和-Inverter-的区别与使用场景" class="headerlink" title="CTS 中 Buffer 和 Inverter 的区别与使用场景"></a>CTS 中 Buffer 和 Inverter 的区别与使用场景</h1><h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><p>在 CTS（Clock Tree Synthesis，时钟树综合）阶段，工具会插入时钟 buffer 或时钟 inverter 来构建时钟树，从而满足时钟网络的驱动能力、时钟偏斜、时钟延迟和 transition 等要求。</p>
+<p>常见脚本如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set_ccopt_property buffer_cells [ <span class="keyword">list</span> CLKBUFX1 CLKBUFX2 CLKBUFX4 CLKBUFX8 ... ]</span><br><span class="line">set_ccopt_property inverter_cells [ <span class="keyword">list</span> CLKINVX1 CLKINVX2 CLKINVX4 CLKINVX8 ... ]</span><br></pre></td></tr></table></figure>
+
+<p>这两条命令的作用是告诉 Innovus&#x2F;CCOpt：</p>
+<ul>
+<li><code>buffer_cells</code>：CTS 阶段允许使用哪些时钟缓冲器；</li>
+<li><code>inverter_cells</code>：CTS 阶段允许使用哪些时钟反相器。</li>
+</ul>
+<hr>
+<h2 id="2-Buffer-和-Inverter-的逻辑区别"><a href="#2-Buffer-和-Inverter-的逻辑区别" class="headerlink" title="2. Buffer 和 Inverter 的逻辑区别"></a>2. Buffer 和 Inverter 的逻辑区别</h2><h3 id="2-1-Buffer"><a href="#2-1-Buffer" class="headerlink" title="2.1 Buffer"></a>2.1 Buffer</h3><p>Buffer 不改变信号极性，逻辑功能为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y = A</span><br></pre></td></tr></table></figure>
+
+<p>也就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = 0 → Y = 0</span><br><span class="line">A = 1 → Y = 1</span><br></pre></td></tr></table></figure>
+
+<p>Buffer 的主要作用不是改变逻辑，而是增强驱动能力、改善 transition、分担扇出和控制时延。</p>
+<hr>
+<h3 id="2-2-Inverter"><a href="#2-2-Inverter" class="headerlink" title="2.2 Inverter"></a>2.2 Inverter</h3><p>Inverter 会改变信号极性，逻辑功能为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y = ~A</span><br></pre></td></tr></table></figure>
+
+<p>也就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = 0 → Y = 1</span><br><span class="line">A = 1 → Y = 0</span><br></pre></td></tr></table></figure>
+
+<p>如果单独插入 inverter，会导致信号反相，因此在不能改变逻辑功能的路径上需要谨慎使用。</p>
+<hr>
+<h2 id="3-工程中-Buffer-的常见用途"><a href="#3-工程中-Buffer-的常见用途" class="headerlink" title="3. 工程中 Buffer 的常见用途"></a>3. 工程中 Buffer 的常见用途</h2><p>Buffer 通常用于不希望改变逻辑功能，只希望改善物理或时序特性的场景。</p>
+<h3 id="3-1-增强驱动能力"><a href="#3-1-增强驱动能力" class="headerlink" title="3.1 增强驱动能力"></a>3.1 增强驱动能力</h3><p>当一个信号需要驱动很多负载时，原始驱动单元可能无法满足 transition 或 fanout 要求，此时可以插入 buffer。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver → buffer → many loads</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<ul>
+<li>降低前级负载；</li>
+<li>改善 transition；</li>
+<li>减少 slew violation；</li>
+<li>提高信号传播质量。</li>
+</ul>
+<hr>
+<h3 id="3-2-修复-Hold-违例"><a href="#3-2-修复-Hold-违例" class="headerlink" title="3.2 修复 Hold 违例"></a>3.2 修复 Hold 违例</h3><p>Hold 违例通常是数据路径太短，数据到达下一级寄存器太快。此时可以在数据路径上插入 buffer 增加延迟。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reg1/Q → buffer → Reg2/D</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<ul>
+<li>增加 data path delay；</li>
+<li>修复 hold violation。</li>
+</ul>
+<hr>
+<h3 id="3-3-长线中继"><a href="#3-3-长线中继" class="headerlink" title="3.3 长线中继"></a>3.3 长线中继</h3><p>如果一根连线较长，RC 寄生较大，直接驱动会导致延迟和 transition 变差，可以在中间插入 buffer 作为中继。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver → long wire → buffer → long wire → load</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-4-CTS-时钟树构建"><a href="#3-4-CTS-时钟树构建" class="headerlink" title="3.4 CTS 时钟树构建"></a>3.4 CTS 时钟树构建</h3><p>在 CTS 中，clock buffer 是最常用的时钟树单元，用于构建多级时钟网络。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clock source → CLKBUF → CLKBUF → register clock pin</span><br></pre></td></tr></table></figure>
+
+<p>作用：</p>
+<ul>
+<li>增强时钟驱动能力；</li>
+<li>控制 clock transition；</li>
+<li>平衡 clock skew；</li>
+<li>控制 clock latency；</li>
+<li>驱动大量寄存器 clock pin。</li>
+</ul>
+<hr>
+<h2 id="4-工程中-Inverter-的常见用途"><a href="#4-工程中-Inverter-的常见用途" class="headerlink" title="4. 工程中 Inverter 的常见用途"></a>4. 工程中 Inverter 的常见用途</h2><h3 id="4-1-实现逻辑取反"><a href="#4-1-实现逻辑取反" class="headerlink" title="4.1 实现逻辑取反"></a>4.1 实现逻辑取反</h3><p>Inverter 最直接的作用是实现信号反相，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reset_n → inverter → reset</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enable → inverter → disable</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-2-两个-Inverter-串联等价于-Buffer"><a href="#4-2-两个-Inverter-串联等价于-Buffer" class="headerlink" title="4.2 两个 Inverter 串联等价于 Buffer"></a>4.2 两个 Inverter 串联等价于 Buffer</h3><p>两个 inverter 串联后，最终逻辑极性不变：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A → INV → INV → Y</span><br></pre></td></tr></table></figure>
+
+<p>因为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y = ~~A = A</span><br></pre></td></tr></table></figure>
+
+<p>因此在工程中，有时会使用 inverter pair 来实现类似 buffer 的作用。</p>
+<p>使用 inverter pair 的原因可能包括：</p>
+<ul>
+<li>inverter 面积更小；</li>
+<li>inverter 延迟更合适；</li>
+<li>inverter 驱动档位更多；</li>
+<li>工具优化选择更灵活；</li>
+<li>rise&#x2F;fall transition 更容易调整。</li>
+</ul>
+<hr>
+<h3 id="4-3-CTS-中参与时钟树优化"><a href="#4-3-CTS-中参与时钟树优化" class="headerlink" title="4.3 CTS 中参与时钟树优化"></a>4.3 CTS 中参与时钟树优化</h3><p>在 CTS 阶段，clock inverter 也可以参与时钟树构建。工具可以追踪时钟极性，因此中间节点允许出现反相时钟，只要最终到达寄存器 clock pin 的时钟极性满足要求即可。</p>
+<p>常见情况是成对使用 inverter：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clk → CLKINV → CLKINV → clk</span><br></pre></td></tr></table></figure>
+
+<p>这样最终时钟极性不变，但工具可以利用 inverter 的延迟、驱动和边沿特性优化时钟树。</p>
+<hr>
+<h2 id="5-CTS-中什么时候用-Buffer，什么时候用-Inverter？"><a href="#5-CTS-中什么时候用-Buffer，什么时候用-Inverter？" class="headerlink" title="5. CTS 中什么时候用 Buffer，什么时候用 Inverter？"></a>5. CTS 中什么时候用 Buffer，什么时候用 Inverter？</h2><p>在实际 CTS 中，通常不是工程师手动决定每一级使用 buffer 还是 inverter，而是由 CCOpt&#x2F;CTS 工具根据目标自动选择。</p>
+<p>工具会综合考虑：</p>
+<ul>
+<li>clock skew；</li>
+<li>clock latency；</li>
+<li>clock transition；</li>
+<li>fanout；</li>
+<li>insertion delay；</li>
+<li>功耗；</li>
+<li>面积；</li>
+<li>布线拥塞；</li>
+<li>时钟极性。</li>
+</ul>
+<hr>
+<h3 id="5-1-优先使用-Clock-Buffer-的场景"><a href="#5-1-优先使用-Clock-Buffer-的场景" class="headerlink" title="5.1 优先使用 Clock Buffer 的场景"></a>5.1 优先使用 Clock Buffer 的场景</h3><p>Clock buffer 不改变时钟极性，因此是 CTS 中最直接、最安全的选择。</p>
+<p>适合场景：</p>
+<ul>
+<li>保持时钟极性；</li>
+<li>增强时钟驱动能力；</li>
+<li>驱动大扇出寄存器；</li>
+<li>切分长时钟线；</li>
+<li>改善 clock transition；</li>
+<li>平衡不同分支 latency；</li>
+<li>控制 clock skew。</li>
+</ul>
+<p>示意：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">clk_root</span><br><span class="line">   ↓</span><br><span class="line">CLKBUF</span><br><span class="line">   ↓</span><br><span class="line">CLKBUF  CLKBUF  CLKBUF</span><br><span class="line">   ↓      ↓       ↓</span><br><span class="line">regs    regs     regs</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-2-使用-Clock-Inverter-的场景"><a href="#5-2-使用-Clock-Inverter-的场景" class="headerlink" title="5.2 使用 Clock Inverter 的场景"></a>5.2 使用 Clock Inverter 的场景</h3><p>Clock inverter 会改变时钟极性，因此不能随意单独使用。但在 CTS 中，工具可以合理使用 inverter 来优化时钟树。</p>
+<p>常见场景包括：</p>
+<h4 id="1）两个-inverter-成对使用"><a href="#1）两个-inverter-成对使用" class="headerlink" title="1）两个 inverter 成对使用"></a>1）两个 inverter 成对使用</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clk → CLKINV → CLKINV → clk</span><br></pre></td></tr></table></figure>
+
+<p>最终极性不变，相当于 buffer，但可能在延迟、面积、功耗或 transition 上更有优势。</p>
+<h4 id="2）调整-rise-fall-transition"><a href="#2）调整-rise-fall-transition" class="headerlink" title="2）调整 rise&#x2F;fall transition"></a>2）调整 rise&#x2F;fall transition</h4><p>Inverter 会交换上升沿和下降沿的传播特性，因此工具有时会使用 inverter 来优化时钟边沿质量。</p>
+<h4 id="3）中间节点允许反相"><a href="#3）中间节点允许反相" class="headerlink" title="3）中间节点允许反相"></a>3）中间节点允许反相</h4><p>CTS 工具能够追踪 clock polarity，因此时钟树中间节点可以是反相的，只要最终到达 sink 的时钟极性正确即可。</p>
+<h4 id="4）特殊时钟相位需求"><a href="#4）特殊时钟相位需求" class="headerlink" title="4）特殊时钟相位需求"></a>4）特殊时钟相位需求</h4><p>某些特殊单元、latch 或 clock gating 结构可能需要特定极性的时钟，此时可以通过 inverter 生成反相时钟。</p>
+<hr>
+<h2 id="6-Buffer-和-Inverter-的工程区别总结"><a href="#6-Buffer-和-Inverter-的工程区别总结" class="headerlink" title="6. Buffer 和 Inverter 的工程区别总结"></a>6. Buffer 和 Inverter 的工程区别总结</h2><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Buffer</th>
+<th>Inverter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>逻辑功能</td>
+<td>不改变极性</td>
+<td>改变极性</td>
+</tr>
+<tr>
+<td>表达式</td>
+<td><code>Y = A</code></td>
+<td><code>Y = ~A</code></td>
+</tr>
+<tr>
+<td>是否影响功能</td>
+<td>一般不影响</td>
+<td>单独使用会影响</td>
+</tr>
+<tr>
+<td>常见用途</td>
+<td>增强驱动、修 transition、修 hold、长线中继</td>
+<td>逻辑取反、极性调整、成对作为 buffer</td>
+</tr>
+<tr>
+<td>CTS 中使用</td>
+<td>最常用，直接构建时钟树</td>
+<td>可使用，但要注意极性</td>
+</tr>
+<tr>
+<td>ECO 修 hold</td>
+<td>常用</td>
+<td>通常需要成对使用</td>
+</tr>
+<tr>
+<td>工具优化</td>
+<td>稳定直接</td>
+<td>更灵活，但需管理极性</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="7-手动-ECO-时的注意事项"><a href="#7-手动-ECO-时的注意事项" class="headerlink" title="7. 手动 ECO 时的注意事项"></a>7. 手动 ECO 时的注意事项</h2><p>在手动 ECO 中，如果只是想增加延迟或者增强驱动，通常优先插入 buffer：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reg1/Q → BUFX1 → Reg2/D</span><br></pre></td></tr></table></figure>
+
+<p>如果使用 inverter，则需要成对插入，避免改变逻辑功能：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reg1/Q → INV → INV → Reg2/D</span><br></pre></td></tr></table></figure>
+
+<p>否则单独插入一个 inverter 会导致逻辑反相，可能造成功能错误。</p>
+<hr>
+<h2 id="8-一句话总结"><a href="#8-一句话总结" class="headerlink" title="8. 一句话总结"></a>8. 一句话总结</h2><blockquote>
+<p>Buffer 是不改变极性的时钟&#x2F;信号中继单元，主要用于增强驱动、改善 transition、修复 hold 和构建时钟树；Inverter 会改变极性，主要用于逻辑取反，也可以在 CTS 中成对使用来辅助优化时钟树。CTS 阶段具体使用 buffer 还是 inverter，通常由工具根据 skew、latency、transition、功耗和面积自动决定。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">innovus 5&gt; innovus 5&gt; set_ccopt_property *  -help</span><br><span class="line">Usage: set_ccopt_property * &lt;value&gt;:</span><br><span class="line">add_driver_cell                                                    add_exclusion_drivers                                              add_port_driver</span><br><span class="line">additional_buffer_depth                                            additional_buffer_depth_skew_group_fraction                        adjacent_rows_legal</span><br><span class="line">adjust_sink_grid_for_aspect_ratio                                  allow_non_standard_inputs_clock_gate                               annotated_delay_to</span><br><span class="line">annotated_transition                                               associated_row                                                     auto_limit_insertion_delay_factor</span><br><span class="line">auto_limit_insertion_delay_factor_skew_group                       auto_limit_insertion_delay_max_increment                           </span><br><span class="line">auto_limit_insertion_delay_max_increment_skew_group                balance_mode                                                       bounds</span><br><span class="line">buffer_cells                                                       cannot_clone_reason                                                cannot_fix_pre_route</span><br><span class="line">cannot_merge_reason                                                capacitance_override                                               case_analysis</span><br><span class="line">ccopt_auto_limit_insertion_delay                                   ccopt_merge_clock_gates                                            ccopt_merge_clock_logic</span><br><span class="line">ccopt_worst_chain_report_timing_too                                cell_density                                                       cell_halo_mode</span><br><span class="line">cell_halo_rows                                                     cell_halo_sites                                                    cell_halo_x</span><br><span class="line">cell_halo_y                                                        center_line                                                        check_route_follows_guide</span><br><span class="line">check_route_follows_guide_min_length                               clock_gate_buffering_location                                      clock_gate_movement_limit</span><br><span class="line">clock_gating_cells                                                 clock_gating_depth                                                 clock_gating_depth_top_down</span><br><span class="line">clock_gating_only_optimize_above_flops                             clock_period                                                       clock_source_cells</span><br><span class="line">clock_tree                                                         clock_tree_generator_sink_is_leaf                                  clock_tree_source_group</span><br><span class="line">clock_trees                                                        clone_clock_gates                                                  clone_clock_logic</span><br><span class="line">compatibility_warning                                              consider_during_latency_update                                     consider_power_management</span><br><span class="line">constrains                                                         def_lock_clock_sinks_after_routing                                 delay_cells</span><br><span class="line">detailed_cell_warnings                                             effective_clock_halo_x                                             effective_clock_halo_x_source</span><br><span class="line">effective_clock_halo_y                                             effective_clock_halo_y_source                                      effective_clock_period</span><br><span class="line">effective_clock_period_sources                                     effective_sink_type                                                enable_all_views_for_io_latency_update</span><br><span class="line">enable_nanoroute_layer_check_failure                               error_on_problematic_slew_violating_nets                           </span><br><span class="line">error_on_problematic_slew_violating_nets_max_printout              exclusive_sinks_rank                                               </span><br><span class="line">exit_if_stage_delay_sigma_target_over_constrained                  extract_balance_multi_source_clocks                                extract_clock_generator_skew_group_name_prefix</span><br><span class="line">extract_clock_generator_skew_groups                                extract_clock_group_skew_group_name_prefix                         extract_cts_case_analysis</span><br><span class="line">extract_network_latency                                            extract_no_exclude_pins                                            extract_pin_insertion_delays</span><br><span class="line">extract_skew_group_sinks_at_clock_node_timing_endpoints            extract_source_latency                                             </span><br><span class="line">extract_through_multi_output_cells_with_single_clock_output        extracted_from_clock_name                                          extracted_from_constraint_mode_name</span><br><span class="line">extracted_from_delay_corners                                       filter_cell_lists_for_frequency_dependent_max_cap_constraints</span><br><span class="line">final_cell                                                         flexible_htree                                                     flexible_htree_placement_legalization_effort</span><br><span class="line">force_clock_objects_to_propagated                                  force_clock_tree                                                   force_update_io_latency</span><br><span class="line">frequency_dependent_max_cap_usability_check_max_cap_fanout_factor  generated_by_sinks                                                 hard</span><br><span class="line">htree_sinks                                                        hv_balance                                                         ideal_net</span><br><span class="line">ignore_pins                                                        ignore_problematic_skew_as_result_of_dont_touch_nets</span><br><span class="line">image_directory                                                    implicit_sink_type                                                 include_source_latency</span><br><span class="line">insertion_delay                                                    inst_name_prefix                                                   inverter_cells</span><br><span class="line">inverting                                                          is_genus_clock_gate                                                is_sdc_clock_root</span><br><span class="line">is_vertical                                                        isolated                                                           layer_density</span><br><span class="line">leaf_buffer_cells                                                  leaf_inverter_cells                                                legalized_on_clock_spine</span><br><span class="line">library_trace_through_to                                           lock_on_clock_spine                                                log_precision</span><br><span class="line">log_special_case_cell_selections                                   logic_cells                                                        long_path_removal_cutoff_id</span><br><span class="line">long_path_removal_percentile                                       manage_power_management_illegalities                               max_buffer_depth</span><br><span class="line">max_cell_height                                                    max_clock_cell_count                                               max_driver_distance</span><br><span class="line">max_fanout                                                         max_root_distance                                                  max_source_to_sink_net_length</span><br><span class="line">max_source_to_sink_net_resistance                                  maximum_insertion_delay                                            merge_clock_gates</span><br><span class="line">merge_clock_logic                                                  mixed_fanout_net_type                                              mode</span><br><span class="line">move_clock_gates                                                   move_logic                                                         move_middle_cell_first_when_adding_wire_delay</span><br><span class="line">net_name_prefix                                                    net_type                                                           net_unbufferable</span><br><span class="line">node_type                                                          omit_symmetry                                                      opt_ignore</span><br><span class="line">original_names                                                     override_minimum_max_trans_target                                  override_minimum_skew_target</span><br><span class="line">override_vias                                                      override_zero_placeable_area                                       parents</span><br><span class="line">partition_boundary_inverting                                       partition_groups                                                   pin</span><br><span class="line">pin_route_type                                                     pin_target_max_trans                                               place_driver_in_center_of_fanout</span><br><span class="line">post_conditioning                                                  post_conditioning_enable_drv_fixing                                </span><br><span class="line">post_conditioning_enable_drv_fixing_by_rebuffering                 post_conditioning_enable_routing_eco                               </span><br><span class="line">post_conditioning_enable_skew_fixing_by_rebuffering                power_weight                                                       primary_delay_corner</span><br><span class="line">primary_reporting_skew_groups                                      primary_reporting_skew_groups_log_min_max_sinks</span><br><span class="line">pro_enable_drv_fixing_by_rebuffering                               recluster_ignore_pins                                              remove_bufferlike_clock_logic</span><br><span class="line">rename_clock_tree_nets                                             report_only_skew_group_with_target                                 </span><br><span class="line">report_only_timing_corners_associated_with_skew_groups             route_balancing_buffers_with_default_rule                          route_type</span><br><span class="line">route_type_autotrim                                                routing_override                                                   routing_preferred_layer_effort</span><br><span class="line">routing_top_fanout_count                                           routing_top_min_fanout                                             routing_top_transitive_fanout</span><br><span class="line">schedule                                                           sink_grid                                                          sink_grid_box</span><br><span class="line">sink_grid_exclusion_zones                                          sink_grid_sink_area                                                sink_instance_prefix</span><br><span class="line">sink_type                                                          sink_type_reasons                                                  sinks</span><br><span class="line">sinks_active                                                       size_clock_gates                                                   size_clock_source</span><br><span class="line">size_logic                                                         skew_band_size                                                     skew_group_report_columns</span><br><span class="line">skew_group_report_histogram_bin_size                               skew_groups_active                                                 skew_groups_active_sink</span><br><span class="line">skew_groups_constraining                                           skew_groups_constraining_sink                                      skew_groups_ignore</span><br><span class="line">skew_groups_sink                                                   skew_groups_source_pin                                             skew_passes</span><br><span class="line">skew_passes_ideal_mode                                             skew_passes_per_cluster                                            source_driver</span><br><span class="line">source_group_clock_trees                                           source_input_max_trans                                             source_latency</span><br><span class="line">source_max_capacitance                                             source_output_max_trans                                            source_pin</span><br><span class="line">sources                                                            spec_config_create_reporting_only_skew_groups                      stack_via_rule</span><br><span class="line">stack_via_rule_required                                            stop_at_sdc_clock_roots                                            target_insertion_delay</span><br><span class="line">target_insertion_delay_wire                                        target_max_capacitance                                             target_max_stage_delay_sigma</span><br><span class="line">target_max_trans                                                   target_max_trans_sdc                                               </span><br><span class="line">target_multi_corner_allowed_insertion_delay_increase               target_skew                                                        target_skew_wire</span><br><span class="line">timing_connectivity_based_skew_groups                              timing_connectivity_based_skew_groups_balance_master_clocks</span><br><span class="line">timing_connectivity_info                                           top_buffer_cells                                                   top_inverter_cells</span><br><span class="line">trace_bidi_as_input                                                trace_through_to                                                   transitive_fanout</span><br><span class="line">trunk_cell                                                         trunk_override                                                     update_io_latency</span><br><span class="line">use_estimated_routes_during_final_implementation                   use_inverters                                                      use_macro_model_pin_cap_only</span><br><span class="line">use_receiver_model_capacitance_for_drv                             useful_skew_clock_gate_movement_limit                              useful_skew_implementation_cache_hold_slacks</span><br><span class="line">useful_skew_max_delta                                              useful_skew_min_delta                                              useful_skew_post_implement_db</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>设置好ccopt相关的设置后，我们需要基于sdc和这些ccopt property来产生clock tree spec文件。因为工具长tree会根据这个spec文件来做tree。</p>
+<p>create_ccopt_clock_tree_spec</p>
+<p>spec产生后，我们就可以使用下面的命令来跑时钟树综合和时钟树综合后的时序优化。</p>
+<h1 id="Innovus-CTS-中-create-ccopt-clock-tree-spec-和-Spec-的作用"><a href="#Innovus-CTS-中-create-ccopt-clock-tree-spec-和-Spec-的作用" class="headerlink" title="Innovus CTS 中 create_ccopt_clock_tree_spec 和 Spec 的作用"></a>Innovus CTS 中 <code>create_ccopt_clock_tree_spec</code> 和 Spec 的作用</h1><h2 id="1-spec-是什么？"><a href="#1-spec-是什么？" class="headerlink" title="1. spec 是什么？"></a>1. <code>spec</code> 是什么？</h2><p><code>spec</code> 是英文单词 <strong>specification</strong> 的缩写，中文通常翻译为：</p>
+<ul>
+<li>规格</li>
+<li>规范</li>
+<li>说明</li>
+<li>约束说明</li>
+<li>配置说明文件</li>
+</ul>
+<p>在 EDA 流程中，<code>spec</code> 通常指工具执行某个任务时需要遵守的规则或配置说明。</p>
+<p>常见例子：</p>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>design spec</td>
+<td>设计规格</td>
+</tr>
+<tr>
+<td>timing spec</td>
+<td>时序规格</td>
+</tr>
+<tr>
+<td>interface spec</td>
+<td>接口规格</td>
+</tr>
+<tr>
+<td>clock tree spec</td>
+<td>时钟树规格文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-Clock-Tree-Spec-是什么？"><a href="#2-Clock-Tree-Spec-是什么？" class="headerlink" title="2. Clock Tree Spec 是什么？"></a>2. Clock Tree Spec 是什么？</h2><p>在 CTS（Clock Tree Synthesis，时钟树综合）阶段，<code>clock tree spec</code> 可以理解为：</p>
+<blockquote>
+<p>时钟树综合的规则说明文件，也可以理解为 CTS 的“施工图”。</p>
+</blockquote>
+<p>它告诉工具应该如何搭建时钟树。</p>
+<p>Clock tree spec 中通常会包含：</p>
+<ul>
+<li>设计中有哪些 clock；</li>
+<li>clock root 在哪里；</li>
+<li>clock sink 有哪些；</li>
+<li>CTS 可以使用哪些 clock buffer；</li>
+<li>CTS 可以使用哪些 clock inverter；</li>
+<li>目标 clock skew 是多少；</li>
+<li>目标 clock transition 是多少；</li>
+<li>目标 clock latency 是多少；</li>
+<li>是否存在 clock gating；</li>
+<li>是否有特殊 clock 处理规则。</li>
+</ul>
+<hr>
+<h2 id="3-为什么需要-Clock-Tree-Spec？"><a href="#3-为什么需要-Clock-Tree-Spec？" class="headerlink" title="3. 为什么需要 Clock Tree Spec？"></a>3. 为什么需要 Clock Tree Spec？</h2><p>CTS 工具不能随便插入 buffer 或 inverter，它需要知道建树规则。</p>
+<p>例如，工具需要知道：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">哪些时钟需要建树？</span><br><span class="line">时钟源在哪里？</span><br><span class="line">终点寄存器有哪些？</span><br><span class="line">目标 skew 要控制到多少？</span><br><span class="line">transition 要控制到多少？</span><br><span class="line">允许使用哪些 clock cell？</span><br><span class="line">有没有 generated clock 或 clock gating？</span><br></pre></td></tr></table></figure>
+
+<p>因此，在真正跑 CTS 之前，需要先根据 SDC 约束和 CCOpt 设置生成 clock tree spec。</p>
+<p>可以这样理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SDC 时序约束</span><br><span class="line">      +</span><br><span class="line">CCOpt property 设置</span><br><span class="line">      ↓</span><br><span class="line">create_ccopt_clock_tree_spec</span><br><span class="line">      ↓</span><br><span class="line">Clock Tree Spec</span><br><span class="line">      ↓</span><br><span class="line">CTS 根据 Spec 搭建时钟树</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-create-ccopt-clock-tree-spec-是什么？"><a href="#4-create-ccopt-clock-tree-spec-是什么？" class="headerlink" title="4. create_ccopt_clock_tree_spec 是什么？"></a>4. <code>create_ccopt_clock_tree_spec</code> 是什么？</h2><p>命令如下：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_ccopt_clock_tree_spec</span><br></pre></td></tr></table></figure>
+
+<p>可以拆开理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create       创建</span><br><span class="line">ccopt        Cadence Clock Optimization</span><br><span class="line">clock tree   时钟树</span><br><span class="line">spec         规格 / 规范文件</span><br></pre></td></tr></table></figure>
+
+<p>所以它的作用是：</p>
+<blockquote>
+<p>根据当前设计中的 SDC 约束和 CCOpt 属性设置，生成 CCOpt&#x2F;CTS 使用的 clock tree spec 文件。</p>
+</blockquote>
+<hr>
+<h2 id="5-SDC-和-CCOpt-Property-分别提供什么？"><a href="#5-SDC-和-CCOpt-Property-分别提供什么？" class="headerlink" title="5. SDC 和 CCOpt Property 分别提供什么？"></a>5. SDC 和 CCOpt Property 分别提供什么？</h2><h3 id="5-1-SDC-提供时序约束"><a href="#5-1-SDC-提供时序约束" class="headerlink" title="5.1 SDC 提供时序约束"></a>5.1 SDC 提供时序约束</h3><p>SDC 文件中通常包含：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create_clock -name clk -period <span class="number">1.0</span> [get_ports clk]</span><br><span class="line">set_clock_uncertainty ...</span><br><span class="line">set_input_delay ...</span><br><span class="line">set_output_delay ...</span><br><span class="line">set_false_path ...</span><br></pre></td></tr></table></figure>
+
+<p>SDC 主要告诉工具：</p>
+<ul>
+<li>设计中有哪些时钟；</li>
+<li>时钟周期是多少；</li>
+<li>输入输出延迟是多少；</li>
+<li>哪些路径是假路径；</li>
+<li>时序分析应该按照什么约束进行。</li>
+</ul>
+<hr>
+<h3 id="5-2-CCOpt-Property-提供建树规则"><a href="#5-2-CCOpt-Property-提供建树规则" class="headerlink" title="5.2 CCOpt Property 提供建树规则"></a>5.2 CCOpt Property 提供建树规则</h3><p>CCOpt property 用来告诉工具 CTS 应该怎么做。</p>
+<p>常见设置包括：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set_ccopt_property buffer_cells [...]</span><br><span class="line">set_ccopt_property inverter_cells [...]</span><br><span class="line">set_ccopt_property target_skew ...</span><br><span class="line">set_ccopt_property target_max_trans ...</span><br></pre></td></tr></table></figure>
+
+<p>它们主要告诉工具：</p>
+<ul>
+<li>CTS 可以使用哪些 clock buffer；</li>
+<li>CTS 可以使用哪些 clock inverter；</li>
+<li>目标 skew 是多少；</li>
+<li>目标 transition 是多少；</li>
+<li>时钟树优化目标是什么。</li>
+</ul>
+<hr>
+<h2 id="6-生成-Spec-后做什么？"><a href="#6-生成-Spec-后做什么？" class="headerlink" title="6. 生成 Spec 后做什么？"></a>6. 生成 Spec 后做什么？</h2><p>生成 clock tree spec 后，就可以开始跑时钟树综合。</p>
+<p>常见命令类似：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create_ccopt_clock_tree_spec</span><br><span class="line">ccopt_design</span><br></pre></td></tr></table></figure>
+
+<p>或者有些流程会分开写：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ccopt_design -cts</span><br><span class="line">ccopt_design -postcts</span><br></pre></td></tr></table></figure>
+
+<p>具体命令会根据 Innovus 版本和脚本流程有所不同。</p>
+<hr>
+<h2 id="7-CTS-做了什么？"><a href="#7-CTS-做了什么？" class="headerlink" title="7. CTS 做了什么？"></a>7. CTS 做了什么？</h2><p>CTS 会根据 clock tree spec 插入 clock buffer 和 clock inverter，建立真实的时钟树。</p>
+<p>在 Place 阶段，时钟通常还是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ideal clock</span><br></pre></td></tr></table></figure>
+
+<p>CTS 之后，时钟变成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">propagated clock</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，工具开始考虑真实的：</p>
+<ul>
+<li>clock latency；</li>
+<li>clock skew；</li>
+<li>clock transition；</li>
+<li>clock insertion delay。</li>
+</ul>
+<hr>
+<h2 id="8-为什么-CTS-后还要做时序优化？"><a href="#8-为什么-CTS-后还要做时序优化？" class="headerlink" title="8. 为什么 CTS 后还要做时序优化？"></a>8. 为什么 CTS 后还要做时序优化？</h2><p>时钟树建立之后，时钟到达不同寄存器的时间不再完全相同，因此原来的时序情况可能发生变化。</p>
+<p>CTS 后可能出现：</p>
+<ul>
+<li>setup 违例；</li>
+<li>hold 违例；</li>
+<li>clock gating check 违例；</li>
+<li>transition 违例；</li>
+<li>skew 不满足要求。</li>
+</ul>
+<p>所以 CTS 后通常还需要进行 post-CTS optimization，用来修复时序问题。</p>
+<p>常见优化包括：</p>
+<ul>
+<li>修复 setup；</li>
+<li>修复 hold；</li>
+<li>调整 clock buffer；</li>
+<li>优化 clock gating 路径；</li>
+<li>改善 transition；</li>
+<li>降低 clock skew。</li>
+</ul>
+<hr>
+<h2 id="9-类比理解"><a href="#9-类比理解" class="headerlink" title="9. 类比理解"></a>9. 类比理解</h2><p>可以把 CTS 类比成修建一条“时钟高速公路”。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SDC = 告诉工具时钟周期和时序要求</span><br><span class="line">CCOpt property = 告诉工具可以用哪些材料、目标指标是多少</span><br><span class="line">Clock Tree Spec = 时钟树施工图</span><br><span class="line">CTS = 按照施工图真正搭建时钟树</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="10-一句话总结"><a href="#10-一句话总结" class="headerlink" title="10. 一句话总结"></a>10. 一句话总结</h2><blockquote>
+<p><code>spec</code> 是 specification 的缩写，表示“规格&#x2F;规范”。在 CTS 中，<code>clock tree spec</code> 是时钟树综合的规则说明文件，<code>create_ccopt_clock_tree_spec</code> 会根据 SDC 和 CCOpt property 生成该文件，后续 CTS 工具会按照这个 spec 插入 clock buffer&#x2F;inverter，搭建真实时钟树，并进行 CTS 后时序优化。</p>
+</blockquote>
+<p>利用GUI图形界面分析时钟树质量  （CTD）</p>
+<p>Clock—-Ccopt Clock Tree Debugger</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608212602363-913331504.png">
+
+<p>点击OK后弹出如下结果。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608212757089-1196668983.png">
+
+
+<p>这里要求大家熟悉下图中所框出来的三个地方。通过这个CTD还可以来trace设计的时钟结构。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608212831980-1633351807.png">
+
+
+<p>图片当中的sink是啥意思：</p>
+<p>这里的 <strong>sink</strong> 在 CTS &#x2F; clock tree 里可以理解为：</p>
+<blockquote>
+<p><strong>时钟树的终点，也就是 clock 最终要送到的负载点。</strong></p>
+</blockquote>
+<p>在数字后端里，最常见的 sink 就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">寄存器 / 触发器的 clock pin</span><br></pre></td></tr></table></figure>
+
+<p>比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clk root → clock buffer → clock buffer → DFF/CLK</span><br></pre></td></tr></table></figure>
+
+<p>这里最后的 <code>DFF/CLK</code> 就是一个 <strong>clock sink</strong>。</p>
+<hr>
+<h2 id="1-sink-为啥叫-sink？"><a href="#1-sink-为啥叫-sink？" class="headerlink" title="1. sink 为啥叫 sink？"></a>1. sink 为啥叫 sink？</h2><p><code>sink</code> 英文原意有“汇入点、终点、接收端”的意思。</p>
+<p>在时钟树里：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clock source / root  →  clock network  →  clock sinks</span><br></pre></td></tr></table></figure>
+
+<p>可以理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">时钟源头  →  时钟树传播  →  各个寄存器时钟端</span><br></pre></td></tr></table></figure>
+
+<p>所以：</p>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>clock source &#x2F; root</td>
+<td>时钟源头</td>
+</tr>
+<tr>
+<td>clock tree</td>
+<td>时钟分发网络</td>
+</tr>
+<tr>
+<td>clock sink</td>
+<td>时钟终点 &#x2F; 时钟负载</td>
+</tr>
+<tr>
+<td>sink pin</td>
+<td>接收时钟的 pin，比如 DFF 的 CK</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-图里“大部分-sink-落在-0-5–0-55ns”是什么意思？"><a href="#2-图里“大部分-sink-落在-0-5–0-55ns”是什么意思？" class="headerlink" title="2. 图里“大部分 sink 落在 0.5–0.55ns”是什么意思？"></a>2. 图里“大部分 sink 落在 0.5–0.55ns”是什么意思？</h2><p>你图里说：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">大部分 sink 落在 0.5–0.55ns 这个区间</span><br></pre></td></tr></table></figure>
+
+<p>意思是：</p>
+<blockquote>
+<p>大多数寄存器的 clock pin，从 clock root 到达该 pin 的 clock latency 大约是 0.5ns 到 0.55ns。</p>
+</blockquote>
+<p>也就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clock root 出发</span><br><span class="line">经过若干级 clock buffer / inverter</span><br><span class="line">最终到达 DFF/CLK</span><br><span class="line">花了约 0.5~0.55ns</span><br></pre></td></tr></table></figure>
+
+<p>这个时间就是 <strong>clock tree latency &#x2F; insertion delay</strong>。</p>
+<hr>
+<h2 id="3-举个简单例子"><a href="#3-举个简单例子" class="headerlink" title="3. 举个简单例子"></a>3. 举个简单例子</h2><p>假设有三个寄存器：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clk root</span><br><span class="line">  ├── buf1 ── buf2 ── reg_A/CK</span><br><span class="line">  ├── buf3 ── buf4 ── reg_B/CK</span><br><span class="line">  └── buf5 ── buf6 ── reg_C/CK</span><br></pre></td></tr></table></figure>
+
+<p>那么：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg_A/CK 是一个 sink</span><br><span class="line">reg_B/CK 是一个 sink</span><br><span class="line">reg_C/CK 是一个 sink</span><br></pre></td></tr></table></figure>
+
+<p>如果工具报告：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg_A/CK latency = 0.51ns</span><br><span class="line">reg_B/CK latency = 0.53ns</span><br><span class="line">reg_C/CK latency = 0.50ns</span><br></pre></td></tr></table></figure>
+
+<p>那就说明这些 sink 的时钟到达时间都集中在 0.5ns 左右。</p>
+<hr>
+<h2 id="4-sink-分布集中说明什么？"><a href="#4-sink-分布集中说明什么？" class="headerlink" title="4. sink 分布集中说明什么？"></a>4. sink 分布集中说明什么？</h2><p>如果大部分 sink 的 latency 都集中在一个比较窄的范围，比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.50ns ~ 0.55ns</span><br></pre></td></tr></table></figure>
+
+<p>通常说明时钟树比较均衡，clock 到达不同寄存器的时间差不大。</p>
+<p>这个时间差就和 <strong>clock skew</strong> 有关。</p>
+<p>简单说：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">latency：clock 从 root 到某个 sink 的延迟</span><br><span class="line">skew：不同 sink 之间 clock latency 的差值</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sink1 latency = 0.50ns</span><br><span class="line">sink2 latency = 0.55ns</span><br></pre></td></tr></table></figure>
+
+<p>那么这两个 sink 之间的 skew 大约就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.55 - 0.50 = 0.05ns</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-一句话总结"><a href="#5-一句话总结" class="headerlink" title="5. 一句话总结"></a>5. 一句话总结</h2><blockquote>
+<p><strong>sink 就是时钟树的终点，通常是寄存器的 clock pin。图里说大部分 sink 落在 0.5–0.55ns，意思是大多数寄存器的时钟到达延迟集中在这个范围，说明 clock tree 的 latency 分布比较集中。</strong></p>
+</blockquote>
+<p>通过这个CTD分析的一个好处是我们可以在CTD窗口任意选择一颗cell，此时layout上会同步高亮显示出这颗cell。而且还能高亮当前sink点对应的clock path走向。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608213354725-674177918.png">
+
+
+
+
+<p>除了分析时钟树质量和时钟树结构外，我们还需要关心设计的时序Timing情况。</p>
+<p>我们可以通过timeDesign来报告出当前设计的时序。</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608214917342-1285873260.png">
+
+<p>第一个就是报告postCTS阶段的timing，因为此时我们就是做完了CTS，所以此时我们应该带上PostCTS来报timing。</p>
+<p>第二个命令又再加了一个 -hold选项，这个代表是我们想让工具报出当前阶段的hold time情况。</p>
+<p>【思考题】 为何这个阶段要看hold time？</p>
+<p>优化时序方法</p>
+<p><strong>如果工具自己做完时钟树综合和时序优化后的timing还有较大violation，我们还可以通过命令自带的时序优化命令来做时序的优化——optDesign  -postCTS  -setup (-hold 代表我们希望让工具优化hold time)</strong></p>
+<p>这里也可以直接使用innovus的GUI界面直接打印出相关的Timing信息</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608215537879-978263577.png">
+
+
+
+
+
+<h1 id="Post-CTS-阶段为什么要检查-Hold-Time？"><a href="#Post-CTS-阶段为什么要检查-Hold-Time？" class="headerlink" title="Post-CTS 阶段为什么要检查 Hold Time？"></a>Post-CTS 阶段为什么要检查 Hold Time？</h1><h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h2><p>在 Innovus 后端流程中，完成 CTS（Clock Tree Synthesis，时钟树综合）之后，需要重新报告 timing。</p>
+<p>常见命令包括：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">report_timing -postCTS</span><br><span class="line">report_timing -postCTS -hold</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>-postCTS</code>：表示报告 CTS 之后的时序情况；</li>
+<li><code>-hold</code>：表示报告 hold timing，也就是保持时间检查。</li>
+</ul>
+<hr>
+<h2 id="2-CTS-前后的-Clock-状态区别"><a href="#2-CTS-前后的-Clock-状态区别" class="headerlink" title="2. CTS 前后的 Clock 状态区别"></a>2. CTS 前后的 Clock 状态区别</h2><h3 id="CTS-之前：Ideal-Clock"><a href="#CTS-之前：Ideal-Clock" class="headerlink" title="CTS 之前：Ideal Clock"></a>CTS 之前：Ideal Clock</h3><p>在 Place 阶段，时钟树还没有真正建立，clock 通常是 ideal clock。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clock latency ≈ 0</span><br><span class="line">clock skew ≈ 0</span><br></pre></td></tr></table></figure>
+
+<p>此时工具假设时钟几乎同时到达所有寄存器，因此 hold 分析不够真实，主要关注 setup。</p>
+<hr>
+<h3 id="CTS-之后：Propagated-Clock"><a href="#CTS-之后：Propagated-Clock" class="headerlink" title="CTS 之后：Propagated Clock"></a>CTS 之后：Propagated Clock</h3><p>完成 CTS 后，工具已经插入 clock buffer &#x2F; clock inverter，建立了真实时钟树。</p>
+<p>此时 clock 变成 propagated clock，会产生真实的：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clock latency</span><br><span class="line">clock skew</span><br><span class="line">clock insertion delay</span><br><span class="line">clock transition</span><br></pre></td></tr></table></figure>
+
+<p>不同寄存器的 clock pin 收到时钟的时间不再完全相同，因此需要重新检查 setup 和 hold。</p>
+<hr>
+<h2 id="3-为什么-Post-CTS-要重点看-Hold？"><a href="#3-为什么-Post-CTS-要重点看-Hold？" class="headerlink" title="3. 为什么 Post-CTS 要重点看 Hold？"></a>3. 为什么 Post-CTS 要重点看 Hold？</h2><p>Hold 检查关注的是：</p>
+<blockquote>
+<p>数据不能太早到达下一级寄存器。</p>
+</blockquote>
+<p>如果数据路径太短，或者 CTS 后 capture clock 比 launch clock 晚很多，就可能导致数据过早到达，从而产生 hold violation。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reg1/Q → 很短组合逻辑 → Reg2/D</span><br></pre></td></tr></table></figure>
+
+<p>CTS 前可能认为两个寄存器同时收到时钟：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Reg1 clock latency ≈ 0</span><br><span class="line">Reg2 clock latency ≈ 0</span><br></pre></td></tr></table></figure>
+
+<p>CTS 后可能变成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Reg1 clock latency = 0.20 ns</span><br><span class="line">Reg2 clock latency = 0.50 ns</span><br></pre></td></tr></table></figure>
+
+<p>此时 capture clock 比 launch clock 晚，短数据路径就可能出现 hold 违例。</p>
+<hr>
+<h2 id="4-为什么-Place-阶段不重点看-Hold，而-CTS-后要看？"><a href="#4-为什么-Place-阶段不重点看-Hold，而-CTS-后要看？" class="headerlink" title="4. 为什么 Place 阶段不重点看 Hold，而 CTS 后要看？"></a>4. 为什么 Place 阶段不重点看 Hold，而 CTS 后要看？</h2><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>Clock 状态</th>
+<th>主要关注</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Place 阶段</td>
+<td>ideal clock</td>
+<td>setup</td>
+<td>时钟树未建立，主要优化长数据路径</td>
+</tr>
+<tr>
+<td>Post-CTS 阶段</td>
+<td>propagated clock</td>
+<td>setup + hold</td>
+<td>真实 clock latency 和 skew 已出现</td>
+</tr>
+<tr>
+<td>Post-Route 阶段</td>
+<td>propagated clock + 真实 RC</td>
+<td>setup + hold</td>
+<td>时序更接近 signoff 结果</td>
+</tr>
+</tbody></table>
+<p>Place 阶段不重点看 hold，是因为 clock tree 还没有建立，hold 结果容易失真。</p>
+<p>CTS 之后必须看 hold，是因为真实 clock skew 已经出现，短路径问题可能被暴露出来。</p>
+<hr>
+<h2 id="5-optDesign-postCTS-setup-的作用"><a href="#5-optDesign-postCTS-setup-的作用" class="headerlink" title="5. optDesign -postCTS -setup 的作用"></a>5. <code>optDesign -postCTS -setup</code> 的作用</h2><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optDesign -postCTS -setup</span><br></pre></td></tr></table></figure>
+
+<p>该命令用于 CTS 后的 setup 优化。</p>
+<p>Setup 违例通常说明数据路径太慢，工具可能通过以下方式优化：</p>
+<ul>
+<li>换更大驱动能力的 cell；</li>
+<li>优化长组合逻辑路径；</li>
+<li>调整 buffer；</li>
+<li>改善 transition；</li>
+<li>局部移动 cell。</li>
+</ul>
+<hr>
+<h2 id="6-optDesign-postCTS-hold-的作用"><a href="#6-optDesign-postCTS-hold-的作用" class="headerlink" title="6. optDesign -postCTS -hold 的作用"></a>6. <code>optDesign -postCTS -hold</code> 的作用</h2><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optDesign -postCTS -hold</span><br></pre></td></tr></table></figure>
+
+<p>该命令用于 CTS 后的 hold 优化。</p>
+<p>Hold 违例通常说明数据路径太快，常见修复方法是：</p>
+<ul>
+<li>插入 delay buffer；</li>
+<li>增加短路径延迟；</li>
+<li>调整 buffer &#x2F; inverter；</li>
+<li>优化 clock skew；</li>
+<li>修复过短的数据路径。</li>
+</ul>
+<p>简单理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setup 违例：数据来得太晚，需要让数据路径更快</span><br><span class="line">hold 违例：数据来得太早，需要让数据路径慢一点</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-思考题答案整理"><a href="#7-思考题答案整理" class="headerlink" title="7. 思考题答案整理"></a>7. 思考题答案整理</h2><p>CTS 之前，时钟树尚未真实建立，clock 仍为 ideal clock，工具无法准确获得不同寄存器之间的 clock latency 和 clock skew，因此 hold 分析参考意义有限。</p>
+<p>完成 CTS 后，工具已经插入 clock buffer &#x2F; inverter 并生成真实时钟树，clock 由 ideal clock 变为 propagated clock。此时不同 clock sink 的时钟到达时间产生差异，真实 clock skew 和 insertion delay 开始影响寄存器之间的时序关系。</p>
+<p>Hold 检查对 clock skew 和最小数据路径延迟非常敏感。CTS 后，一些在 ideal clock 下不明显的短路径问题可能暴露出来，因此 postCTS 阶段需要报告 hold timing，检查是否存在数据过早到达导致的 hold violation。若存在 hold 违例，可以使用 <code>optDesign -postCTS -hold</code> 进行优化，通过插入 buffer、增加短路径延迟等方式修复 hold 问题。</p>
+<hr>
+<h2 id="8-一句话总结-1"><a href="#8-一句话总结-1" class="headerlink" title="8. 一句话总结"></a>8. 一句话总结</h2><blockquote>
+<p>CTS 后时钟树已经真实存在，clock latency 和 clock skew 会影响寄存器之间的数据保持时间，因此 postCTS 阶段必须开始检查并修复 hold violation。</p>
+</blockquote>
+<p>可以使用下面的ECO直接对CTS之后的setup和hold违例进行修复</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608215301815-967046092.png">
+
+<p>ECO配置的参数如下：</p>
+<img src="https://img2024.cnblogs.com/blog/3728231/202606/3728231-20260608215358546-414241691.png">
+
+
+
+    </div>
+
+    <!-- 标签 -->
+    
+      <div class="post-tags">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+          <path d="M7 7h.01"></path>
+        </svg>
+        
+          <a href="/tags/innovus-lab/" class="tag-link">innovus lab</a>
+        
+      </div>
+    
+
+    <!-- 版权信息 -->
+    
+
+    <!-- 上一篇 / 下一篇 -->
+    <nav class="post-nav">
+      
+        <a href="/2026/06/03/11-LAB10-2%20Running%20the%20Early%20Global%20Router/" class="post-nav-item prev">
+          <span class="post-nav-label">上一篇</span>
+          <span class="post-nav-title">LAB10-2 Running the Early Global Router</span>
+        </a>
+      
+      
+      
+        <a href="/2026/06/03/12_LAB12_1/" class="post-nav-item next">
+          <span class="post-nav-label">下一篇</span>
+          <span class="post-nav-title">LAB12_1</span>
+        </a>
+      
+    </nav>
+  </article>
+
+  <!-- TOC 目录 -->
+  
+    <aside class="post-toc">
+      <div class="toc-wrapper">
+        <h3 class="toc-title">目录</h3>
+        <div class="toc-content">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CTS-%E4%B8%AD-Buffer-%E5%92%8C-Inverter-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">CTS 中 Buffer 和 Inverter 的区别与使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Buffer-%E5%92%8C-Inverter-%E7%9A%84%E9%80%BB%E8%BE%91%E5%8C%BA%E5%88%AB"><span class="toc-text">2. Buffer 和 Inverter 的逻辑区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Buffer"><span class="toc-text">2.1 Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Inverter"><span class="toc-text">2.2 Inverter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B7%A5%E7%A8%8B%E4%B8%AD-Buffer-%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94"><span class="toc-text">3. 工程中 Buffer 的常见用途</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%A2%9E%E5%BC%BA%E9%A9%B1%E5%8A%A8%E8%83%BD%E5%8A%9B"><span class="toc-text">3.1 增强驱动能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BF%AE%E5%A4%8D-Hold-%E8%BF%9D%E4%BE%8B"><span class="toc-text">3.2 修复 Hold 违例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E9%95%BF%E7%BA%BF%E4%B8%AD%E7%BB%A7"><span class="toc-text">3.3 长线中继</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-CTS-%E6%97%B6%E9%92%9F%E6%A0%91%E6%9E%84%E5%BB%BA"><span class="toc-text">3.4 CTS 时钟树构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%B7%A5%E7%A8%8B%E4%B8%AD-Inverter-%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94"><span class="toc-text">4. 工程中 Inverter 的常见用途</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91%E5%8F%96%E5%8F%8D"><span class="toc-text">4.1 实现逻辑取反</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%B8%A4%E4%B8%AA-Inverter-%E4%B8%B2%E8%81%94%E7%AD%89%E4%BB%B7%E4%BA%8E-Buffer"><span class="toc-text">4.2 两个 Inverter 串联等价于 Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-CTS-%E4%B8%AD%E5%8F%82%E4%B8%8E%E6%97%B6%E9%92%9F%E6%A0%91%E4%BC%98%E5%8C%96"><span class="toc-text">4.3 CTS 中参与时钟树优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-CTS-%E4%B8%AD%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8-Buffer%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8-Inverter%EF%BC%9F"><span class="toc-text">5. CTS 中什么时候用 Buffer，什么时候用 Inverter？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E4%BC%98%E5%85%88%E4%BD%BF%E7%94%A8-Clock-Buffer-%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="toc-text">5.1 优先使用 Clock Buffer 的场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E4%BD%BF%E7%94%A8-Clock-Inverter-%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="toc-text">5.2 使用 Clock Inverter 的场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Buffer-%E5%92%8C-Inverter-%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%BA%E5%88%AB%E6%80%BB%E7%BB%93"><span class="toc-text">6. Buffer 和 Inverter 的工程区别总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%89%8B%E5%8A%A8-ECO-%E6%97%B6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">7. 手动 ECO 时的注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">8. 一句话总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Innovus-CTS-%E4%B8%AD-create-ccopt-clock-tree-spec-%E5%92%8C-Spec-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">Innovus CTS 中 create_ccopt_clock_tree_spec 和 Spec 的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-spec-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1. spec 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Clock-Tree-Spec-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2. Clock Tree Spec 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-Clock-Tree-Spec%EF%BC%9F"><span class="toc-text">3. 为什么需要 Clock Tree Spec？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-create-ccopt-clock-tree-spec-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">4. create_ccopt_clock_tree_spec 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-SDC-%E5%92%8C-CCOpt-Property-%E5%88%86%E5%88%AB%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">5. SDC 和 CCOpt Property 分别提供什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-SDC-%E6%8F%90%E4%BE%9B%E6%97%B6%E5%BA%8F%E7%BA%A6%E6%9D%9F"><span class="toc-text">5.1 SDC 提供时序约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-CCOpt-Property-%E6%8F%90%E4%BE%9B%E5%BB%BA%E6%A0%91%E8%A7%84%E5%88%99"><span class="toc-text">5.2 CCOpt Property 提供建树规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%94%9F%E6%88%90-Spec-%E5%90%8E%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">6. 生成 Spec 后做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-CTS-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">7. CTS 做了什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%B8%BA%E4%BB%80%E4%B9%88-CTS-%E5%90%8E%E8%BF%98%E8%A6%81%E5%81%9A%E6%97%B6%E5%BA%8F%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="toc-text">8. 为什么 CTS 后还要做时序优化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E7%B1%BB%E6%AF%94%E7%90%86%E8%A7%A3"><span class="toc-text">9. 类比理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">10. 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-sink-%E4%B8%BA%E5%95%A5%E5%8F%AB-sink%EF%BC%9F"><span class="toc-text">1. sink 为啥叫 sink？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9B%BE%E9%87%8C%E2%80%9C%E5%A4%A7%E9%83%A8%E5%88%86-sink-%E8%90%BD%E5%9C%A8-0-5%E2%80%930-55ns%E2%80%9D%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="toc-text">2. 图里“大部分 sink 落在 0.5–0.55ns”是什么意思？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%BE%E4%B8%AA%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90"><span class="toc-text">3. 举个简单例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-sink-%E5%88%86%E5%B8%83%E9%9B%86%E4%B8%AD%E8%AF%B4%E6%98%8E%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">4. sink 分布集中说明什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">5. 一句话总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Post-CTS-%E9%98%B6%E6%AE%B5%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%A3%80%E6%9F%A5-Hold-Time%EF%BC%9F"><span class="toc-text">Post-CTS 阶段为什么要检查 Hold Time？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF"><span class="toc-text">1. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CTS-%E5%89%8D%E5%90%8E%E7%9A%84-Clock-%E7%8A%B6%E6%80%81%E5%8C%BA%E5%88%AB"><span class="toc-text">2. CTS 前后的 Clock 状态区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CTS-%E4%B9%8B%E5%89%8D%EF%BC%9AIdeal-Clock"><span class="toc-text">CTS 之前：Ideal Clock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CTS-%E4%B9%8B%E5%90%8E%EF%BC%9APropagated-Clock"><span class="toc-text">CTS 之后：Propagated Clock</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88-Post-CTS-%E8%A6%81%E9%87%8D%E7%82%B9%E7%9C%8B-Hold%EF%BC%9F"><span class="toc-text">3. 为什么 Post-CTS 要重点看 Hold？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%BA%E4%BB%80%E4%B9%88-Place-%E9%98%B6%E6%AE%B5%E4%B8%8D%E9%87%8D%E7%82%B9%E7%9C%8B-Hold%EF%BC%8C%E8%80%8C-CTS-%E5%90%8E%E8%A6%81%E7%9C%8B%EF%BC%9F"><span class="toc-text">4. 为什么 Place 阶段不重点看 Hold，而 CTS 后要看？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-optDesign-postCTS-setup-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">5. optDesign -postCTS -setup 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-optDesign-postCTS-hold-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">6. optDesign -postCTS -hold 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%80%9D%E8%80%83%E9%A2%98%E7%AD%94%E6%A1%88%E6%95%B4%E7%90%86"><span class="toc-text">7. 思考题答案整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93-1"><span class="toc-text">8. 一句话总结</span></a></li></ol></li></ol>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- 版权信息 -->
+      <div class="footer-copyright">
+        <p>
+          &copy; 
+          
+            2025 - 
+          
+          2026 
+          <a href="/">风继续吹</a>
+        </p>
+      </div>
+
+      <!-- 社交链接 -->
+      
+        <div class="footer-social">
+          
+          
+          
+            <a href="2436757134@qq.com" aria-label="Email" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          
+        </div>
+      
+
+      <!-- 技术支持 -->
+      <div class="footer-powered">
+        <p>
+          Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a>
+          <span class="separator">|</span>
+          Theme Starter
+        </p>
+      </div>
+
+      <!-- 备案信息 -->
+      
+
+      <!-- 自定义内容 -->
+      
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- 搜索模态框 -->
+  
+    <div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="搜索文章、文档..." 
+          autocomplete="off"
+          autofocus
+        >
+        <button class="search-close" aria-label="关闭">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="search-shortcut">
+        <kbd>ESC</kbd> 关闭
+        <span class="shortcut-divider">|</span>
+        <kbd>↑</kbd><kbd>↓</kbd> 导航
+        <span class="shortcut-divider">|</span>
+        <kbd>Enter</kbd> 打开
+      </div>
+    </div>
+
+    <!-- 搜索结果 -->
+    <div id="search-results" class="search-results">
+      <div class="search-tip">输入关键词开始搜索</div>
+    </div>
+
+    <!-- 搜索页脚 -->
+    <div class="search-footer">
+      <span class="search-footer-text">
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> 快速搜索
+      </span>
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- 站点配置 -->
+  <script>
+    window.STARTER_CONFIG = {
+      root: '/',
+      searchEnabled: true
+    };
+  </script>
+
+  <!-- 主脚本 -->
+  
+<script src="/js/main.js"></script>
+
+  
+  
+    
+<script src="/js/search.js"></script>
+
+  
+  
+  
+    
+<script src="/js/doc-sidebar.js"></script>
+
+  
+</body>
+</html>
